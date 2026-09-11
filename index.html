@@ -8,44 +8,61 @@
         <link rel="stylesheet" href="./css/styles.css">
     </head>
     <body>
-        <!-- Sidebar Navigation -->
-        <aside>
-            <nav>
-                <a href="#">Dashboard</a>
-                <a href="people.html">People</a>
-                <a href="">Interactions</a>
-                <a href="">Files</a>
-            </nav>
-        </aside>
+        <div class="flex main-container">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar flex">
+                <nav class="flex flex-col">
+                    <a href="#">Dashboard</a>
+                    <a href="people.html">People</a>
+                    <a href="">Interactions</a>
+                    <a href="">Files</a>
+                </nav>
+            </aside>
+            
+            <!-- Main Content Area -->
+            <main>
+                <!-- Main Heading of the page -->
+                <h1>Your Network</h1>
+                <p>Track, remember, and nurture the people who matter.</p>
+            
+                <!-- Content goes here -->
+            
+                <!-- People - Recent - Categories-->
+                <div class="grid">
+                    <div class="card">
+                        <p>PEOPLE</p>
+                        <p>24</p>
+                        <p>In your network</p>
+                    </div>
+                    <div class="card">
+                        <p>RECENT</p>
+                        <p>11</p>
+                        <p>Interactions this month</p>
+                    </div>
+                    <div class="card">
+                        <p>CATEGORIES</p>
+                        <p>6</p>
+                        <p>Types of connection</p>
+                    </div>
+                </div>
+            
+                <!-- Network By Category - Recent Activity-->
+                <div>
+                    <div class="card">
+                        <p>NETWORK BY CATEGORY</p>
+                        <div>
+            
+                        </div>
+                    </div>
+                    <div class="card">
+                        <p>RECENT ACTIVITY</p>
+                        <div>
+            
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
         
-        <!-- Main Content Area -->
-        <main>
-            <!-- Main Heading of the page -->
-            <h1>Your Network</h1> 
-            <p>Track, remember, and nurture the people who matter.</p>
-
-            <!-- Content goes here -->
-            
-            <!-- People - Recent - Categories-->
-            <div class="grid">
-                <div class="card">
-                    <p>PEOPLE</p>
-                    <p>24</p>
-                    <p>In your network</p>
-                </div>
-                <div class="card">
-                    <p>RECENT</p>
-                    <p>11</p>
-                    <p>Interactions this month</p>
-                </div>
-                <div class="card">
-                    <p>CATEGORIES</p>
-                    <p>6</p>
-                    <p>Types of connection</p>
-                </div>
-            </div>
-
-            
-        </main>
     </body>
 </html>
