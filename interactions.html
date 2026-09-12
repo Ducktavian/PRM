@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactions | PRM</title>
+
+    <link rel="stylesheet" href="css/interactions.css">
+</head>
+
+<body>
+
+    <header>
+        <p class="brand">
+            <strong>PRM</strong> | Personal Relationship Manager
+        </p>
+
+        <nav aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="people.html">People</a>
+            <a href="interactions.html" aria-current="page">Interactions</a>
+            <a href="">Files</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Interactions</h1>
+            <p>
+                View and record conversations, meetings, calls, messages,
+                and events.
+            </p>
+        </section>
+
+        <section class="interaction-history" aria-labelledby="interaction-heading">
+            <h2 id="interaction-heading" class="visually-hidden">
+                Interaction History
+            </h2>
+
+            <div
+                class="table-container"
+                role="region"
+                aria-label="Interaction history table"
+                tabindex="0"
+                >
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Person</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Interaction</th>
+                            <th scope="col">Channel</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Ravi Patel</span>
+                                <span class="role">Product Manager</span>
+                            </th>
+
+                            <td>Message</td>
+
+                            <td>
+                                <strong>LinkedIn reconnect</strong>
+                                <p>
+                                    He commented on a post and we ended up having a short DM conversation about PMs using HCI methods.
+                                </p>
+                            </td>
+
+                            <td>LinkedIn</td>
+
+                            <td>
+                                <time datetime="2026-09-25">Sep 25, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">James Mitchell</span>
+                                <span class="role">Graduate Student</span>
+                            </th>
+
+                            <td>Message</td>
+
+                            <td>
+                                <strong>Grad school update</strong>
+                                <p>
+                                    He texted about an exciting robotics project he is leading at Georgia Tech.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-22">Sep 22, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Mei-Ling Huang</span>
+                                <span class="role">Data Analyst</span>
+                            </th>
+
+                            <td>Meeting</td>
+
+                            <td>
+                                <strong>Metric review</strong>
+                                <p>
+                                    Walked through the updated retention metrics dashboard. Some surprising trends in the Aug data.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-20">Sep 20, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Ben Nakamura</span>
+                                <span class="role">Software Engineer</span>
+                            </th>
+
+                            <td>Event</td>
+
+                            <td>
+                                <strong>Morning run - Forest Park</strong>
+                                <p>
+                                    Early run through Forest Park followed by coffee at Water Avenue. Good talks about work.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-18">Sep 18, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Lena Müller</span>
+                                <span class="role">Product Researcher</span>
+                            </th>
+
+                            <td>Meeting</td>
+
+                            <td>
+                                <strong>Q4 research planning</strong>
+                                <p>
+                                    Aligned on Q4 research priorities and resource allocation across teams.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-15">Sep 15, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Jonas Rivera</span>
+                                <span class="role">Photographer</span>
+                            </th>
+
+                            <td>Event</td>
+
+                            <td>
+                                <strong>Weekend photo walk</strong>
+                                <p>
+                                    Met downtown for a photo walk and coffee. He showed me a new perspective on urban framing.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-12">Sep 12, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Isabelle Fontaine</span>
+                                <span class="role">Product Designer</span>
+                            </th>
+
+                            <td>Meeting</td>
+
+                            <td>
+                                <strong>Design system kickoff</strong>
+                                <p>
+                                    Kicked off the Q4 design system update project. Agreed on audit approach and component priority.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-09">Sep 9, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">David Kim</span>
+                                <span class="role">XR Research Scientist</span>
+                            </th>
+
+                            <td>Message</td>
+
+                            <td>
+                                <strong>Research paper follow-up</strong>
+                                <p>
+                                    He sent over a follow-up to the paper on spatial interfaces. Should read before next call.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-08">Sep 8, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Priya Nair</span>
+                                <span class="role">Ceramics Instructor & Illustrator</span>
+                            </th>
+
+                            <td>Call</td>
+
+                            <td>
+                                <strong>Catching up</strong>
+                                <p>
+                                    Long phone call. She is loving the new studio space and already has students.
+                                </p>
+                            </td>
+
+                            <td>Phone</td>
+
+                            <td>
+                                <time datetime="2026-09-05">Sep 5, 2026</time>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Sofia Andersen</span>
+                                <span class="role">Architect</span>
+                            </th>
+
+                            <td>Message</td>
+
+                            <td>
+                                <strong>New project update</strong>
+                                <p>
+                                    She shared renders of the Aarhus residential project. Absolutely stunning work.
+                                </p>
+                            </td>
+
+                            <td>Not specified</td>
+
+                            <td>
+                                <time datetime="2026-09-03">Sep 3, 2026</time>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
