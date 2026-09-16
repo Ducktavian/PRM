@@ -1,0 +1,120 @@
+.interactions-page .role {
+    display: block;
+    font-size: clamp(9px, 1.02dvh, 12px);
+    font-weight: normal;
+    color: gray;
+}
+
+.interactions-page .table-container {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #E3DFE7;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.interactions-page table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background-color: white;
+    height: 100%;
+    font-size: clamp(10px, 1.19dvh, 14px);
+}
+
+.interactions-page th,
+.interactions-page td {
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: top;
+}
+
+.interactions-page thead {
+    background-color: #ececec;
+}
+
+.interactions-page thead th {
+    color: #716D78;
+    height: 41px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #E3DFE7;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.interactions-page thead th:first-child {
+    width: 24%;
+    padding-left: 20px;
+}
+
+.interactions-page thead th:nth-child(2) {
+    width: 12%;
+}
+
+.interactions-page thead th:nth-child(3) {
+    width: 44%;
+}
+
+.interactions-page thead th:nth-child(4) {
+    width: 13%;
+}
+
+.interactions-page thead th:last-child {
+    width: 7%;
+}
+
+.interactions-page tbody th,
+.interactions-page tbody td {
+    height: auto;
+    padding: 0;
+    vertical-align: middle;
+    border: 0;
+    border-bottom: 1px solid #E3DFE7;
+}
+
+.interactions-page tbody th {
+    padding-left: 20px;
+}
+
+.interactions-page .actions-column {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.interactions-page tbody td p {
+    font-size: clamp(9px, 1.02dvh, 12px);
+    padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.interactions-page time {
+    white-space: nowrap;
+}
+
+.interactions-page .interaction-history {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+}
+
+.interactions-page tbody tr {
+    height: calc((100dvh - 376px) / 10);
+}
+
+.interactions-page tbody td strong,
+.interactions-page .person-name,
+.interactions-page .role {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 12px;
+}
+

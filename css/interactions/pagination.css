@@ -1,0 +1,46 @@
+.interactions-page .pagination {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    padding-top: 8px;
+}
+
+.interactions-page .pagination button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 28px;
+    height: 30px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 8px;
+    background: white;
+    color: #202622;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.interactions-page .pagination button[aria-current="page"] {
+    background: #6E5BCF;
+    color: white;
+}
+
+.interactions-page .pagination .pagination-direction {
+    gap: 12px;
+    padding: 0 12px;
+    border: 1px solid #E3DFE7;
+}
+
+.interactions-page .pagination button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.interactions-page .pagination-direction img {
+    display: block;
+    flex-shrink: 0;
+}

@@ -1,0 +1,40 @@
+.interactions-page .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.interactions-page .action-button:focus-visible {
+    outline: 2px solid #6D5BD0;
+    outline-offset: 2px;
+}
+
+.interactions-page .action-button img {
+    display: block;
+}
+
+.interactions-page .add-interaction {
+    appearance: none;
+    background: #6E5BCF;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: none;
+    transition: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 158px;
+    height: 40px;
+    font-family: inherit;
+    font-size: 14px;
+}
