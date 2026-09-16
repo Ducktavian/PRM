@@ -6,44 +6,72 @@
 
     <title>Interactions | PRM</title>
 
-    <link rel="stylesheet" href="css/interactions.css">
+    <link rel="stylesheet" href="css/interactions/layout.css">
+    <link rel="stylesheet" href="css/interactions/buttons.css">
+    <link rel="stylesheet" href="css/interactions/table.css">
+    <link rel="stylesheet" href="css/interactions/filters.css">
+    <link rel="stylesheet" href="css/interactions/pagination.css">
 </head>
 
-<body>
+<body class="interactions-page">
 
-    <header>
-        <p class="brand">
-            <strong>PRM</strong> | Personal Relationship Manager
-        </p>
-
-        <nav aria-label="Main navigation">
-            <a href="index.html">Dashboard</a>
-            <a href="people.html">People</a>
-            <a href="interactions.html" aria-current="page">Interactions</a>
-            <a href="">Files</a>
-        </nav>
-    </header>
+    <!-- for sidebar nav -->
+    <aside class="navbar-space" aria-hidden="true"></aside>
+    <header></header>
 
     <main>
+        <!-- page title -->
         <section class="page-header">
+            <div>
             <h1>Interactions</h1>
             <p>
                 View and record conversations, meetings, calls, messages,
                 and events.
             </p>
+            </div>
+            <!-- add interaction button -->
+            <button type="button" class="add-interaction">
+                <img src="assets/icons/cross.svg" alt="" width="16" height="16">
+                Add Interaction
+            </button>
         </section>
 
+        <!-- search bar and filters -->
+        <section class="interaction-filters" aria-label="Interaction filters">
+
+            <div class="search-field">
+                <img class="search-field__icon" src="assets/icons/magnifying-glass.svg" alt="" width="16" height="16">
+                <input type="search" aria-label="Search interactions" placeholder="Search by name, title, or notes...">
+                <button class="search-field__clear" type="button" aria-label="Clear search" hidden>
+                    <img src="assets/icons/x-mark.svg" alt="" width="14" height="14">
+                </button>
+            </div>
+
+            <div class="filter-select">
+                <select aria-label="Filter by interaction type">
+                    <option>All types</option>
+                    <option>Message</option>
+                    <option>Meeting</option>
+                    <option>Event</option>
+                    <option>Call</option>
+                </select>
+                <img src="assets/icons/dropdown.svg" alt="" width="12" height="12">
+            </div>
+            <div class="filter-select">
+                <select aria-label="Filter by date">
+                    <option>All dates</option>
+                </select>
+                <img src="assets/icons/dropdown.svg" alt="" width="12" height="12">
+            </div>
+        </section>
+
+        <!-- interaction table -->
         <section class="interaction-history" aria-labelledby="interaction-heading">
             <h2 id="interaction-heading" class="visually-hidden">
                 Interaction History
             </h2>
 
-            <div
-                class="table-container"
-                role="region"
-                aria-label="Interaction history table"
-                tabindex="0"
-                >
+            <div class="table-container">
                 <table>
 
                     <thead>
@@ -51,8 +79,8 @@
                             <th scope="col">Person</th>
                             <th scope="col">Type</th>
                             <th scope="col">Interaction</th>
-                            <th scope="col">Channel</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Date <img src="assets/icons/dropdown.svg" alt="" width="12" height="12"></th>
+                            <th scope="col" class="actions-column">Actions</th>
                         </tr>
                     </thead>
 
@@ -73,10 +101,13 @@
                                 </p>
                             </td>
 
-                            <td>LinkedIn</td>
-
                             <td>
                                 <time datetime="2026-09-25">Sep 25, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -95,10 +126,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-22">Sep 22, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -117,10 +151,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-20">Sep 20, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -139,10 +176,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-18">Sep 18, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -161,10 +201,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-15">Sep 15, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -183,10 +226,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-12">Sep 12, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -205,10 +251,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-09">Sep 9, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -227,10 +276,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-08">Sep 8, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -249,10 +301,13 @@
                                 </p>
                             </td>
 
-                            <td>Phone</td>
-
                             <td>
                                 <time datetime="2026-09-05">Sep 5, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -271,10 +326,13 @@
                                 </p>
                             </td>
 
-                            <td>Not specified</td>
-
                             <td>
                                 <time datetime="2026-09-03">Sep 3, 2026</time>
+                            </td>
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
                             </td>
                         </tr>
 
@@ -282,7 +340,22 @@
                 </table>
             </div>
         </section>
+        
+        <!-- pagination -->
+        <nav class="pagination" aria-label="Interaction pages">
+            <button type="button" class="pagination-direction" disabled>
+                <img src="assets/icons/ChevronLeft.svg" alt="" width="16" height="16"> Previous
+            </button>
+            <button type="button" aria-label="Page 1" aria-current="page">1</button>
+            <button type="button" aria-label="Page 2">2</button>
+            <button type="button" aria-label="Page 3">3</button>
+            <button type="button" aria-label="Page 4">4</button>
+            <button type="button" aria-label="Page 5">5</button>
+            <button type="button" aria-label="Page 6">6</button>
+            <button type="button" class="pagination-direction">
+                Next <img src="assets/icons/ChevronRight.svg" alt="" width="16" height="16">
+            </button>
+        </nav>
     </main>
-
 </body>
 </html>
