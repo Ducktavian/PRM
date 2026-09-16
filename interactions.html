@@ -74,6 +74,7 @@
             <div class="table-container">
                 <table>
 
+                    <!-- table header -->
                     <thead>
                         <tr>
                             <th scope="col">Person</th>
@@ -84,7 +85,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <!-- page 1 table data -->
+                    <tbody id="interaction-page-1">
 
                         <tr>
                             <th scope="row">
@@ -129,6 +131,7 @@
                             <td>
                                 <time datetime="2026-09-22">Sep 22, 2026</time>
                             </td>
+
                             <td class="actions-column">
                                 <button type="button" class="action-button" aria-label="Actions for this interaction">
                                     <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
@@ -337,10 +340,118 @@
                         </tr>
 
                     </tbody>
+
+                    <!-- page 2 table data -->
+                    <tbody id="interaction-page-2" hidden>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Amara Diallo</span>
+                                <span class="role">Event Planner</span>
+                            </th>
+
+                            <td>Converstation</td>
+
+                            <td>
+                                <strong>Family reunion planning</strong>
+                                <p>Discussed dates, venue options, and who will contact relatives.</p>
+                            </td>
+
+                            <td>
+                                <time datetime="2026-09-02">Sep 2, 2026</time>
+                            </td>
+
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Marcus Okonkwo</span>
+                                <span class="role">Backend Engineer</span>
+                            </th>
+
+                            <td>Converstation</td>
+
+                            <td>
+                                <strong>Migration timeline</strong>
+                                <p>
+                                    Reviewed launch dependencies and remaining technical tasks.
+                                </p>
+                            </td>
+
+                            <td>
+                                <time datetime="2026-09-01">Sep 1, 2026</time>
+                            </td>
+
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
+                            </td>                            
+                        </tr>
+
+                    </tbody>
+
+                    <!-- page 3 table list-->
+                    <tbody id="interaction-page" hidden>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Derek Walsh</span>
+                                <span class="role">Engineering Manager</span>
+                            </th>
+
+                            <td>Meeting</td>
+
+                            <td>
+                                <strong>Cross-team planning</strong>
+                                <p>Aligned on Q3 deliverables and flagged cross-team dependencies early.</p>
+                            </td>
+
+                            <td>
+                                <time datetime="2026-08-14">Aug 14, 2026</time>
+                            </td>
+
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                <span class="person-name">Maya Torres</span>
+                                <span class="role">Marine Biologist</span>
+                            </th>
+
+                            <td>Message</td>
+
+                            <td>
+                                <strong>Conference invite</strong>
+                                <p>
+                                    She invited me to a science communication panel she is organizing.
+                                </p>
+                            </td>
+                            
+                            <td class="actions-column">
+                                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                                    <img src="assets/icons/ThreeDotMenu.svg" alt="" width="26" height="28">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!--Will continueee-->
+                    
+
                 </table>
             </div>
         </section>
-        
+
         <!-- pagination -->
         <nav class="pagination" aria-label="Interaction pages">
             <button type="button" class="pagination-direction" disabled>
