@@ -1,3 +1,9 @@
+.interactions-page .add-interaction:hover,
+.interactions-page .modal-submit:hover {
+    background: #5B48B8;
+    border-color: #5B48B8;
+}
+
 .interactions-page .action-button {
     display: inline-flex;
     align-items: center;

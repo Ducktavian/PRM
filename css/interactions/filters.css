@@ -21,6 +21,7 @@
 .interactions-page .interaction-filters input:focus,
 .interactions-page .interaction-filters select:focus {
     border-color: #6E5BCF;
+    box-shadow: 0 0 0 2px #EFEAFB;
     outline: none;
 }
 
@@ -41,19 +42,19 @@
     appearance: none;
 }
 
-.interactions-page .search-field__icon,
-.interactions-page .search-field__clear {
+.interactions-page .search-icon,
+.interactions-page .search-clear {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.interactions-page .search-field__icon {
+.interactions-page .search-icon {
     left: 14px;
     pointer-events: none;
 }
 
-.interactions-page .search-field__clear {
+.interactions-page .search-clear {
     right: 10px;
     display: grid;
     width: 26px;
@@ -65,12 +66,12 @@
     cursor: pointer;
 }
 
-.interactions-page .search-field__clear:hover,
-.interactions-page .search-field__clear:focus-visible {
+.interactions-page .search-clear:hover,
+.interactions-page .search-clear:focus-visible {
     background: #F2F0F7;
 }
 
-.interactions-page .search-field__clear[hidden] {
+.interactions-page .search-clear[hidden] {
     display: none;
 }
 

@@ -32,7 +32,7 @@
 .interactions-page .pagination .pagination-direction {
     gap: 12px;
     padding: 0 12px;
-    border: 1px solid #E3DFE7;
+    border: 0.83px solid #DFE3E0;
 }
 
 .interactions-page .pagination button:disabled {

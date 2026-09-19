@@ -1,0 +1,200 @@
+/* Add Interaction modal */
+.interactions-page .interaction-modal {
+    box-sizing: border-box;
+    width: min(672px, calc(100% - 32px));
+    max-width: 672px;
+    max-height: min(921.6px, calc(100dvh - 32px));
+    margin: auto;
+    padding: 0;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 16px;
+    background: white;
+    color: #202622;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.10);
+}
+
+.interactions-page .interaction-modal[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.interaction-modal form {
+    width: 100%;
+    min-width: 0;
+}
+
+.interaction-modal .modal-header,
+.interaction-modal .modal-body,
+.interaction-modal .modal-footer {
+    padding: 24px;
+}
+
+.interactions-page .interaction-modal::backdrop {
+    background: rgb(0 0 0 / 32%);
+    backdrop-filter: blur(3px);
+}
+
+.interaction-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid #E3DFE7;
+}
+
+.interaction-modal .modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.interaction-modal button,
+.interaction-modal input,
+.interaction-modal select,
+.interaction-modal textarea {
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.interaction-modal .modal-close {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.interaction-modal .modal-close img {
+    display: block;
+}
+
+.interaction-modal .modal-body {
+    display: grid;
+    gap: 16px;
+}
+
+.interaction-modal .modal-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.interaction-modal .modal-field {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+}
+
+.interaction-modal .modal-field label {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #716D78;
+}
+
+.interaction-modal .modal-field label span {
+    color: #B54747;
+}
+
+.interaction-modal .modal-field input,
+.interaction-modal .modal-field select,
+.interaction-modal .modal-field textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+    background: white;
+    color: #202622;
+    line-height: 1.4;
+}
+
+.interaction-modal .modal-field select {
+    appearance: none;
+    padding-right: 36px;
+    background-image: url('../../assets/icons/dropdown-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+}
+
+.interaction-modal .modal-field textarea {
+    min-height: 102px;
+    resize: vertical;
+}
+
+.interaction-modal .modal-field input::placeholder,
+.interaction-modal .modal-field textarea::placeholder {
+    color: #929292;
+    opacity: 1;
+}
+
+.interaction-modal .modal-field input:focus,
+.interaction-modal .modal-field select:focus,
+.interaction-modal .modal-field textarea:focus {
+    outline: none;
+    border-color: #6E5BCF;
+    box-shadow: 0 0 0 3px #EFEAFB;
+}
+
+.interaction-modal .modal-footer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    border-top: 1px solid #E3DFE7;
+}
+
+.interaction-modal .modal-footer button {
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.interaction-modal .modal-cancel {
+    border: 0.83px solid #DFE3E0;
+    background: white;
+    color: #202622;
+}
+
+.interaction-modal .modal-submit {
+    border: 1px solid #6E5BCF;
+    background: #6E5BCF;
+    color: white;
+}
+
+.interaction-modal .modal-close:hover,
+.interaction-modal .modal-cancel:hover {
+    background: #F8F6F3;
+}
+
+.interaction-modal button:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    .interaction-modal .modal-header,
+    .interaction-modal .modal-body,
+    .interaction-modal .modal-footer {
+        padding: 16px;
+    }
+
+    .interaction-modal .modal-row {
+        grid-template-columns: 1fr;
+    }
+}

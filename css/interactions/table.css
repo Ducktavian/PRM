@@ -1,14 +1,13 @@
 .interactions-page .role {
     display: block;
-    font-size: clamp(9px, 1.02dvh, 12px);
+    font-size: 12px;
     font-weight: normal;
     color: gray;
 }
 
 .interactions-page .table-container {
     min-width: 0;
-    min-height: 0;
-    height: 100%;
+    min-height: calc(41px + 10 * 80px + 2px);
     box-sizing: border-box;
     border: 1px solid #E3DFE7;
     border-radius: 12px;
@@ -21,8 +20,7 @@
     table-layout: fixed;
     border-collapse: collapse;
     background-color: white;
-    height: 100%;
-    font-size: clamp(10px, 1.19dvh, 14px);
+    font-size: 14px;
 }
 
 .interactions-page th,
@@ -80,13 +78,17 @@
     padding-left: 20px;
 }
 
+.interactions-page tbody td:nth-child(2) {
+    font-size: 10px;
+}
+
 .interactions-page .actions-column {
     text-align: center;
     vertical-align: middle;
 }
 
 .interactions-page tbody td p {
-    font-size: clamp(9px, 1.02dvh, 12px);
+    font-size: 12px;
     padding-right: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -101,11 +103,10 @@
 .interactions-page .interaction-history {
     min-width: 0;
     min-height: 0;
-    height: 100%;
 }
 
 .interactions-page tbody tr {
-    height: calc((100dvh - 376px) / 10);
+    height: 80px;
 }
 
 .interactions-page tbody td strong,
