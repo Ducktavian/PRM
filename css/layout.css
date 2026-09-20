@@ -1,0 +1,102 @@
+/* ========================================
+   Files page layout
+   ======================================== */
+
+body.files-page {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    background-color: white;
+
+    display: grid;
+
+    grid-template-columns: 14.94% minmax(0, 1fr);
+    grid-template-rows: 59.99px minmax(0, 1fr);
+
+    height: 100dvh;
+}
+
+
+/* ========================================
+   Header
+   ======================================== */
+
+.files-page header {
+    box-sizing: border-box;
+
+    width: 100%;
+    max-width: 100%;
+    height: 59.99px;
+
+    margin: 0;
+
+    background-color: white;
+
+    border-bottom: 1px solid #E3DFE7;
+
+    grid-column: 2;
+}
+
+
+/* ========================================
+   Sidebar space
+   ======================================== */
+
+.files-page .navbar-space {
+    box-sizing: border-box;
+
+    border-right: 1.35px solid #E3DFE7;
+
+    grid-column: 1;
+    grid-row: 1 / -1;
+}
+
+
+/* ========================================
+   Main
+   ======================================== */
+
+.files-page main {
+    max-width: none;
+
+    margin: 0;
+
+    padding: 36px 2.21vw 40px;
+
+    grid-column: 2;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow-y: auto;
+}
+
+
+/* ========================================
+   Page header
+   ======================================== */
+
+.files-page .page-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    min-width: 0;
+
+    margin-bottom: 20px;
+}
+
+.files-page .page-header h1 {
+    margin: 0;
+}
+
+.files-page .page-header p {
+    margin: 0;
+
+    font-size: 14px;
+}

@@ -1,0 +1,63 @@
+/* ========================================
+   Files page button
+   ======================================== */
+
+.files-page .file-action-button {
+    appearance: none;
+
+    width: 100%;
+    height: 40px;
+
+    padding: 0 12px;
+
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+
+    background-color: white;
+
+    color: black;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.files-page .file-action-button:focus-visible {
+    outline: 2px solid #6D5BD0;
+    outline-offset: 2px;
+}
+
+
+.files-page .close-file-button {
+    appearance: none;
+
+    height: 34px;
+
+    padding: 0 16px;
+
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+
+    background-color: white;
+
+    color: black;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.files-page .close-file-button:focus-visible {
+    outline: 2px solid #6D5BD0;
+    outline-offset: 2px;
+}
