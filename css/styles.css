@@ -18,26 +18,4 @@ body {
     background-color: var(--color-surface);
 }
 
-.sidebar {
-    background-color: var(--card-color);
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.flex {
-    display: flex;
-}
-
-.flex-col {
-    flex-direction: column;
-}
-
-
-.card {
-    background-color: var(--card-color);
-    border: 1px solid var(--border-color)
-}
 
