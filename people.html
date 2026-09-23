@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>People | PRM</title>
+    <title>People | RelM - Personal Relationship Manager</title>
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/people/cards.css">
@@ -18,38 +18,44 @@
     <!-- Sidebar Layout Placeholder -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h2 class="logo-text">PRM App</h2>
+            <div class="logo">
+                <i class="fa-solid fa-users-gear logo-icon"></i>
+                <div class="logo-text">
+                    <h2>RelM</h2>
+                    <p>PERSONAL RELATIONSHIP MANAGER</p>
+                </div>
+            </div>
         </div>
         <nav class="sidebar-nav">
             <ul>
+                <li><a href="#"><i class="fa-solid fa-border-all"></i> <span>Dashboard</span></a></li>
                 <li class="active"><a href="people.html"><i class="fa-solid fa-users"></i> <span>People</span></a></li>
-                <li><a href="#"><i class="fa-solid fa-calendar"></i> <span>Events</span></a></li>
-                <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Settings</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-comments"></i> <span>Interactions</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-folder"></i> <span>Files</span></a></li>
             </ul>
         </nav>
+        <div class="sidebar-footer">
+            <p>PERSONAL RELATIONSHIP MANAGER</p>
+        </div>
     </aside>
 
     <main class="main-content">
 
-        <!-- ========================================
-             PAGE HEADER & ACTIONS
-             ======================================== -->
+        <!-- Header -->
         <header class="page-header">
             <div class="header-text">
                 <h1>People</h1>
                 <p>Your personal and professional network.</p>
             </div>
             <a href="#add-person-modal" class="btn btn-primary" id="open-add-person-btn">
-                <span class="btn-icon">+</span> Add Person
+                <i class="fa-solid fa-plus"></i> Add Person
             </a>
         </header>
 
-        <!-- ========================================
-             SEARCH & FILTER CONTROLS
-             ======================================== -->
+        <!-- Controls -->
         <section class="controls-section">
             <div class="search-box">
-                <img src="./assets/search-icon.svg" alt="" class="search-icon">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" placeholder="Search by name, skill, interest, or location..." aria-label="Search people">
             </div>
 
@@ -66,22 +72,16 @@
             </div>
         </section>
 
-        <!-- ========================================
-             PEOPLE CARDS GRID (3 Columns)
-             ======================================== -->
+        <!-- Grid Cards -->
         <section class="people-grid">
 
-            <!-- Person Card 1 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-green">SC</div>
                     <div class="card-title">
                         <h2><a href="person.html">Sarah Chen</a></h2>
                         <span class="badge badge-green">• Mentor</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Ceramics</span>
@@ -93,17 +93,13 @@
                 </div>
             </article>
 
-            <!-- Person Card 2 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-purple">MO</div>
                     <div class="card-title">
                         <h2><a href="person.html">Marcus Okonkwo</a></h2>
                         <span class="badge badge-purple">• Coworker</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Chess</span>
@@ -115,17 +111,13 @@
                 </div>
             </article>
 
-            <!-- Person Card 3 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-orange">PN</div>
                     <div class="card-title">
                         <h2><a href="person.html">Priya Nair</a></h2>
                         <span class="badge badge-orange">• Friend</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Pottery</span>
@@ -137,17 +129,13 @@
                 </div>
             </article>
 
-            <!-- Card 4 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-red">AD</div>
                     <div class="card-title">
                         <h2><a href="person.html">Amara Diallo</a></h2>
                         <span class="badge badge-red">• Family</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Fashion</span>
@@ -159,17 +147,13 @@
                 </div>
             </article>
 
-            <!-- Card 5 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-blue">DK</div>
                     <div class="card-title">
                         <h2><a href="person.html">David Kim</a></h2>
                         <span class="badge badge-blue">• Classmate</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Rock Climbing</span>
@@ -181,17 +165,13 @@
                 </div>
             </article>
 
-            <!-- Card 6 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-gray">TB</div>
                     <div class="card-title">
                         <h2><a href="person.html">Tom Bergström</a></h2>
                         <span class="badge badge-gray">• Other</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Open Source</span>
@@ -203,17 +183,13 @@
                 </div>
             </article>
 
-            <!-- Card 7 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-yellow">JR</div>
                     <div class="card-title">
                         <h2><a href="person.html">Jonas Rivera</a></h2>
                         <span class="badge badge-orange">• Friend</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Photography</span>
@@ -225,17 +201,13 @@
                 </div>
             </article>
 
-            <!-- Card 8 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-purple">LM</div>
                     <div class="card-title">
                         <h2><a href="person.html">Lena Müller</a></h2>
                         <span class="badge badge-purple">• Coworker</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Cycling</span>
@@ -247,17 +219,13 @@
                 </div>
             </article>
 
-            <!-- Card 9 -->
-            <article class="person-card">
+            <article class="person-card" onclick="window.location.href='person.html'">
                 <div class="card-header">
                     <div class="avatar avatar-red">NA</div>
                     <div class="card-title">
                         <h2><a href="person.html">Nadia Ahmed</a></h2>
                         <span class="badge badge-red">• Family</span>
                     </div>
-                    <a href="#edit-person-modal" class="btn-edit-card" title="Edit Person">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
                 </div>
                 <div class="tags-list">
                     <span class="tag">Cooking</span>
@@ -271,9 +239,7 @@
 
         </section>
 
-        <!-- ========================================
-             PAGINATION FOOTER
-             ======================================== -->
+        <!-- Pagination -->
         <footer class="pagination-container">
             <span class="results-count">Showing 1–9 of 24 people</span>
             <div class="pagination-buttons">
@@ -284,218 +250,111 @@
 
     </main>
 
-    <!-- ========================================
-         ADD PERSON MODAL
-         ======================================== -->
+    <!-- Add Person Modal -->
     <div class="modal-overlay" id="add-person-modal">
-        <div class="modal modal-lg modal-content">
+        <div class="modal-content">
             <div class="modal-header">
-                <h2>Add New Person</h2>
-                <a href="#" class="modal-close-btn close-btn">&times;</a>
+                <h2>Add Person</h2>
+                <a href="#" class="close-btn">&times;</a>
             </div>
 
-            <form class="modal-body modal-form">
-                <!-- Basic Information -->
-                <fieldset class="form-group-section form-section">
-                    <legend class="section-title">BASIC INFORMATION</legend>
-                    <div class="form-group full-width">
-                        <label for="add-fullname">FULL NAME *</label>
-                        <input type="text" id="add-fullname" placeholder="e.g. Jordan Rivera" required>
-                    </div>
+            <form>
+                <div class="modal-body">
+                    <!-- Basic Info -->
+                    <fieldset class="form-section">
+                        <legend class="section-title">BASIC INFORMATION</legend>
+                        <div class="form-group full-width">
+                            <label for="add-fullname">FULL NAME *</label>
+                            <input type="text" id="add-fullname" placeholder="e.g. Jordan Rivera" required>
+                        </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="add-category">RELATIONSHIP CATEGORY *</label>
-                            <select id="add-category" required>
-                                <option value="" disabled selected>Select category</option>
-                                <option value="Friend">Friend</option>
-                                <option value="Mentor">Mentor</option>
-                                <option value="Coworker">Coworker</option>
-                                <option value="Family">Family</option>
-                                <option value="Classmate">Classmate</option>
-                                <option value="Other">Other</option>
-                            </select>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-category">RELATIONSHIP CATEGORY *</label>
+                                <select id="add-category" required>
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Coworker">Coworker</option>
+                                    <option value="Family">Family</option>
+                                    <option value="Classmate">Classmate</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-pronouns">PRONOUNS (OPTIONAL)</label>
+                                <input type="text" id="add-pronouns" placeholder="e.g. she/her, he/him, they/them">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="add-pronouns">PRONOUNS (OPTIONAL)</label>
-                            <input type="text" id="add-pronouns" placeholder="e.g. she/her, he/him, they/them">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="add-birthday">BIRTHDAY</label>
-                            <input type="date" id="add-birthday">
-                            <small class="help-text sub-label">Age will be calculated automatically.</small>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-birthday">BIRTHDAY</label>
+                                <input type="date" id="add-birthday">
+                                <small class="sub-label">Age will be calculated automatically.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-occupation">OCCUPATION OR ROLE</label>
+                                <input type="text" id="add-occupation" placeholder="e.g. Designer, Engineer, Student">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="add-occupation">OCCUPATION OR ROLE</label>
-                            <input type="text" id="add-occupation" placeholder="e.g. Designer, Engineer, Student">
-                        </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-                <!-- Contact Information -->
-                <fieldset class="form-group-section form-section">
-                    <legend class="section-title">CONTACT</legend>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="add-email">EMAIL</label>
-                            <input type="email" id="add-email" placeholder="email@example.com">
+                    <!-- Contact -->
+                    <fieldset class="form-section">
+                        <legend class="section-title">CONTACT</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-email">EMAIL</label>
+                                <input type="email" id="add-email" placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-phone">PHONE NUMBER</label>
+                                <input type="tel" id="add-phone" placeholder="+1 (000) 000-0000">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="add-phone">PHONE NUMBER</label>
-                            <input type="tel" id="add-phone" placeholder="+1 (000) 000-0000">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="add-location">LOCATION</label>
-                            <input type="text" id="add-location" placeholder="City, Country">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-location">LOCATION</label>
+                                <input type="text" id="add-location" placeholder="City, Country">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-preferred-contact">PREFERRED CONTACT METHOD</label>
+                                <select id="add-preferred-contact">
+                                    <option value="Email">Email</option>
+                                    <option value="Phone">Phone</option>
+                                    <option value="Message">Message</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="add-preferred-contact">PREFERRED CONTACT METHOD</label>
-                            <select id="add-preferred-contact">
-                                <option value="Email">Email</option>
-                                <option value="Phone">Phone</option>
-                                <option value="Message">Message</option>
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-                <!-- Relationship Info -->
-                <fieldset class="form-group-section form-section">
-                    <legend class="section-title">RELATIONSHIP</legend>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="add-workplace">WORKPLACE OR SCHOOL</label>
-                            <input type="text" id="add-workplace" placeholder="e.g. Google, MIT">
+                    <!-- Relationship -->
+                    <fieldset class="form-section">
+                        <legend class="section-title">RELATIONSHIP</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-workplace">WORKPLACE OR SCHOOL</label>
+                                <input type="text" id="add-workplace" placeholder="e.g. Google, MIT">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-date-met">DATE YOU MET</label>
+                                <input type="date" id="add-date-met">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="add-date-met">DATE YOU MET</label>
-                            <input type="date" id="add-date-met">
+
+                        <div class="form-group full-width">
+                            <label for="add-how-met">HOW YOU MET</label>
+                            <textarea id="add-how-met" placeholder="Where did you meet? What's the context?" rows="3"></textarea>
                         </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="add-how-met">HOW YOU MET</label>
-                        <textarea id="add-how-met" placeholder="Where did you meet? What's the context?" rows="3"></textarea>
-                    </div>
-                </fieldset>
-
-                <div class="modal-actions">
-                    <a href="#" class="btn btn-outline modal-cancel-btn btn-modal-cancel">Cancel</a>
-                    <button type="submit" class="btn btn-primary btn-modal-submit">Save Person</button>
+                    </fieldset>
                 </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- ========================================
-         EDIT PERSON MODAL
-         ======================================== -->
-    <div class="modal-overlay" id="edit-person-modal">
-        <div class="modal modal-lg modal-content">
-            <div class="modal-header">
-                <h2>Edit Person</h2>
-                <a href="#" class="modal-close-btn close-btn">&times;</a>
-            </div>
-
-            <form class="modal-body modal-form">
-                <!-- Basic Information -->
-                <fieldset class="form-group-section form-section">
-                    <legend class="section-title">BASIC INFORMATION</legend>
-                    <div class="form-group full-width">
-                        <label for="edit-fullname">FULL NAME *</label>
-                        <input type="text" id="edit-fullname" value="Sarah Chen" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="edit-category">RELATIONSHIP CATEGORY *</label>
-                            <select id="edit-category" required>
-                                <option value="Mentor" selected>Mentor</option>
-                                <option value="Friend">Friend</option>
-                                <option value="Coworker">Coworker</option>
-                                <option value="Family">Family</option>
-                                <option value="Classmate">Classmate</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-pronouns">PRONOUNS (OPTIONAL)</label>
-                            <input type="text" id="edit-pronouns" value="she/her">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="edit-birthday">BIRTHDAY</label>
-                            <input type="date" id="edit-birthday">
-                            <small class="help-text sub-label">Age will be calculated automatically.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-occupation">OCCUPATION OR ROLE</label>
-                            <input type="text" id="edit-occupation" value="Principal UX Designer">
-                        </div>
-                    </div>
-                </fieldset>
-
-                <!-- Contact Information -->
-                <fieldset class="form-group-section form-section">
-                    <legend class="section-title">CONTACT</legend>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="edit-email">EMAIL</label>
-                            <input type="email" id="edit-email" value="sarah.chen@figma.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-phone">PHONE NUMBER</label>
-                            <input type="tel" id="edit-phone" value="+1 (415) 555-0182">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="edit-location">LOCATION</label>
-                            <input type="text" id="edit-location" value="San Francisco, CA">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-preferred-contact">PREFERRED CONTACT METHOD</label>
-                            <select id="edit-preferred-contact">
-                                <option value="Email" selected>Email</option>
-                                <option value="Phone">Phone</option>
-                                <option value="Message">Message</option>
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <!-- Relationship Info -->
-                <fieldset class="form-group-section form-section">
-                    <legend class="section-title">RELATIONSHIP</legend>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="edit-workplace">WORKPLACE OR SCHOOL</label>
-                            <input type="text" id="edit-workplace" value="Figma">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-date-met">DATE YOU MET</label>
-                            <input type="date" id="edit-date-met">
-                        </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="edit-how-met">HOW YOU MET</label>
-                        <textarea id="edit-how-met" rows="3">Met at a UX conference in 2022. She gave a keynote on design systems and we connected over coffee afterward.</textarea>
-                    </div>
-                </fieldset>
-
+                <!-- Fixed Footer Actions -->
                 <div class="modal-actions">
-                    <a href="#" class="btn btn-outline modal-cancel-btn btn-modal-cancel">Cancel</a>
-                    <button type="submit" class="btn btn-primary btn-modal-submit">Update Person</button>
+                    <a href="#" class="btn-modal-cancel">Cancel</a>
+                    <button type="submit" class="btn-modal-submit">Save Person</button>
                 </div>
             </form>
         </div>
