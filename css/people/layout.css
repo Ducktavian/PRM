@@ -1,0 +1,144 @@
+body.people-page {
+    display: grid;
+    grid-template-columns: minmax(260px, 14.94%) minmax(0, 1fr);
+    grid-template-rows: 60px auto;
+    min-height: 100dvh;
+}
+
+.people-page .sidebar {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: auto;
+    min-width: 0;
+    min-height: 100dvh;
+    padding: 0;
+    background: #F8F6F3;
+    border-right: 1px solid #E3DFE7;
+    font-family: Arial, sans-serif;
+    color: #202622;
+}
+
+.people-page .sidebar-header {
+    padding: 24px 20px 28px;
+    margin: 0;
+}
+
+.people-page .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.people-page .logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    white-space: nowrap;
+}
+
+.people-page .logo-text h2 {
+    font-size: 16px;
+    line-height: 1.2;
+    color: #202622;
+}
+
+.people-page .logo-text p,
+.people-page .sidebar-footer {
+    color: #96938F;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.people-page .logo-text p {
+    line-height: 1.2;
+}
+
+.people-page .sidebar img {
+    display: block;
+    flex-shrink: 0;
+}
+
+.people-page .sidebar-nav {
+    padding: 0 16px;
+}
+
+.people-page .sidebar-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.people-page .sidebar-nav li {
+    margin: 0;
+}
+
+.people-page .sidebar-nav a,
+.people-page .nav-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 8px;
+    color: #202622;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.people-page .sidebar-nav a:hover,
+.people-page .sidebar-nav a[aria-current="page"] {
+    background: #EFEAFB;
+}
+
+.people-page .sidebar-nav a[aria-current="page"] {
+    color: #6E5BCF;
+}
+
+.people-page .sidebar-nav a:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: 2px;
+}
+
+.people-page .sidebar-footer {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid #E3DFE7;
+}
+
+.people-page .top-bar {
+    grid-column: 2;
+    border-bottom: 1px solid #E3DFE7;
+}
+
+.people-page .main-content {
+    grid-column: 2;
+    min-width: 0;
+    max-width: none;
+    padding: 36px 2.21vw 40px;
+}
+
+.people-page .page-header {
+    min-height: 58px;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.people-page .header-text h1 {
+    font-size: 32px;
+    letter-spacing: normal;
+    color: black;
+}
+
+.people-page .header-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #716D78;
+}
