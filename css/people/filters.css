@@ -1,0 +1,36 @@
+/* Search and Filter Controls */
+.controls-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-box {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    border: 1px solid var(--border-color, #DFE3E0);
+    border-radius: 8px;
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    width: 18px;
+    opacity: 0.5;
+}
+
+.filter-box select {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color, #DFE3E0);
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+}
