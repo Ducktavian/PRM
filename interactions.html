@@ -7,6 +7,7 @@
     <title>Interactions | PRM</title>
 
     <link rel="stylesheet" href="css/interactions/layout.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/interactions/buttons.css">
     <link rel="stylesheet" href="css/interactions/table.css">
     <link rel="stylesheet" href="css/interactions/filters.css">
@@ -17,8 +18,21 @@
 
 <body class="interactions-page">
 
-    <!-- for sidebar nav -->
-    <aside class="navbar-space" aria-hidden="true"></aside>
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <strong>RelM</strong>
+            <span>Personal Relationship Manager</span>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="people.html">People</a>
+            <a href="interactions.html" aria-current="page">Interactions</a>
+            <span aria-disabled="true">Files</span>
+        </nav>
+
+        <div class="sidebar-footer">Personal Relationship Manager</div>
+    </aside>
     <header></header>
 
     <main>
@@ -52,10 +66,11 @@
             <div class="filter-select">
                 <select aria-label="Filter by interaction type">
                     <option>All types</option>
-                    <option>Message</option>
+                    <option>Conversation</option>
                     <option>Meeting</option>
-                    <option>Event</option>
                     <option>Call</option>
+                    <option>Message</option>
+                    <option>Event</option>
                 </select>
                 <img src="assets/icons/dropdown-icon.svg" alt="" width="12" height="12">
             </div>
@@ -78,7 +93,7 @@
             </h2>
 
             <div class="table-container">
-                <table>
+                <table aria-labelledby="interaction-heading">
 
                     <!-- table header -->
                     <thead>
@@ -96,8 +111,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Ravi Patel</span>
-                                <span class="role">Product Manager</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="classmate" aria-hidden="true">RP</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Ravi Patel</span>
+                                        <span class="role">Product Manager</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -121,8 +141,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">James Mitchell</span>
-                                <span class="role">Graduate Student</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">JM</span>
+                                    <span class="person-text">
+                                        <span class="person-name">James Mitchell</span>
+                                        <span class="role">Graduate Student</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -147,8 +172,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Mei-Ling Huang</span>
-                                <span class="role">Data Analyst</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">MH</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Mei-Ling Huang</span>
+                                        <span class="role">Data Analyst</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Meeting</td>
@@ -172,8 +202,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Ben Nakamura</span>
-                                <span class="role">Software Engineer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">BN</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Ben Nakamura</span>
+                                        <span class="role">Software Engineer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Event</td>
@@ -197,8 +232,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Lena Müller</span>
-                                <span class="role">Product Researcher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">LM</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Lena Müller</span>
+                                        <span class="role">Product Researcher</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Meeting</td>
@@ -222,8 +262,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Jonas Rivera</span>
-                                <span class="role">Photographer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">JR</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Jonas Rivera</span>
+                                        <span class="role">Photographer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Event</td>
@@ -247,8 +292,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Isabelle Fontaine</span>
-                                <span class="role">Product Designer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">IF</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Isabelle Fontaine</span>
+                                        <span class="role">Product Designer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Meeting</td>
@@ -272,8 +322,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">David Kim</span>
-                                <span class="role">XR Research Scientist</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="classmate" aria-hidden="true">DK</span>
+                                    <span class="person-text">
+                                        <span class="person-name">David Kim</span>
+                                        <span class="role">XR Research Scientist</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -297,8 +352,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Priya Nair</span>
-                                <span class="role">Ceramics Instructor & Illustrator</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">PN</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Priya Nair</span>
+                                        <span class="role">Ceramics Instructor & Illustrator</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Call</td>
@@ -322,8 +382,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Sofia Andersen</span>
-                                <span class="role">Architect</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">SA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Sofia Andersen</span>
+                                        <span class="role">Architect</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -352,8 +417,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Amara Diallo</span>
-                                <span class="role">Event Planner</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">AD</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Amara Diallo</span>
+                                        <span class="role">Event Planner</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Conversation</td>
@@ -376,8 +446,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Marcus Okonkwo</span>
-                                <span class="role">Backend Engineer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">MO</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Marcus Okonkwo</span>
+                                        <span class="role">Backend Engineer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Conversation</td>
@@ -402,8 +477,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Priya Nair</span>
-                                <span class="role">Ceramics Instructor &amp; Illustrator</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">PN</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Priya Nair</span>
+                                        <span class="role">Ceramics Instructor &amp; Illustrator</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -420,8 +500,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Sarah Chen</span>
-                                <span class="role">Principal UX Designer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">SC</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Sarah Chen</span>
+                                        <span class="role">Principal UX Designer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Meeting</td>
                             <td>
@@ -438,8 +523,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Mei-Ling Huang</span>
-                                <span class="role">Data Analyst</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">MH</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Mei-Ling Huang</span>
+                                        <span class="role">Data Analyst</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -456,8 +546,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">David Kim</span>
-                                <span class="role">XR Research Scientist</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="classmate" aria-hidden="true">DK</span>
+                                    <span class="person-text">
+                                        <span class="person-name">David Kim</span>
+                                        <span class="role">XR Research Scientist</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -474,8 +569,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Patricia Williams</span>
-                                <span class="role">Retired Teacher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">PW</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Patricia Williams</span>
+                                        <span class="role">Retired Teacher</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Call</td>
                             <td>
@@ -492,8 +592,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Nadia Ahmed</span>
-                                <span class="role">Pediatric Nurse</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">NA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Nadia Ahmed</span>
+                                        <span class="role">Pediatric Nurse</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Call</td>
                             <td>
@@ -510,8 +615,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Dr. Angela Brooks</span>
-                                <span class="role">Professor of Design</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">DA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Dr. Angela Brooks</span>
+                                        <span class="role">Professor of Design</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Call</td>
                             <td>
@@ -528,8 +638,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Lena Müller</span>
-                                <span class="role">Product Researcher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">LM</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Lena Müller</span>
+                                        <span class="role">Product Researcher</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Meeting</td>
                             <td>
@@ -551,8 +666,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Amara Diallo</span>
-                                <span class="role">Event Planner</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">AD</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Amara Diallo</span>
+                                        <span class="role">Event Planner</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Call</td>
@@ -575,8 +695,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Derek Walsh</span>
-                                <span class="role">Engineering Manager</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">DW</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Derek Walsh</span>
+                                        <span class="role">Engineering Manager</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Meeting</td>
@@ -599,8 +724,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Maya Torres</span>
-                                <span class="role">Marine Biologist</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">MT</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Maya Torres</span>
+                                        <span class="role">Marine Biologist</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -625,8 +755,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Isabelle Fontaine</span>
-                                <span class="role">Product Designer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">IF</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Isabelle Fontaine</span>
+                                        <span class="role">Product Designer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Conversation</td>
@@ -649,8 +784,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Marcus Okonkwo</span>
-                                <span class="role">Backend Engineer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">MO</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Marcus Okonkwo</span>
+                                        <span class="role">Backend Engineer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Conversation</td>
@@ -673,8 +813,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Kwame Asante</span>
-                                <span class="role">Social Entrepreneur</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">KA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Kwame Asante</span>
+                                        <span class="role">Social Entrepreneur</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Conversation</td>
@@ -697,8 +842,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Jonas Rivera</span>
-                                <span class="role">Photographer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">JR</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Jonas Rivera</span>
+                                        <span class="role">Photographer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Event</td>
@@ -721,8 +871,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Yuki Tanaka</span>
-                                <span class="role">HCI Researcher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="classmate" aria-hidden="true">YT</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Yuki Tanaka</span>
+                                        <span class="role">HCI Researcher</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -745,8 +900,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Chloe Park</span>
-                                <span class="role">UX Writer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">CP</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Chloe Park</span>
+                                        <span class="role">UX Writer</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Message</td>
@@ -769,8 +929,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Sofia Andersen</span>
-                                <span class="role">Architect</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">SA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Sofia Andersen</span>
+                                        <span class="role">Architect</span>
+                                    </span>
+                                </span>
                             </th>
 
                             <td>Call</td>
@@ -797,8 +962,13 @@
                     <tbody id="interaction-page-4" hidden>
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Maya Torres</span>
-                                <span class="role">Marine Biologist</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">MT</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Maya Torres</span>
+                                        <span class="role">Marine Biologist</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -815,8 +985,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Jonas Rivera</span>
-                                <span class="role">Photographer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">JR</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Jonas Rivera</span>
+                                        <span class="role">Photographer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -833,8 +1008,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Marcus Okonkwo</span>
-                                <span class="role">Backend Engineer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">MO</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Marcus Okonkwo</span>
+                                        <span class="role">Backend Engineer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -851,8 +1031,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Ben Nakamura</span>
-                                <span class="role">Software Engineer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">BN</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Ben Nakamura</span>
+                                        <span class="role">Software Engineer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -869,8 +1054,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Dr. Angela Brooks</span>
-                                <span class="role">Professor of Design</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">DA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Dr. Angela Brooks</span>
+                                        <span class="role">Professor of Design</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -887,8 +1077,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Lena Müller</span>
-                                <span class="role">Product Researcher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">LM</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Lena Müller</span>
+                                        <span class="role">Product Researcher</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -905,8 +1100,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Nadia Ahmed</span>
-                                <span class="role">Pediatric Nurse</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">NA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Nadia Ahmed</span>
+                                        <span class="role">Pediatric Nurse</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Call</td>
                             <td>
@@ -923,8 +1123,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Patricia Williams</span>
-                                <span class="role">Retired Teacher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">PW</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Patricia Williams</span>
+                                        <span class="role">Retired Teacher</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -941,8 +1146,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Derek Walsh</span>
-                                <span class="role">Engineering Manager</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="coworker" aria-hidden="true">DW</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Derek Walsh</span>
+                                        <span class="role">Engineering Manager</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -959,8 +1169,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Chloe Park</span>
-                                <span class="role">UX Writer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">CP</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Chloe Park</span>
+                                        <span class="role">UX Writer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -980,8 +1195,13 @@
                     <tbody id="interaction-page-5" hidden>
                         <tr>
                             <th scope="row">
-                                <span class="person-name">James Mitchell</span>
-                                <span class="role">Graduate Student</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">JM</span>
+                                    <span class="person-text">
+                                        <span class="person-name">James Mitchell</span>
+                                        <span class="role">Graduate Student</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Call</td>
                             <td>
@@ -998,8 +1218,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Priya Nair</span>
-                                <span class="role">Ceramics Instructor &amp; Illustrator</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">PN</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Priya Nair</span>
+                                        <span class="role">Ceramics Instructor &amp; Illustrator</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -1016,8 +1241,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Tom Bergström</span>
-                                <span class="role">Systems Programmer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="other" aria-hidden="true">TB</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Tom Bergström</span>
+                                        <span class="role">Systems Programmer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -1034,8 +1264,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Prof. Hiroshi Yamamoto</span>
-                                <span class="role">Professor of HCI</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">PH</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Prof. Hiroshi Yamamoto</span>
+                                        <span class="role">Professor of HCI</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -1052,8 +1287,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Nadia Ahmed</span>
-                                <span class="role">Pediatric Nurse</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">NA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Nadia Ahmed</span>
+                                        <span class="role">Pediatric Nurse</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -1070,8 +1310,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Carlos Mendez</span>
-                                <span class="role">Open-Source Developer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="other" aria-hidden="true">CM</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Carlos Mendez</span>
+                                        <span class="role">Open-Source Developer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -1088,8 +1333,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Prof. Hiroshi Yamamoto</span>
-                                <span class="role">Professor of HCI</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">PH</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Prof. Hiroshi Yamamoto</span>
+                                        <span class="role">Professor of HCI</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -1106,8 +1356,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Yuki Tanaka</span>
-                                <span class="role">HCI Researcher</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="classmate" aria-hidden="true">YT</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Yuki Tanaka</span>
+                                        <span class="role">HCI Researcher</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Meeting</td>
                             <td>
@@ -1124,8 +1379,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Ravi Patel</span>
-                                <span class="role">Product Manager</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="classmate" aria-hidden="true">RP</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Ravi Patel</span>
+                                        <span class="role">Product Manager</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -1142,8 +1402,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Sarah Chen</span>
-                                <span class="role">Principal UX Designer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">SC</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Sarah Chen</span>
+                                        <span class="role">Principal UX Designer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Message</td>
                             <td>
@@ -1163,8 +1428,13 @@
                     <tbody id="interaction-page-6" hidden>
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Kwame Asante</span>
-                                <span class="role">Social Entrepreneur</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="friend" aria-hidden="true">KA</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Kwame Asante</span>
+                                        <span class="role">Social Entrepreneur</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -1181,8 +1451,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Tom Bergström</span>
-                                <span class="role">Systems Programmer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="other" aria-hidden="true">TB</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Tom Bergström</span>
+                                        <span class="role">Systems Programmer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Conversation</td>
                             <td>
@@ -1199,8 +1474,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Amara Diallo</span>
-                                <span class="role">Event Planner</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="family" aria-hidden="true">AD</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Amara Diallo</span>
+                                        <span class="role">Event Planner</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -1217,8 +1497,13 @@
 
                         <tr>
                             <th scope="row">
-                                <span class="person-name">Sarah Chen</span>
-                                <span class="role">Principal UX Designer</span>
+                                <span class="person-cell">
+                                    <span class="person-avatar" data-relationship="mentor" aria-hidden="true">SC</span>
+                                    <span class="person-text">
+                                        <span class="person-name">Sarah Chen</span>
+                                        <span class="role">Principal UX Designer</span>
+                                    </span>
+                                </span>
                             </th>
                             <td>Event</td>
                             <td>
@@ -1240,6 +1525,7 @@
 
         <!-- pagination -->
         <nav class="pagination" aria-label="Interaction pages">
+            <output id="interaction-status" class="interaction-status"></output>
             <button type="button" class="pagination-direction" disabled>
                 <img src="assets/icons/chevron-left-icon.svg" alt="" width="16" height="16"> Previous
             </button>
@@ -1255,12 +1541,17 @@
         </nav>
     </main>
 
+    <div id="interaction-actions" class="action-menu" hidden>
+        <button type="button" class="action-edit">Edit</button>
+        <button type="button" class="action-delete">Delete</button>
+    </div>
+
     <!-- add interaction modal -->
     <dialog id="add-interaction-dialog" class="interaction-modal" aria-labelledby="add-interaction-title">
         <form id="add-interaction-form" method="dialog">
             <div class="modal-header">
                 <h2 id="add-interaction-title">Add Interaction</h2>
-                <button type="submit" class="modal-close" value="cancel" formnovalidate aria-label="Close Add Interaction">
+                <button type="button" class="modal-close" aria-label="Close interaction dialog">
                     <img src="assets/icons/close-icon.svg" alt="" width="16" height="16">
                 </button>
             </div>
@@ -1301,9 +1592,7 @@
                     <div class="modal-field">
                         <label for="interaction-date">Date <span aria-hidden="true">*</span></label>
 
-                         <!-- set todays date for the meantime
-                          TODO: will add date picker and calendar icon-->
-                        <input type="text" id="interaction-date" name="date" placeholder="YYYY-MM-DD" required>
+                        <input type="date" id="interaction-date" name="date" required>
                     </div>
 
                     <div class="modal-field">
@@ -1336,8 +1625,21 @@
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="modal-cancel" value="cancel" formnovalidate>Cancel</button>
-                <button type="button" class="modal-submit">Add Interaction</button>
+                <button type="button" class="modal-cancel">Cancel</button>
+                <button type="submit" class="modal-submit">Add Interaction</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Delete interaction confirmation -->
+    <dialog id="delete-interaction-dialog" class="interaction-modal delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
+        <form method="dialog">
+            <div class="delete-icon" aria-hidden="true"><span></span></div>
+            <h2 id="delete-interaction-title">Delete interaction?</h2>
+            <p id="delete-interaction-description">This will permanently remove this interaction record. This cannot be undone.</p>
+            <div class="modal-footer">
+                <button type="submit" class="modal-cancel" autofocus>Cancel</button>
+                <button type="button" class="delete-confirm">Delete</button>
             </div>
         </form>
     </dialog>
