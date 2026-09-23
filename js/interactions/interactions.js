@@ -1,3 +1,7 @@
+function getInitials(name) {
+    return name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase();
+}
+
 export function initInteractions() {
     const table = document.querySelector('.interaction-history table');
     const rows = [...table.querySelectorAll('tbody tr')];
@@ -7,18 +11,23 @@ export function initInteractions() {
         person: row.querySelector('.person-name').textContent.trim(),
         role: row.querySelector('.role').textContent.trim(),
         type: row.cells[1].textContent.trim(),
+        relationship: row.querySelector('.person-avatar').dataset.relationship,
         title: row.querySelector('strong').textContent.trim(),
         notes: row.querySelector('p').textContent.trim(),
         date: row.querySelector('time').dateTime,
         followUp: ''
     }));
-    const roles = new Map(interactions.map(({ person, role }) => [person, role]));
+    const people = new Map(interactions.map(({ person, role, relationship }) => [person, { role, relationship }]));
     const pageSize = 10;
     let nextId = interactions.length + 1;
     const body = table.tBodies[0];
     body.removeAttribute('id');
     body.hidden = false;
     [...table.tBodies].slice(1).forEach((section) => section.remove());
+
+    function getPerson(name) {
+        return people.get(name) || { role: '', relationship: 'other' };
+    }
 
     function sortInteractions() {
         interactions.sort((a, b) => b.date.localeCompare(a.date));
@@ -35,6 +44,9 @@ export function initInteractions() {
             actionButton.setAttribute('aria-label', `Actions for ${interaction.title}`);
             row.querySelector('.person-name').textContent = interaction.person;
             row.querySelector('.role').textContent = interaction.role;
+            const avatar = row.querySelector('.person-avatar');
+            avatar.textContent = getInitials(interaction.person);
+            avatar.dataset.relationship = interaction.relationship;
             const badge = document.createElement('span');
             badge.className = `type-badge type-${interaction.type.toLowerCase()}`;
             badge.textContent = interaction.type;
@@ -70,16 +82,23 @@ export function initInteractions() {
      * This lets the table show the entry even if its date puts it on a later page.
      */
     function addInteraction(values) {
-        const interaction = { ...values, id: String(nextId++), role: roles.get(values.person) || '' };
+        const interaction = { ...values, id: String(nextId++), ...getPerson(values.person) };
         interactions.unshift(interaction);
         sortInteractions();
         return Math.floor(interactions.indexOf(interaction) / pageSize);
     }
-
+    /**
+     * Updates the same entry, keeping its ID.
+     * Changing the person also updates their role and relationship.
+     * @param {string} id - ID of the entry being edited.
+     * @param {Object} values - Validated form data.
+     * @returns {number} Page index after sorting, starting at 0.
+     * @throws {Error} If the entry no longer exists.
+     */
     function updateInteraction(id, values) {
         const interaction = interactions.find((entry) => entry.id === id);
         if (!interaction) throw new Error('Interaction not found.');
-        Object.assign(interaction, values, { id, role: roles.get(values.person) || '' });
+        Object.assign(interaction, values, { id }, getPerson(values.person));
         sortInteractions();
         return Math.floor(interactions.indexOf(interaction) / pageSize);
     }
