@@ -5,6 +5,19 @@ import { initActions } from './actions.js';
 
 const interactions = initInteractions();
 const pagination = initPagination(interactions);
+const searchInput = document.querySelector('.search-field input');
+const clearSearch = document.querySelector('.search-clear');
+const [typeFilter, dateFilter] = document.querySelectorAll('.filter-select select');
+
+function updateFilters() {
+    interactions.setFilters({
+        search: searchInput.value,
+        type: typeFilter.value,
+        date: dateFilter.value
+    });
+    clearSearch.hidden = searchInput.value === '';
+    pagination.showPage(0);
+}
 
 const modal = initModal((values, id) => {
     const page = id === null
@@ -21,3 +34,12 @@ initActions((id) => {
     const interaction = interactions.getInteraction(id);
     if (interaction) modal.openEdit(interaction);
 }, modal.openDelete);
+
+searchInput.addEventListener('input', updateFilters);
+typeFilter.addEventListener('change', updateFilters);
+dateFilter.addEventListener('change', updateFilters);
+clearSearch.addEventListener('click', () => {
+    searchInput.value = '';
+    updateFilters();
+    searchInput.focus();
+});
