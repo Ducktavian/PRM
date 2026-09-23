@@ -1,0 +1,225 @@
+.interactions-page .role {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    color: gray;
+}
+
+.interactions-page .table-container {
+    min-width: 0;
+    min-height: calc(41px + 10 * 80px + 3px);
+    box-sizing: border-box;
+    border: 1px solid #E3DFE7;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.interactions-page table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background-color: white;
+    font-size: 14px;
+}
+
+.interactions-page th,
+.interactions-page td {
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: top;
+}
+
+.interactions-page thead {
+    background-color: #ececec;
+}
+
+.interactions-page thead th {
+    color: #716D78;
+    height: 41px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #E3DFE7;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.interactions-page thead th:first-child {
+    width: 24%;
+    padding-left: 20px;
+}
+
+.interactions-page thead th:nth-child(2) {
+    width: 12%;
+}
+
+.interactions-page thead th:nth-child(3) {
+    width: 44%;
+}
+
+.interactions-page thead th:nth-child(4) {
+    width: 13%;
+}
+
+.interactions-page thead th:last-child {
+    width: 7%;
+}
+
+.interactions-page tbody th,
+.interactions-page tbody td {
+    height: auto;
+    padding: 0;
+    vertical-align: middle;
+    border: 0;
+    border-bottom: 1px solid #E3DFE7;
+}
+
+.interactions-page tbody tr:last-child th,
+.interactions-page tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.interactions-page tbody th {
+    padding-left: 20px;
+}
+
+.interactions-page .person-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.interactions-page .person-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.interactions-page .person-avatar {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 600;
+    color: #96938F;
+    background: #96938F14;
+}
+
+.interactions-page .person-avatar[data-relationship="mentor"] {
+    color: #3DBB86;
+    background: #3DBB8614;
+}
+
+.interactions-page .person-avatar[data-relationship="coworker"] {
+    color: #8C72D9;
+    background: #8C72D914;
+}
+
+.interactions-page .person-avatar[data-relationship="family"] {
+    color: #E96B73;
+    background: #E96B7314;
+}
+
+.interactions-page .person-avatar[data-relationship="friend"] {
+    color: #F2A51A;
+    background: #F2A51A14;
+}
+
+.interactions-page .person-avatar[data-relationship="classmate"] {
+    color: #439AD6;
+    background: #439AD614;
+}
+
+.interactions-page .person-avatar[data-relationship="other"] {
+    color: #96938F;
+    background: #96938F14;
+}
+
+.interactions-page tbody td:nth-child(2) {
+    font-size: 10px;
+}
+
+.interactions-page .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.interactions-page .type-message {
+    color: #8C72D9;
+    background: #8C72D914;
+}
+
+.interactions-page .type-meeting {
+    color: #439AD6;
+    background: #439AD614;
+}
+
+.interactions-page .type-conversation {
+    color: #6E5BCF;
+    background: #6E5BCF14;
+}
+
+.interactions-page .type-event {
+    color: #F2A51A;
+    background: #F2A51A14;
+}
+
+.interactions-page .type-call {
+    color: #3DBB86;
+    background: #3DBB8614;
+}
+
+.interactions-page .actions-column {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.interactions-page tbody td p {
+    color: #716D78;
+    font-size: 12px;
+    padding-right: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.interactions-page time {
+    color: #716D78;
+    white-space: nowrap;
+}
+
+.interactions-page .interaction-history {
+    min-width: 0;
+    min-height: 0;
+}
+
+.interactions-page tbody tr {
+    height: 80px;
+}
+
+.interactions-page tbody td.empty-message {
+    padding: 60px 20px;
+    text-align: center;
+    color: #716D78;
+    font-size: 12px;
+}
+
+.interactions-page tbody td strong,
+.interactions-page .person-name,
+.interactions-page .role {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 12px;
+}

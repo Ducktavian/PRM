@@ -1,0 +1,72 @@
+/* Page layout */
+body.interactions-page {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 14.94% minmax(0, 1fr);
+    grid-template-rows: 59.99px auto;
+    min-height: 100dvh;
+}
+
+.interactions-page header {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    height: 59.99px;
+    margin: 0;
+    background-color: white;
+    border-bottom: 1px solid #E3DFE7;
+    grid-column: 2;
+}
+
+.interactions-page main {
+    max-width: none;
+    margin: 0;
+    padding: 36px 2.21vw 40px;
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 58px 42px auto 38px;
+    align-content: start;
+    gap: 20px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.interactions-page .page-header h1 {
+    margin: 0;
+}
+
+.interactions-page .page-header p {
+    color: #716D78;
+    margin: 0;
+    font-size: 14px;
+}
+
+.interactions-page .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.interactions-page .sidebar {
+    grid-column: 1;
+    grid-row: 1 / -1;
+}
+
+.interactions-page .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    min-width: 0;
+}
