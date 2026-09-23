@@ -41,6 +41,7 @@ body.interactions-page {
 }
 
 .interactions-page .page-header p {
+    color: #716D78;
     margin: 0;
     font-size: 14px;
 }
@@ -57,9 +58,7 @@ body.interactions-page {
     border: 0;
 }
 
-.interactions-page .navbar-space {
-    box-sizing: border-box;
-    border-right: 1.35px solid #E3DFE7;
+.interactions-page .sidebar {
     grid-column: 1;
     grid-row: 1 / -1;
 }

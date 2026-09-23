@@ -132,6 +132,16 @@
     background-size: 12px 12px;
 }
 
+.interaction-modal input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background: url('../../assets/icons/calendar-icon.svg') center / contain no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}
+
 .interaction-modal .modal-field textarea {
     min-height: 102px;
     resize: vertical;
@@ -185,6 +195,71 @@
 .interaction-modal button:focus-visible {
     outline: 2px solid #6E5BCF;
     outline-offset: 2px;
+}
+
+.interactions-page .delete-modal {
+    width: min(400px, calc(100% - 32px));
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.delete-modal .delete-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: #FDF0F0;
+}
+
+.delete-modal .delete-icon span {
+    width: 14px;
+    height: 14px;
+    background: #BB4545;
+    mask: url('../../assets/icons/trash-icon.svg') center / contain no-repeat;
+}
+
+.delete-modal h2 {
+    margin: 0 0 8px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.delete-modal p {
+    margin: 0;
+    color: #716D78;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.interaction-modal.delete-modal .modal-footer {
+    margin-top: 20px;
+    padding: 0;
+    gap: 10px;
+    border: 0;
+}
+
+.delete-modal .modal-footer button {
+    min-height: 34px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.delete-modal .delete-confirm {
+    border: 1px solid #BB4545;
+    background: #BB4545;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-modal .delete-confirm:hover {
+    background: #A63B3B;
+    border-color: #A63B3B;
 }
 
 @media (max-width: 480px) {

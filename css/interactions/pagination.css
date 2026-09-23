@@ -1,3 +1,9 @@
+.interactions-page .interaction-status {
+    margin-right: auto;
+    font-size: 12px;
+    color: #716D78;
+}
+
 .interactions-page .pagination {
     display: flex;
     flex-wrap: nowrap;
