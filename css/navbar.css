@@ -11,13 +11,32 @@
 
 .sidebar-brand {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    gap: 12px;
     padding: 24px 20px 28px;
+}
+
+.sidebar-brand-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 2px;
+    white-space: nowrap;
+}
+
+.sidebar-brand > img,
+.sidebar-nav img {
+    display: block;
+    flex-shrink: 0;
 }
 
 .sidebar-brand strong {
     font-size: 16px;
+    line-height: 1.2;
+    color: #202622;
+}
+
+.sidebar-brand-text span {
     line-height: 1.2;
 }
 
@@ -44,6 +63,7 @@
 .sidebar-nav > span {
     display: flex;
     align-items: center;
+    gap: 12px;
     min-height: 40px;
     padding: 0 12px;
     border-radius: 8px;
