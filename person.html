@@ -1,1 +1,341 @@
-<!-- View Individual Person -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Chen | PRM</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/people/cards.css">
+    <link rel="stylesheet" href="css/people/filters.css">
+    <link rel="stylesheet" href="css/people/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="person-view-page">
+
+    <!-- Sidebar Layout Placeholder -->
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <h2 class="logo-text">PRM App</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+            <li class="active"><a href="people.html"><i class="fa-solid fa-users"></i> <span>People</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-calendar"></i> <span>Events</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-gear"></i> <span>Settings</span></a></li>
+        </ul>
+    </nav>
+</aside>
+
+    <main class="main-content">
+
+        <!-- Back Link & Action Buttons -->
+        <div class="top-nav-actions">
+            <a href="people.html" class="back-link">&larr; Back</a>
+            <div class="profile-actions">
+                <button type="button" class="btn btn-outline" id="edit-person-btn">Edit</button>
+                <button type="button" class="btn btn-icon-only text-danger" title="Delete Person">
+                    <img src="./assets/three-icon.svg" alt="Delete" width="18">
+                </button>
+            </div>
+        </div>
+
+        <!-- Person Main Card -->
+        <section class="person-profile-header">
+            <div class="avatar avatar-xl avatar-green">SC</div>
+            <div class="profile-header-details">
+                <div class="name-pronouns">
+                    <h1>Sarah Chen</h1>
+                    <span class="pronouns">she/her</span>
+                </div>
+                <span class="badge badge-green">• Mentor</span>
+                <p class="role-company">Principal UX Designer · Figma</p>
+            </div>
+        </section>
+
+        <!-- Detailed Information Grid -->
+        <section class="person-details-grid">
+            
+            <!-- Column 1: Contact -->
+            <div class="detail-group">
+                <h3 class="group-title">CONTACT</h3>
+                <div class="detail-item">
+                    <label>EMAIL</label>
+                    <a href="mailto:sarah.chen@figma.com" class="link-text">sarah.chen@figma.com</a>
+                </div>
+                <div class="detail-item">
+                    <label>PHONE</label>
+                    <p>+1 (415) 555-0182</p>
+                </div>
+                <div class="detail-item">
+                    <label>LOCATION</label>
+                    <p>San Francisco, CA</p>
+                </div>
+                <div class="detail-item">
+                    <label>PREFERRED CONTACT</label>
+                    <p>Email</p>
+                </div>
+            </div>
+
+            <!-- Column 2: Personal -->
+            <div class="detail-group">
+                <h3 class="group-title">PERSONAL</h3>
+                <div class="detail-item">
+                    <label>BIRTHDAY</label>
+                    <p>Oct 3, 1983 · 42 years old</p>
+                </div>
+                <div class="detail-item">
+                    <label>PRONOUNS</label>
+                    <p>she/her</p>
+                </div>
+                <div class="detail-item">
+                    <label>OCCUPATION</label>
+                    <p>Principal UX Designer</p>
+                </div>
+            </div>
+
+            <!-- Column 3: Relationship -->
+            <div class="detail-group">
+                <h3 class="group-title">RELATIONSHIP</h3>
+                <div class="detail-item">
+                    <label>CATEGORY</label>
+                    <span class="badge badge-green">• Mentor</span>
+                </div>
+                <div class="detail-item">
+                    <label>WORKPLACE / SCHOOL</label>
+                    <p>Figma</p>
+                </div>
+                <div class="detail-item">
+                    <label>HOW YOU MET</label>
+                    <p>Met at a UX conference in 2022. She gave a keynote on design systems and we connected over coffee afterward.</p>
+                </div>
+                <div class="detail-item">
+                    <label>DATE YOU MET</label>
+                    <p>Sep 15, 2022</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Interests, Skills, Notes Section -->
+        <section class="person-tags-notes-section">
+            <div class="tag-category">
+                <label>INTERESTS</label>
+                <div class="tags-list">
+                    <span class="tag">Ceramics</span>
+                    <span class="tag">Hiking</span>
+                    <span class="tag">Speculative Fiction</span>
+                </div>
+            </div>
+
+            <div class="tag-category">
+                <label>SKILLS</label>
+                <div class="tags-list">
+                    <span class="tag">UX Design</span>
+                    <span class="tag">Design Systems</span>
+                    <span class="tag">User Research</span>
+                    <span class="tag">Figma</span>
+                    <span class="tag">Leadership</span>
+                </div>
+            </div>
+
+            <div class="two-column-tags">
+                <div class="tag-category">
+                    <label>LIKES</label>
+                    <div class="tags-list">
+                        <span class="tag">Direct feedback</span>
+                        <span class="tag">Coffee meetings</span>
+                        <span class="tag">Thoughtful questions</span>
+                    </div>
+                </div>
+                <div class="tag-category">
+                    <label>DISLIKES</label>
+                    <div class="tags-list">
+                        <span class="tag">Vague briefs</span>
+                        <span class="tag">Last-minute cancellations</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tag-category">
+                <label>SHARED TOPICS</label>
+                <div class="tags-list">
+                    <span class="tag">Design careers</span>
+                    <span class="tag">Accessibility</span>
+                    <span class="tag">Fiction books</span>
+                </div>
+            </div>
+
+            <div class="notes-block">
+                <label>NOTES</label>
+                <p>Incredibly generous with her time. Has a systematic approach to design and a sharp eye for accessible color work. Excellent mentor — always direct and honest with feedback.</p>
+            </div>
+        </section>
+
+        <!-- Bottom Grid: Reminders & Previous Interactions -->
+        <section class="bottom-sections-grid">
+            
+            <!-- Reminders Section -->
+            <div class="card-box">
+                <div class="card-box-header">
+                    <h2>REMINDERS</h2>
+                    <button type="button" class="btn btn-sm btn-outline" id="open-add-reminder-btn">+ Add</button>
+                </div>
+                <div class="reminders-list">
+                    
+                    <div class="reminder-item">
+                        <div class="reminder-icon">🔔</div>
+                        <div class="reminder-details">
+                            <h4>Portfolio follow-up</h4>
+                            <p>Sep 14, 2026</p>
+                            <small>Remind 2 days before</small>
+                        </div>
+                        <button type="button" class="btn-dots">&vellip;</button>
+                    </div>
+
+                    <div class="reminder-item">
+                        <div class="reminder-icon">🔔</div>
+                        <div class="reminder-details">
+                            <h4>Sarah's birthday</h4>
+                            <p>Oct 3, 2026</p>
+                            <small>Yearly reminder</small>
+                        </div>
+                        <button type="button" class="btn-dots">&vellip;</button>
+                    </div>
+
+                    <div class="reminder-item">
+                        <div class="reminder-icon">🔔</div>
+                        <div class="reminder-details">
+                            <h4>Send portfolio article</h4>
+                            <p>Oct 10, 2026</p>
+                            <small>Remind 1 day before</small>
+                        </div>
+                        <button type="button" class="btn-dots">&vellip;</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Previous Interactions Section -->
+            <div class="card-box">
+                <div class="card-box-header">
+                    <h2>PREVIOUS INTERACTIONS</h2>
+                </div>
+                <div class="interactions-list">
+
+                    <div class="interaction-item">
+                        <div class="interaction-meta">
+                            <span class="badge badge-green">• Meeting</span>
+                            <span class="date">Aug 28, 2026</span>
+                        </div>
+                        <h3>Coffee and career update</h3>
+                        <p>Discussed her transition into a senior IC role and navigating promotions without going into management.</p>
+                    </div>
+
+                    <div class="interaction-item">
+                        <div class="interaction-meta">
+                            <span class="badge badge-purple">• Message</span>
+                            <span class="date">May 2, 2026</span>
+                        </div>
+                        <h3>Job opening referral</h3>
+                        <p>She shared a job opening at her studio. Replied with thanks and updated portfolio link.</p>
+                    </div>
+
+                    <div class="interaction-item">
+                        <div class="interaction-meta">
+                            <span class="badge badge-yellow">• Event</span>
+                            <span class="date">Nov 20, 2025</span>
+                        </div>
+                        <h3>Design Matters conference</h3>
+                        <p>Ran into her at the conference. Brief but good catch-up between sessions.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ========================================
+         ADD REMINDER MODAL
+         ======================================== -->
+    <div class="modal-overlay" id="add-reminder-modal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add Reminder</h2>
+                <button type="button" class="modal-close-btn">&times;</button>
+            </div>
+            <form class="modal-body">
+                <div class="form-group full-width">
+                    <label for="rem-title">TITLE *</label>
+                    <input type="text" id="rem-title" placeholder="e.g. Birthday, Follow-up, Send article" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="rem-date">DATE *</label>
+                    <input type="date" id="rem-date" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="rem-details">DETAILS</label>
+                    <input type="text" id="rem-details" placeholder="Remind two days before, yearly reminder, etc.">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Reminder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================
+         EDIT REMINDER MODAL
+         ======================================== -->
+    <div class="modal-overlay" id="edit-reminder-modal" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Edit Reminder</h2>
+                <button type="button" class="modal-close-btn">&times;</button>
+            </div>
+            <form class="modal-body">
+                <div class="form-group full-width">
+                    <label for="edit-rem-title">TITLE *</label>
+                    <input type="text" id="edit-rem-title" value="Portfolio follow-up" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="edit-rem-date">DATE *</label>
+                    <input type="date" id="edit-rem-date" value="2026-09-14" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="edit-rem-details">DETAILS</label>
+                    <input type="text" id="edit-rem-details" value="Remind 2 days before">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update Reminder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================
+         DELETE REMINDER MODAL
+         ======================================== -->
+    <div class="modal-overlay" id="delete-reminder-modal" style="display: none;">
+        <div class="modal modal-sm">
+            <div class="modal-body text-center">
+                <div class="icon-danger-badge">&times;</div>
+                <h2>Delete reminder?</h2>
+                <p>This will permanently remove this reminder. This cannot be undone.</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
