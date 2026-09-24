@@ -3,7 +3,7 @@ import { initModal } from './modal.js';
 import { initInteractions } from './interactions.js';
 import { initActions } from './actions.js';
 
-const interactions = initInteractions();
+const interactions = initInteractions(people);
 const pagination = initPagination(interactions);
 const searchInput = document.querySelector('.search-field input');
 const clearSearch = document.querySelector('.search-clear');
