@@ -1,0 +1,90 @@
+.interactions-page .add-interaction:hover,
+.interactions-page .modal-submit:hover {
+    background: #5B48B8;
+    border-color: #5B48B8;
+}
+
+.interactions-page .action-menu {
+    position: fixed;
+    z-index: 10;
+    min-width: 110px;
+    padding: 4px;
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+.interactions-page .action-edit,
+.interactions-page .action-delete {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 4px;
+    background: white;
+    color: #202622;
+    font: inherit;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.interactions-page .action-edit:hover {
+    background: #F8F6F3;
+}
+
+.interactions-page .action-delete {
+    color: #BB4545;
+}
+
+.interactions-page .action-delete:hover {
+    background: #FDF0F0;
+}
+
+.interactions-page .action-edit:focus-visible,
+.interactions-page .action-delete:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: -2px;
+}
+
+.interactions-page .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.interactions-page .action-button:focus-visible {
+    outline: 2px solid #6D5BD0;
+    outline-offset: 2px;
+}
+
+.interactions-page .action-button img {
+    display: block;
+}
+
+.interactions-page .add-interaction {
+    appearance: none;
+    background: #6E5BCF;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: none;
+    transition: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 158px;
+    height: 40px;
+    font-family: inherit;
+    font-size: 14px;
+}

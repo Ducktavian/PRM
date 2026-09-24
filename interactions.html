@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactions | PRM</title>
+
+    <link rel="stylesheet" href="css/interactions/layout.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/interactions/buttons.css">
+    <link rel="stylesheet" href="css/interactions/table.css">
+    <link rel="stylesheet" href="css/interactions/filters.css">
+    <link rel="stylesheet" href="css/interactions/pagination.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
+    <link rel="stylesheet" href="css/interactions/modal.css">
+</head>
+
+<body class="interactions-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="assets/relm-logo-icon.svg" alt="" width="48" height="48">
+            <div class="sidebar-brand-text">
+                <strong>RELM</strong>
+                <span>Personal Relationship<br>Manager</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <a href="index.html">
+                <img src="assets/dashboard-icon.svg" alt="" width="18" height="18">
+                Dashboard
+            </a>
+            <a href="people.html">
+                <img src="assets/people-icon.svg" alt="" width="18" height="18">
+                People
+            </a>
+            <a href="interactions.html" aria-current="page">
+                <img src="assets/interactions-icon.svg" alt="" width="18" height="18">
+                Interactions
+            </a>
+            <span aria-disabled="true">
+                <img src="assets/files-icon.svg" alt="" width="18" height="18">
+                Files
+            </span>
+        </nav>
+
+        <div class="sidebar-footer">Personal Relationship<br>Manager</div>
+    </aside>
+    <header></header>
+
+    <main>
+        <!-- page title -->
+        <section class="page-header">
+            <div>
+            <h1>Interactions</h1>
+            <p>
+                View and record conversations, meetings, calls, messages,
+                and events.
+            </p>
+            </div>
+            <!-- add interaction button -->
+            <button type="button" class="add-interaction">
+                <img src="assets/plus-icon.svg" alt="" width="16" height="16">
+                Add Interaction
+            </button>
+        </section>
+
+        <!-- search bar and filters -->
+        <section class="interaction-filters" aria-label="Interaction filters">
+
+            <div class="search-field">
+                <img class="search-icon" src="assets/search-icon.svg" alt="" width="16" height="16">
+                <input type="search" aria-label="Search interactions" placeholder="Search by name, title, or notes...">
+                <button class="search-clear" type="button" aria-label="Clear search" hidden>
+                    <img src="assets/close-icon.svg" alt="" width="14" height="14">
+                </button>
+            </div>
+
+            <div class="filter-select">
+                <select aria-label="Filter by interaction type">
+                    <option>All types</option>
+                    <option>Conversation</option>
+                    <option>Meeting</option>
+                    <option>Call</option>
+                    <option>Message</option>
+                    <option>Event</option>
+                </select>
+                <img src="assets/dropdown-icon.svg" alt="" width="12" height="12">
+            </div>
+            <div class="filter-select">
+                <select aria-label="Filter by date">
+                    <option>All dates</option>
+                    <option>Last 7 days</option>
+                    <option>Last 30 days</option>
+                    <option>Last 90 days</option>
+                    <option>This year</option>
+                </select>
+                <img src="assets/dropdown-icon.svg" alt="" width="12" height="12">
+            </div>
+        </section>
+
+        <!-- interaction table -->
+        <section class="interaction-history" aria-labelledby="interaction-heading">
+            <h2 id="interaction-heading" class="visually-hidden">
+                Interaction History
+            </h2>
+
+            <div class="table-container">
+                <table aria-labelledby="interaction-heading">
+
+                    <!-- table header -->
+                    <thead>
+                        <tr>
+                            <th scope="col">Person</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Interaction</th>
+                            <th scope="col">Date</th>
+                            <th scope="col" class="actions-column">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- pagination -->
+        <nav class="pagination" aria-label="Interaction pages">
+            <output id="interaction-status" class="interaction-status"></output>
+            <button type="button" class="pagination-direction" disabled>
+                <img src="assets/chevron-left-icon.svg" alt="" width="16" height="16"> Previous
+            </button>
+            <button type="button" aria-label="Page 1" aria-current="page">1</button>
+            <button type="button" class="pagination-direction">
+                Next <img src="assets/chevron-right-icon.svg" alt="" width="16" height="16">
+            </button>
+        </nav>
+    </main>
+
+    <div id="interaction-actions" class="action-menu" hidden>
+        <button type="button" class="action-edit">Edit</button>
+        <button type="button" class="action-delete">Delete</button>
+    </div>
+
+    <!-- add interaction modal -->
+    <dialog id="add-interaction-dialog" class="interaction-modal" aria-labelledby="add-interaction-title">
+        <form id="add-interaction-form" method="dialog">
+            <div class="modal-header">
+                <h2 id="add-interaction-title">Add Interaction</h2>
+                <button type="button" class="modal-close" aria-label="Close interaction dialog">
+                    <img src="assets/close-icon.svg" alt="" width="16" height="16">
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-field">
+                    <label for="interaction-person">Person <span aria-hidden="true">*</span></label>
+                    <select id="interaction-person" name="personId" required>
+                        <option value="" disabled selected>Select a person</option>
+                    </select>
+                </div>
+
+                <div class="modal-row">
+                    <div class="modal-field">
+                        <label for="interaction-date">Date <span aria-hidden="true">*</span></label>
+
+                        <input type="date" id="interaction-date" name="date" required>
+                    </div>
+
+                    <div class="modal-field">
+                        <label for="interaction-type">Type <span aria-hidden="true">*</span></label>
+                        <select id="interaction-type" name="type" required>
+                            <option value="" disabled selected>Choose a type</option>
+                            <option value="Conversation">Conversation</option>
+                            <option value="Meeting">Meeting</option>
+                            <option value="Call">Call</option>
+                            <option value="Message">Message</option>
+                            <option value="Event">Event</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-field">
+                    <label for="interaction-title">Title or Subject <span aria-hidden="true">*</span></label>
+                    <input type="text" id="interaction-title" name="title" placeholder="Brief summary" required>
+                </div>
+
+                <div class="modal-field">
+                    <label for="interaction-notes">Notes</label>
+                    <textarea id="interaction-notes" name="notes" rows="4" placeholder="What happened? What was discussed?"></textarea>
+                </div>
+
+                <div class="modal-field">
+                    <label for="interaction-follow-up">Follow-up Note (optional)</label>
+                    <input type="text" id="interaction-follow-up" name="followUp" placeholder="e.g. Send the article by next week">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="modal-cancel">Cancel</button>
+                <button type="submit" class="modal-submit">Add Interaction</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Delete interaction confirmation -->
+    <dialog id="delete-interaction-dialog" class="interaction-modal delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
+        <form method="dialog">
+            <div class="delete-icon" aria-hidden="true"><span></span></div>
+            <h2 id="delete-interaction-title">Delete interaction?</h2>
+            <p id="delete-interaction-description">This will permanently remove this interaction record. This cannot be undone.</p>
+            <div class="modal-footer">
+                <button type="submit" class="modal-cancel" autofocus>Cancel</button>
+                <button type="button" class="delete-confirm">Delete</button>
+            </div>
+        </form>
+    </dialog>
+
+    <template id="interaction-row-template">
+        <tr>
+            <th scope="row">
+                <span class="person-cell">
+                    <span class="person-avatar" aria-hidden="true"></span>
+                    <span class="person-text">
+                        <span class="person-name"></span>
+                        <span class="role"></span>
+                    </span>
+                </span>
+            </th>
+            <td></td>
+            <td><strong></strong><p></p></td>
+            <td><time></time></td>
+            <td class="actions-column">
+                <button type="button" class="action-button" aria-label="Actions for this interaction">
+                    <img src="assets/more-options-icon.svg" alt="" width="26" height="28">
+                </button>
+            </td>
+        </tr>
+    </template>
+
+    <script src="js/data.js"></script>
+    <script type="module" src="js/interactions/main.js"></script>
+</body>
+</html>

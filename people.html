@@ -1,32 +1,364 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PRM</title>
-        <link rel="stylesheet" href="./css/styles.css">
-    </head>
 
-    <body>
-        <!-- Sidebar Navigation -->
-        <aside>
-            <nav>
-                <a href="index.html">Dashboard</a>
-                <a href="#">People</a>
-                <a href="">Interactions</a>
-                <a href="">Files</a>
-            </nav>
-        </aside>
-    
-        <!-- Main Content Area -->
-        <main>
-            <!-- Main Heading of the page -->
-            <h1>People</h1>
-            <p>Your personal and professional network.</p>
-    
-            <!-- Content goes here -->
-    
-        </main>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People | RelM - Personal Relationship Manager</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/people/cards.css">
+    <link rel="stylesheet" href="css/people/filters.css">
+    <link rel="stylesheet" href="css/people/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="people-page">
+
+    <!-- Sidebar Layout Placeholder -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-users-gear logo-icon"></i>
+                <div class="logo-text">
+                    <h2>RelM</h2>
+                    <p>PERSONAL RELATIONSHIP MANAGER</p>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-border-all"></i> <span>Dashboard</span></a></li>
+                <li class="active"><a href="people.html"><i class="fa-solid fa-users"></i> <span>People</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-comments"></i> <span>Interactions</span></a></li>
+                <li><a href="#"><i class="fa-regular fa-folder"></i> <span>Files</span></a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <p>PERSONAL RELATIONSHIP MANAGER</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-text">
+                <h1>People</h1>
+                <p>Your personal and professional network.</p>
+            </div>
+            <a href="#add-person-modal" class="btn btn-primary" id="open-add-person-btn">
+                <i class="fa-solid fa-plus"></i> Add Person
+            </a>
+        </header>
+
+        <!-- Controls -->
+        <section class="controls-section">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Search by name, skill, interest, or location..." aria-label="Search people">
+            </div>
+
+            <div class="filter-box">
+                <select aria-label="Filter by category">
+                    <option value="all">All categories</option>
+                    <option value="mentor">Mentor</option>
+                    <option value="coworker">Coworker</option>
+                    <option value="friend">Friend</option>
+                    <option value="family">Family</option>
+                    <option value="classmate">Classmate</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Grid Cards -->
+        <section class="people-grid">
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-green">SC</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Sarah Chen</a></h2>
+                        <span class="badge badge-green">• Mentor</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Ceramics</span>
+                    <span class="tag">Hiking</span>
+                    <span class="tag">Speculative Fiction</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Meeting · Aug 28, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-purple">MO</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Marcus Okonkwo</a></h2>
+                        <span class="badge badge-purple">• Coworker</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Chess</span>
+                    <span class="tag">Jazz Piano</span>
+                    <span class="tag">Street Photography</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Conversation · Sep 1, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-orange">PN</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Priya Nair</a></h2>
+                        <span class="badge badge-orange">• Friend</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Pottery</span>
+                    <span class="tag">Traveling</span>
+                    <span class="tag">Cooking</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Call · Sep 5, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-red">AD</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Amara Diallo</a></h2>
+                        <span class="badge badge-red">• Family</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Fashion</span>
+                    <span class="tag">Travel</span>
+                    <span class="tag">Family Genealogy</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Conversation · Sep 2, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-blue">DK</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">David Kim</a></h2>
+                        <span class="badge badge-blue">• Classmate</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Rock Climbing</span>
+                    <span class="tag">Sci-Fi Film</span>
+                    <span class="tag">Korean Cooking</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Message · Sep 8, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-gray">TB</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Tom Bergström</a></h2>
+                        <span class="badge badge-gray">• Other</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Open Source</span>
+                    <span class="tag">Cycling</span>
+                    <span class="tag">Nordic Cooking</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Message · Jun 10, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-yellow">JR</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Jonas Rivera</a></h2>
+                        <span class="badge badge-orange">• Friend</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Photography</span>
+                    <span class="tag">Architecture</span>
+                    <span class="tag">Cycling</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Event · Sep 12, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-purple">LM</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Lena Müller</a></h2>
+                        <span class="badge badge-purple">• Coworker</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Cycling</span>
+                    <span class="tag">Contemporary Art</span>
+                    <span class="tag">Sustainability</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Meeting · Sep 15, 2026</span>
+                </div>
+            </article>
+
+            <article class="person-card" onclick="window.location.href='person.html'">
+                <div class="card-header">
+                    <div class="avatar avatar-red">NA</div>
+                    <div class="card-title">
+                        <h2><a href="person.html">Nadia Ahmed</a></h2>
+                        <span class="badge badge-red">• Family</span>
+                    </div>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Cooking</span>
+                    <span class="tag">Hiking</span>
+                    <span class="tag">Reading</span>
+                </div>
+                <div class="card-footer">
+                    <span>Last: Call · Aug 20, 2026</span>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Pagination -->
+        <footer class="pagination-container">
+            <span class="results-count">Showing 1–9 of 24 people</span>
+            <div class="pagination-buttons">
+                <button type="button" class="btn btn-outline" disabled>&lt; Previous</button>
+                <button type="button" class="btn btn-outline">Next &gt;</button>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Add Person Modal -->
+    <div class="modal-overlay" id="add-person-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Person</h2>
+                <a href="#" class="close-btn">&times;</a>
+            </div>
+
+            <form>
+                <div class="modal-body">
+                    <!-- Basic Info -->
+                    <fieldset class="form-section">
+                        <legend class="section-title">BASIC INFORMATION</legend>
+                        <div class="form-group full-width">
+                            <label for="add-fullname">FULL NAME *</label>
+                            <input type="text" id="add-fullname" placeholder="e.g. Jordan Rivera" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-category">RELATIONSHIP CATEGORY *</label>
+                                <select id="add-category" required>
+                                    <option value="" disabled selected>Select category</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Mentor">Mentor</option>
+                                    <option value="Coworker">Coworker</option>
+                                    <option value="Family">Family</option>
+                                    <option value="Classmate">Classmate</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-pronouns">PRONOUNS (OPTIONAL)</label>
+                                <input type="text" id="add-pronouns" placeholder="e.g. she/her, he/him, they/them">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-birthday">BIRTHDAY</label>
+                                <input type="date" id="add-birthday">
+                                <small class="sub-label">Age will be calculated automatically.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-occupation">OCCUPATION OR ROLE</label>
+                                <input type="text" id="add-occupation" placeholder="e.g. Designer, Engineer, Student">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Contact -->
+                    <fieldset class="form-section">
+                        <legend class="section-title">CONTACT</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-email">EMAIL</label>
+                                <input type="email" id="add-email" placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-phone">PHONE NUMBER</label>
+                                <input type="tel" id="add-phone" placeholder="+1 (000) 000-0000">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-location">LOCATION</label>
+                                <input type="text" id="add-location" placeholder="City, Country">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-preferred-contact">PREFERRED CONTACT METHOD</label>
+                                <select id="add-preferred-contact">
+                                    <option value="Email">Email</option>
+                                    <option value="Phone">Phone</option>
+                                    <option value="Message">Message</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Relationship -->
+                    <fieldset class="form-section">
+                        <legend class="section-title">RELATIONSHIP</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="add-workplace">WORKPLACE OR SCHOOL</label>
+                                <input type="text" id="add-workplace" placeholder="e.g. Google, MIT">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-date-met">DATE YOU MET</label>
+                                <input type="date" id="add-date-met">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="add-how-met">HOW YOU MET</label>
+                            <textarea id="add-how-met" placeholder="Where did you meet? What's the context?" rows="3"></textarea>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- Fixed Footer Actions -->
+                <div class="modal-actions">
+                    <a href="#" class="btn-modal-cancel">Cancel</a>
+                    <button type="submit" class="btn-modal-submit">Save Person</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
 </html>
