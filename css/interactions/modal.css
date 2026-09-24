@@ -217,7 +217,7 @@
     width: 14px;
     height: 14px;
     background: #BB4545;
-    mask: url('../../assets/icons/trash-icon.svg') center / contain no-repeat;
+    mask: url('../../assets/delete-icon.svg') center / contain no-repeat;
 }
 
 .delete-modal h2 {
