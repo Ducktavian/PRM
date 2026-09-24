@@ -59,3 +59,7 @@
     outline: 2px solid #6D5BD0;
     outline-offset: 2px;
 }
+.files-page .file-action-button:hover,
+.files-page .close-file-button:hover {
+    background-color: #F8F6F3;
+}

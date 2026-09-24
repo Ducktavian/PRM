@@ -7,16 +7,46 @@
 
     <title>Files | PRM</title>
 
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/button.css">
-    <link rel="stylesheet" href="css/content.css">
-    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/files/layout.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/files/button.css">
+    <link rel="stylesheet" href="css/files/content.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
+    <link rel="stylesheet" href="css/files/modal.css">
 </head>
 
 <body class="files-page">
 
-    <!-- for sidebar nav -->
-    <aside class="navbar-space" aria-hidden="true"></aside>
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="assets/relm-logo-icon.svg" alt="" width="48" height="48">
+            <div class="sidebar-brand-text">
+                <strong>RELM</strong>
+                <span>Personal Relationship<br>Manager</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <a href="index.html">
+                <img src="assets/dashboard-icon.svg" alt="" width="18" height="18">
+                Dashboard
+            </a>
+            <a href="people.html">
+                <img src="assets/people-icon.svg" alt="" width="18" height="18">
+                People
+            </a>
+            <a href="interactions.html">
+                <img src="assets/interactions-icon.svg" alt="" width="18" height="18">
+                Interactions
+            </a>
+            <a href="files.html" aria-current="page">
+                <img src="assets/files-icon.svg" alt="" width="18" height="18">
+                Files
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">Personal Relationship<br>Manager</div>
+    </aside>
 
     <!-- top header -->
     <header></header>
@@ -55,7 +85,7 @@
 
                         <h2 id="current-file-name">No file open</h2>
 
-                        <span class="file-status" id="current-file-status">
+                        <span class="file-status is-closed" id="current-file-status">
                             Closed
                         </span>
 
@@ -101,7 +131,7 @@
                 <h2>Open File</h2>
 
                 <p>
-                    Continue working with a ReIM file saved on this device.
+                    Continue working with a RelM file saved on this device.
                 </p>
 
                 <button
@@ -177,11 +207,11 @@
         </section>
 
 
-        <!-- How ReIM File Works -->
+        <!-- How RelM File Works -->
         <section class="how-it-works">
 
             <h2>
-                How your ReIM file works
+                How your RelM file works
             </h2>
 
             <div class="steps">
@@ -201,7 +231,7 @@
                         </h3>
 
                         <p>
-                            Choose your saved ReIM file
+                            Choose your saved RelM file
                             to load your network.
                         </p>
 
@@ -263,18 +293,13 @@
         <!-- File Information -->
         <p class="file-footer">
 
-            ReIM files use the JSON format so they can be
+            RelM files use the JSON format so they can be
             backed up and opened on another device.
 
         </p>
 
     </main>
 
-    <input
-    type="file"
-    id="file-input"
-    accept=".json,application/json"
-    hidden>
 
 
 
@@ -371,7 +396,8 @@
 
     </div>
 
-    <script src="js/files.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/files/main.js"></script>
 
 </body>
 

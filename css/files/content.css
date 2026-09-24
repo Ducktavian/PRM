@@ -8,12 +8,12 @@
 
     gap: 20px;
 
-    padding: 16px 18px;
+    padding: 24px;
 
     background-color: white;
 
-    border: 1px solid #E3DFE7;
-    border-radius: 10px;
+    border: 1.35px solid #E3DFE7;
+    border-radius: 12px;
 
     margin-bottom: 15px;
 }
@@ -83,15 +83,38 @@
 }
 
 .files-page .file-status {
-    padding: 2px 7px;
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 2px 8px;
 
     border-radius: 10px;
 
-    background-color: #E8F5EE;
+    background-color: #EAF8F2;
 
-    color: #39835C;
+    color: #2F7A5C;
 
-    font-size: 9px;
+    font-size: 10px;
+}
+
+.files-page .file-status.is-closed {
+    background-color: #F2F0F7;
+
+    color: #716D78;
+}
+
+.files-page .file-status::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background-color: currentColor;
 }
 
 .files-page .file-meta {
@@ -101,9 +124,9 @@
 
     margin-top: 3px;
 
-    font-size: 10px;
+    font-size: 14px;
 
-    color: #777;
+    color: #716D78;
 }
 
 
@@ -122,12 +145,12 @@
 .files-page .file-action-card {
     min-width: 0;
 
-    padding: 17px;
+    padding: 24px;
 
     background-color: white;
 
-    border: 1px solid #E3DFE7;
-    border-radius: 10px;
+    border: 1.35px solid #E3DFE7;
+    border-radius: 12px;
 }
 
 .files-page .file-action-icon {
@@ -153,7 +176,7 @@
 .files-page .file-action-card h2 {
     margin: 13px 0 6px;
 
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -162,28 +185,32 @@
 
     min-height: 42px;
 
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
 
-    color: #777;
+    color: #716D78;
 }
 
 
 /* How it works */
 
 .files-page .how-it-works {
-    padding: 17px;
+    box-sizing: border-box;
+
+    min-height: 151.62px;
+
+    padding: 24px;
 
     background-color: white;
 
-    border: 1px solid #E3DFE7;
-    border-radius: 10px;
+    border: 1.35px solid #E3DFE7;
+    border-radius: 12px;
 }
 
 .files-page .how-it-works > h2 {
     margin: 0 0 17px;
 
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -204,8 +231,8 @@
 }
 
 .files-page .step-number {
-    width: 22px;
-    height: 22px;
+    width: 38px;
+    height: 38px;
 
     flex-shrink: 0;
 
@@ -219,23 +246,23 @@
 
     color: #6D5BD0;
 
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .files-page .step h3 {
     margin: 0 0 4px;
 
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .files-page .step p {
     margin: 0;
 
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.5;
 
-    color: #777;
+    color: #716D78;
 }
 
 
@@ -246,9 +273,9 @@
 
     text-align: center;
 
-    font-size: 10px;
+    font-size: 12px;
 
-    color: #888;
+    color: #96938F;
 }
 
 
@@ -259,10 +286,6 @@
 
     .files-page .file-actions {
         gap: 10px;
-    }
-
-    .files-page .file-action-card {
-        padding: 15px;
     }
 
     .files-page .steps {
@@ -295,10 +318,6 @@
     .files-page .file-actions {
         grid-template-columns: 1fr;
         gap: 12px;
-    }
-
-    .files-page .file-action-card {
-        padding: 16px;
     }
 
 
