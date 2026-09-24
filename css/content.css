@@ -1,6 +1,4 @@
-/* ========================================
-   Current file
-   ======================================== */
+/* Current file */
 
 .files-page .current-file {
     display: flex;
@@ -109,9 +107,7 @@
 }
 
 
-/* ========================================
-   File action cards
-   ======================================== */
+/* File action cards */
 
 .files-page .file-actions {
     display: grid;
@@ -173,9 +169,7 @@
 }
 
 
-/* ========================================
-   How it works
-   ======================================== */
+/* How it works */
 
 .files-page .how-it-works {
     padding: 17px;
@@ -245,9 +239,7 @@
 }
 
 
-/* ========================================
-   Footer text
-   ======================================== */
+/* Footer text */
 
 .files-page .file-footer {
     margin: 17px 0 0;
@@ -257,4 +249,80 @@
     font-size: 10px;
 
     color: #888;
+}
+
+
+/*  Responsive Content */
+
+/* TABLET */
+@media (max-width: 1024px) {
+
+    .files-page .file-actions {
+        gap: 10px;
+    }
+
+    .files-page .file-action-card {
+        padding: 15px;
+    }
+
+    .files-page .steps {
+        gap: 15px;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    /* Current File */
+    .files-page .current-file {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .files-page .current-file-info {
+        width: 100%;
+    }
+
+    .files-page .close-file-button {
+        width: 100%;
+    }
+
+
+    /* File Action Cards */
+    .files-page .file-actions {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .files-page .file-action-card {
+        padding: 16px;
+    }
+
+
+    /* How It Works */
+    .files-page .steps {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+
+    /* File Metadata */
+    .files-page .file-meta {
+        flex-wrap: wrap;
+        gap: 6px 12px;
+    }
+
+
+    /* Long filename */
+    .files-page .file-name-status {
+        flex-wrap: wrap;
+    }
+
+    .files-page .file-name-status h2 {
+        overflow-wrap: anywhere;
+    }
+
 }

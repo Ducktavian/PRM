@@ -1,6 +1,4 @@
-/* ========================================
-   Files page layout
-   ======================================== */
+/* Files page layout */
 
 body.files-page {
     margin: 0;
@@ -19,9 +17,7 @@ body.files-page {
 }
 
 
-/* ========================================
-   Header
-   ======================================== */
+/* Header */
 
 .files-page header {
     box-sizing: border-box;
@@ -40,9 +36,7 @@ body.files-page {
 }
 
 
-/* ========================================
-   Sidebar space
-   ======================================== */
+/* Sidebar space */
 
 .files-page .navbar-space {
     box-sizing: border-box;
@@ -54,9 +48,7 @@ body.files-page {
 }
 
 
-/* ========================================
-   Main
-   ======================================== */
+/* Main */
 
 .files-page main {
     max-width: none;
@@ -74,9 +66,7 @@ body.files-page {
 }
 
 
-/* ========================================
-   Page header
-   ======================================== */
+/* Page header */
 
 .files-page .page-header {
     display: flex;
@@ -99,4 +89,49 @@ body.files-page {
     margin: 0;
 
     font-size: 14px;
+}
+
+
+/* Responsive layout */
+
+/* TABLET */
+@media (max-width: 1024px) {
+
+    body.files-page {
+        grid-template-columns: 14.94% minmax(0, 1fr);
+    }
+
+    .files-page main {
+        padding: 30px 2vw 32px;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    body.files-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: 59.99px minmax(0, 1fr);
+    }
+
+    .files-page .navbar-space {
+        display: none;
+    }
+
+    .files-page header {
+        grid-column: 1;
+    }
+
+    .files-page main {
+        grid-column: 1;
+
+        padding: 24px 16px 30px;
+    }
+
+    .files-page .page-header {
+        margin-bottom: 16px;
+    }
+
 }

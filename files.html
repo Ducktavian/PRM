@@ -103,8 +103,9 @@
                 </p>
 
                 <button
-                    type="button"
-                    class="file-action-button">
+                      type="button"
+                      class="file-action-button"
+                      id="choose-file-button">
 
                     Choose File
 
@@ -133,7 +134,8 @@
 
                 <button
                     type="button"
-                    class="file-action-button">
+                    class="file-action-button"
+                    id="download-backup-button">
 
                     Download Backup
 
@@ -161,7 +163,8 @@
 
                 <button
                     type="button"
-                    class="file-action-button">
+                    class="file-action-button"
+                    id="create-new-file-button">
 
                     Create New File
 
@@ -265,10 +268,17 @@
 
     </main>
 
+    <input
+    type="file"
+    id="file-input"
+    accept=".json,application/json"
+    hidden>
 
-    <!-- ========================================
-         CLOSE FILE MODAL
-         ======================================== -->
+
+
+     
+         <!-- CLOSE FILE MODAL -->
+          
 
     <div
         class="modal-overlay"
@@ -290,7 +300,8 @@
 
                 <button
                     type="button"
-                    class="modal-cancel-button">
+                    class="modal-cancel-button"
+                    id="close-modal-cancel-button">
 
                     Cancel
 
@@ -298,7 +309,8 @@
 
                 <button
                     type="button"
-                    class="modal-confirm-button">
+                    class="modal-confirm-button"
+                    id="close-file-button">
 
                     Close File
 
@@ -311,9 +323,8 @@
     </div>
 
 
-    <!-- ========================================
-         CREATE NEW FILE MODAL
-         ======================================== -->
+     
+         <!-- CREATE NEW FILE MODAL -->
 
     <div
         class="modal-overlay"
@@ -335,7 +346,8 @@
 
                 <button
                     type="button"
-                    class="modal-cancel-button">
+                    class="modal-cancel-button"
+                    id="create-modal-cancel-button">
 
                     Cancel
 
@@ -343,7 +355,8 @@
 
                 <button
                     type="button"
-                    class="modal-confirm-button">
+                    class="modal-confirm-button"
+                    id="create-modal-confirm-button">
 
                     Create New File
 
@@ -354,6 +367,8 @@
         </div>
 
     </div>
+
+    <script src="js/files.js"></script>
 
 </body>
 
