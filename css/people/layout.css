@@ -5,7 +5,7 @@ body.people-page {
     min-height: 100dvh;
 }
 
-.people-page .sidebar {
+.sidebar {
     grid-column: 1;
     grid-row: 1 / -1;
     display: flex;
@@ -21,32 +21,32 @@ body.people-page {
     color: #202622;
 }
 
-.people-page .sidebar-header {
+.sidebar-header {
     padding: 24px 20px 28px;
     margin: 0;
 }
 
-.people-page .logo {
+.logo {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.people-page .logo-text {
+.logo-text {
     display: flex;
     flex-direction: column;
     gap: 2px;
     white-space: nowrap;
 }
 
-.people-page .logo-text h2 {
+.logo-text h2 {
     font-size: 16px;
     line-height: 1.2;
     color: #202622;
 }
 
-.people-page .logo-text p,
-.people-page .sidebar-footer {
+.logo-text p,
+.sidebar-footer {
     color: #96938F;
     font-size: 10px;
     font-weight: 400;
@@ -54,31 +54,31 @@ body.people-page {
     letter-spacing: 1px;
 }
 
-.people-page .logo-text p {
+.logo-text p {
     line-height: 1.2;
 }
 
-.people-page .sidebar img {
+.sidebar img {
     display: block;
     flex-shrink: 0;
 }
 
-.people-page .sidebar-nav {
+.sidebar-nav {
     padding: 0 16px;
 }
 
-.people-page .sidebar-nav ul {
+.sidebar-nav ul {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.people-page .sidebar-nav li {
+.sidebar-nav li {
     margin: 0;
 }
 
-.people-page .sidebar-nav a,
-.people-page .nav-placeholder {
+.sidebar-nav a,
+.nav-placeholder {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -91,21 +91,21 @@ body.people-page {
     font-weight: 500;
 }
 
-.people-page .sidebar-nav a:hover,
-.people-page .sidebar-nav a[aria-current="page"] {
+.sidebar-nav a:hover,
+.sidebar-nav a[aria-current="page"] {
     background: #EFEAFB;
 }
 
-.people-page .sidebar-nav a[aria-current="page"] {
+.sidebar-nav a[aria-current="page"] {
     color: #6E5BCF;
 }
 
-.people-page .sidebar-nav a:focus-visible {
+.sidebar-nav a:focus-visible {
     outline: 2px solid #6E5BCF;
     outline-offset: 2px;
 }
 
-.people-page .sidebar-footer {
+.sidebar-footer {
     margin-top: auto;
     padding: 16px;
     border-top: 1px solid #E3DFE7;
