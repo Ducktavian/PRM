@@ -16,6 +16,11 @@ const closeFileModal = document.getElementById("close-file-modal");
 const closeModalCancelButton = document.getElementById("close-modal-cancel-button");
 const closeModalConfirmButton = document.getElementById("close-modal-confirm-button");
 
+const createNewFileButton = document.getElementById("create-new-file-button");
+const createNewFileModal = document.getElementById("create-new-file-modal");
+const createModalCancelButton = document.getElementById("create-modal-cancel-button");
+const createModalConfirmButton = document.getElementById("create-modal-confirm-button");
+
 function updateFileInformation(data, fileName) {
     const people = Array.isArray(data.people) ? data.people : [];
 
@@ -94,4 +99,25 @@ closeModalConfirmButton.addEventListener("click", function () {
     fileUpdatedElement.textContent = "No file loaded";
 
     closeFileModal.style.display = "none";
+});
+createNewFileButton.addEventListener("click", function () {
+    createNewFileModal.style.display = "flex";
+});
+
+createModalCancelButton.addEventListener("click", function () {
+    createNewFileModal.style.display = "none";
+});
+
+createModalConfirmButton.addEventListener("click", function () {
+    currentFileData = {
+        people: [],
+        exportedAt: new Date().toISOString(),
+        version: "1.0"
+    };
+
+    currentFileName = "reIm-personal-network.json";
+
+    updateFileInformation(currentFileData, currentFileName);
+
+    createNewFileModal.style.display = "none";
 });
