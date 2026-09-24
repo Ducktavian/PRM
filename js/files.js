@@ -11,6 +11,11 @@ const interactionCountElement = document.getElementById("interaction-count");
 const reminderCountElement = document.getElementById("reminder-count");
 const fileUpdatedElement = document.getElementById("file-updated");
 
+const closeFileButton = document.getElementById("close-file-button");
+const closeFileModal = document.getElementById("close-file-modal");
+const closeModalCancelButton = document.getElementById("close-modal-cancel-button");
+const closeModalConfirmButton = document.getElementById("close-modal-confirm-button");
+
 function updateFileInformation(data, fileName) {
     const people = Array.isArray(data.people) ? data.people : [];
 
@@ -51,6 +56,10 @@ fileInput.addEventListener("change", async function () {
         const fileText = await file.text();
         const data = JSON.parse(fileText);
 
+        if (!Array.isArray(data.people)) {
+            throw new Error("Invalid ReIM file.");
+        }
+
         currentFileData = data;
         currentFileName = file.name;
 
@@ -60,6 +69,29 @@ fileInput.addEventListener("change", async function () {
         console.log("File data:", currentFileData);
     } catch (error) {
         console.error("Unable to open file:", error);
-        alert("Unable to open this file. Please select a valid JSON file.");
+        alert("Unable to open this file. Please select a valid ReIM JSON file.");
     }
+});
+
+closeFileButton.addEventListener("click", function () {
+    closeFileModal.style.display = "flex";
+});
+
+closeModalCancelButton.addEventListener("click", function () {
+    closeFileModal.style.display = "none";
+});
+
+closeModalConfirmButton.addEventListener("click", function () {
+    currentFileData = null;
+    currentFileName = null;
+
+    currentFileNameElement.textContent = "No file open";
+    currentFileStatusElement.textContent = "Closed";
+
+    peopleCountElement.textContent = "0 people";
+    interactionCountElement.textContent = "0 interactions";
+    reminderCountElement.textContent = "0 reminders";
+    fileUpdatedElement.textContent = "No file loaded";
+
+    closeFileModal.style.display = "none";
 });
