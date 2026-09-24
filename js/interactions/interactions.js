@@ -14,34 +14,47 @@ function parseDate(value) {
     return date;
 }
 
-export function initInteractions() {
+export function initInteractions(sharedPeople) {
     const table = document.querySelector('.interaction-history table');
     const status = document.getElementById('interaction-status');
-    const rows = [...table.querySelectorAll('tbody tr')];
-    const rowTemplate = rows[0].cloneNode(true);
-    const interactions = rows.map((row, index) => ({
-        id: String(index + 1),
-        person: row.querySelector('.person-name').textContent.trim(),
-        role: row.querySelector('.role').textContent.trim(),
-        type: row.cells[1].textContent.trim(),
-        relationship: row.querySelector('.person-avatar').dataset.relationship,
-        title: row.querySelector('strong').textContent.trim(),
-        notes: row.querySelector('p').textContent.trim(),
-        date: row.querySelector('time').dateTime,
-        followUp: ''
-    }));
-    const people = new Map(interactions.map(({ person, role, relationship }) => [person, { role, relationship }]));
+    const rowTemplate = document.getElementById('interaction-row-template').content.querySelector('tr');
+    const peopleById = new Map(sharedPeople.map((person) => [person.id, person]));
+    const interactions = sharedPeople.flatMap((person) => (person.interactions || []).map((entry) => ({
+        ...entry,
+        id: String(entry.id),
+        personId: person.id,
+        notes: entry.details || '',
+        followUp: entry.followUp || ''
+    })));
     const filters = { search: '', type: 'All types', date: 'All dates' };
     const pageSize = 10;
     let filteredInteractions = interactions;
-    let nextId = interactions.length + 1;
+    let nextId = Math.max(0, ...interactions.map((entry) => Number(entry.id))) + 1;
     const body = table.tBodies[0];
-    body.removeAttribute('id');
-    body.hidden = false;
-    [...table.tBodies].slice(1).forEach((section) => section.remove());
+    function getPerson(id) {
+        const person = peopleById.get(id);
+        return {
+            name: `${person.firstName} ${person.lastName}`,
+            role: person.personalInfo?.occupation || '',
+            relationship: (person.relationship?.category || 'other').toLowerCase()
+        };
+    }
 
-    function getPerson(name) {
-        return people.get(name) || { role: '', relationship: 'other' };
+    const personSelect = document.getElementById('interaction-person');
+    [...sharedPeople].sort((a, b) => getPerson(a.id).name.localeCompare(getPerson(b.id).name))
+        .forEach((person) => personSelect.add(new Option(getPerson(person.id).name, person.id)));
+
+    const typeSelect = document.getElementById('interaction-type');
+    const typeFilter = document.querySelector('.filter-select select');
+    const types = new Set([...typeSelect.options].map((option) => option.value).filter(Boolean));
+    interactions.forEach((entry) => types.add(entry.type));
+    for (const type of types) {
+        if (![...typeSelect.options].some((option) => option.value === type)) {
+            typeSelect.add(new Option(type, type));
+        }
+        if (![...typeFilter.options].some((option) => option.value === type)) {
+            typeFilter.add(new Option(type, type));
+        }
     }
 
     function sortInteractions() {
@@ -73,7 +86,7 @@ export function initInteractions() {
         const query = filters.search.toLowerCase().trim();
         filteredInteractions = interactions.filter((interaction) => {
             const matchesSearch = query === ''
-                || interaction.person.toLowerCase().includes(query)
+                || getPerson(interaction.personId).name.toLowerCase().includes(query)
                 || interaction.title.toLowerCase().includes(query)
                 || interaction.notes.toLowerCase().includes(query);
             const matchesType = filters.type === 'All types' || interaction.type === filters.type;
@@ -85,6 +98,7 @@ export function initInteractions() {
     // Table rendering
     function createRow(interaction) {
         const row = rowTemplate.cloneNode(true);
+        const person = getPerson(interaction.personId);
         row.dataset.interactionId = interaction.id;
 
         const actionButton = row.querySelector('.action-button');
@@ -92,11 +106,11 @@ export function initInteractions() {
         actionButton.setAttribute('aria-controls', 'interaction-actions');
         actionButton.setAttribute('aria-label', `Actions for ${interaction.title}`);
 
-        row.querySelector('.person-name').textContent = interaction.person;
-        row.querySelector('.role').textContent = interaction.role;
+        row.querySelector('.person-name').textContent = person.name;
+        row.querySelector('.role').textContent = person.role;
         const avatar = row.querySelector('.person-avatar');
-        avatar.textContent = getInitials(interaction.person);
-        avatar.dataset.relationship = interaction.relationship;
+        avatar.textContent = getInitials(person.name);
+        avatar.dataset.relationship = person.relationship;
 
         const badge = document.createElement('span');
         badge.className = `type-badge type-${interaction.type.toLowerCase()}`;
@@ -141,9 +155,9 @@ export function initInteractions() {
     }
 
     /**
-     * New entries stay in memory for now. Refreshing reloads the original HTML data.
-     * @param {Object} values - Checked form data. The person's role is looked up here.
-     * @param {string} values.person - Selected person's name.
+     * New entries stay in memory. Refreshing reloads the shared mock data.
+     * @param {Object} values - Checked form data referencing a shared person ID.
+     * @param {number} values.personId - Selected person's ID in the shared data.
      * @param {string} values.date - Local calendar date in YYYY-MM-DD format.
      * @param {string} values.type - Interaction type shown in the table.
      * @param {string} values.title - Title with extra spaces at the ends removed; cannot be blank.
@@ -153,7 +167,7 @@ export function initInteractions() {
      * This lets the table show the entry even if its date puts it on a later page.
      */
     function addInteraction(values) {
-        const interaction = { ...values, id: String(nextId++), ...getPerson(values.person) };
+        const interaction = { ...values, id: String(nextId++) };
         interactions.unshift(interaction);
         sortInteractions();
         applyFilters();
@@ -172,7 +186,7 @@ export function initInteractions() {
     function updateInteraction(id, values) {
         const interaction = interactions.find((entry) => entry.id === id);
         if (!interaction) throw new Error('Interaction not found.');
-        Object.assign(interaction, values, { id }, getPerson(values.person));
+        Object.assign(interaction, values, { id });
         sortInteractions();
         applyFilters();
         const index = filteredInteractions.indexOf(interaction);

@@ -1,6 +1,6 @@
 /**
  * Uses onSave to keep table updates out of the modal code.
- * @param {(values: {person: string, date: string, type: string, title: string,
+ * @param {(values: {personId: number, date: string, type: string, title: string,
  * notes: string, followUp: string}, id: string|null) => void} onSave - Called after the form passes
  * validation, before closing. Text is trimmed and the date uses YYYY-MM-DD.
  * Must finish saving before it returns. Cancel and Escape skip this callback.
@@ -57,9 +57,9 @@ export function initModal(onSave, onDelete) {
         const data = new FormData(form);
         const type = data.get('type');
         onSave({
-            person: data.get('person'),
+            personId: Number(data.get('personId')),
             date: data.get('date'),
-            type: type.charAt(0).toUpperCase() + type.slice(1),
+            type,
             title: titleInput.value.trim(),
             notes: data.get('notes').trim(),
             followUp: data.get('followUp').trim()
@@ -88,10 +88,10 @@ export function initModal(onSave, onDelete) {
         titleInput.setCustomValidity('');
         heading.textContent = 'Edit Interaction';
         saveButton.textContent = 'Save Changes';
-        for (const name of ['person', 'date', 'title', 'notes', 'followUp']) {
+        for (const name of ['personId', 'date', 'title', 'notes', 'followUp']) {
             form.elements.namedItem(name).value = interaction[name];
         }
-        form.elements.namedItem('type').value = interaction.type.toLowerCase();
+        form.elements.namedItem('type').value = interaction.type;
         dialog.showModal();
     }
 

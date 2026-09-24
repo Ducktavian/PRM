@@ -158,7 +158,8 @@
     background: #8C72D914;
 }
 
-.interactions-page .type-meeting {
+.interactions-page .type-meeting,
+.interactions-page .type-meetup {
     color: #439AD6;
     background: #439AD614;
 }
