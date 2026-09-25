@@ -21,6 +21,8 @@ const createNewFileModal = document.getElementById("create-new-file-modal");
 const createModalCancelButton = document.getElementById("create-modal-cancel-button");
 const createModalConfirmButton = document.getElementById("create-modal-confirm-button");
 
+const downloadBackupButton = document.getElementById("download-backup-button");
+
 function updateFileInformation(data, fileName) {
     const people = Array.isArray(data.people) ? data.people : [];
 
@@ -120,4 +122,27 @@ createModalConfirmButton.addEventListener("click", function () {
     updateFileInformation(currentFileData, currentFileName);
 
     createNewFileModal.style.display = "none";
+});
+downloadBackupButton.addEventListener("click", function () {
+    if (!currentFileData) {
+        alert("There is no file to back up.");
+        return;
+    }
+
+    const fileContent = JSON.stringify(currentFileData, null, 2);
+    const blob = new Blob([fileContent], {
+        type: "application/json"
+    });
+
+    const downloadUrl = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = downloadUrl;
+    link.download = currentFileName || "reIm-personal-network.json";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(downloadUrl);
 });
