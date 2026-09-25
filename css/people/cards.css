@@ -1,3 +1,6 @@
+/* ==========================================
+   GLOBAL FONT FAMILY OVERRIDE (ARIAL SANS)
+   ========================================== */
 .people-grid,
 .person-view-page,
 .person-card,
@@ -8,6 +11,9 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ==========================================
+   PEOPLE CARDS & GRID (LIST PAGE)
+   ========================================== */
 .people-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -58,6 +64,7 @@
     color: #111827;
 }
 
+/* Avatars */
 .avatar {
     width: 42px;
     height: 42px;
@@ -79,6 +86,7 @@
 .avatar-yellow { background: #fef3c7; color: #92400e; }
 .avatar-gray { background: #f3f4f6; color: #374151; }
 
+/* Tags & Footer */
 .tags-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .tag { 
     background: #f3f4f6; 
@@ -97,6 +105,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Badges */
 .badge {
     display: inline-block;
     padding: 0.2rem 0.5rem;
@@ -109,6 +118,10 @@
 .badge-purple { background: #ede9fe; color: #5b21b6; }
 .badge-yellow { background: #fef3c7; color: #92400e; }
 
+/* ==========================================
+   PERSON DETAIL VIEW PAGE (person.html)
+   ========================================== */
+
 .person-view-page .main-content {
     max-width: 1000px;
     margin: 0 auto;
@@ -116,6 +129,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Header Banner Card */
 .person-profile-header {
     background: #ffffff;
     border: 1px solid #DFE3E0;
@@ -127,6 +141,7 @@
     margin-bottom: 1.5rem;
 }
 
+/* Vertical Stack Layout for Name & Details */
 .profile-header-details {
     display: flex;
     flex-direction: column;
@@ -156,6 +171,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Details Grid */
 .person-details-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -219,6 +235,7 @@
     text-decoration: underline;
 }
 
+/* Tags & Notes Block */
 .person-tags-notes-section {
     background: #ffffff;
     border: 1px solid #DFE3E0;
@@ -253,6 +270,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Bottom Grid (Reminders & Interactions) */
 .bottom-sections-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -327,6 +345,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Dropdown Menu Container (For Reminders 3 dots) */
 .dropdown-menu-container {
     position: relative;
     display: inline-block;

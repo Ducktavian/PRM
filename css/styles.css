@@ -11,6 +11,7 @@
     --border-color: #e5e7eb;
     --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     
+    /* Figma Palette */
     --primary-purple: #6d28d9;
     --primary-purple-hover: #5b21b6;
     --light-purple-bg: #ede9fe;
@@ -29,6 +30,9 @@ body {
     color: var(--text-dark);
 }
 
+/* ==========================================================================
+   SIDEBAR STYLING
+   ========================================================================== */
 .sidebar {
     width: 250px;
     background-color: var(--sidebar-bg);
@@ -85,6 +89,7 @@ body {
     transition: all 0.15s ease;
 }
 
+/* Active Nav Item */
 .sidebar-nav li.active a {
     background-color: var(--light-purple-bg);
     color: var(--primary-purple);
@@ -105,6 +110,9 @@ body {
     text-transform: uppercase;
 }
 
+/* ==========================================================================
+   MAIN CONTENT & HEADER STYLING
+   ========================================================================== */
 .main-content {
     flex-grow: 1;
     padding: 2rem 2.5rem;
@@ -112,6 +120,7 @@ body {
     max-width: 1200px;
 }
 
+/* Page Header */
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -160,12 +169,16 @@ body {
     font-size: 1rem;
 }
 
+/* Card General Styling */
 .card {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     border-radius: 12px;
 }
 
+/* ==========================================================================
+   TOP NAVIGATION ACTIONS (Back Link & Edit/Delete Buttons)
+   ========================================================================== */
 .top-nav-actions {
     display: flex;
     justify-content: space-between;
@@ -236,6 +249,9 @@ body {
     color: #dc2626;
 }
 
+/* ==========================================================================
+   PERSON HEADER DETAILS (Name, Pronouns, Tag Stack)
+   ========================================================================== */
 .profile-header-details {
     display: flex;
     flex-direction: column;
