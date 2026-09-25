@@ -7,6 +7,9 @@
     <title>People | RelM - Personal Relationship Manager</title>
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/people/pagination.css">
+    <link rel="stylesheet" href="css/people/layout.css">
     <link rel="stylesheet" href="css/people/cards.css">
     <link rel="stylesheet" href="css/people/filters.css">
     <link rel="stylesheet" href="css/people/modal.css">
@@ -17,26 +20,34 @@
 
     <!-- Sidebar Layout Placeholder -->
     <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <i class="fa-solid fa-users-gear logo-icon"></i>
-                <div class="logo-text">
-                    <h2>RelM</h2>
-                    <p>PERSONAL RELATIONSHIP MANAGER</p>
-                </div>
+        <div class="sidebar-brand">
+            <img src="assets/relm-logo-icon.svg" alt="" width="48" height="48">
+            <div class="sidebar-brand-text">
+                <strong>RELM</strong>
+                <span>Personal Relationship<br>Manager</span>
             </div>
         </div>
-        <nav class="sidebar-nav">
-            <ul>
-                <li><a href="#"><i class="fa-solid fa-border-all"></i> <span>Dashboard</span></a></li>
-                <li class="active"><a href="people.html"><i class="fa-solid fa-users"></i> <span>People</span></a></li>
-                <li><a href="#"><i class="fa-regular fa-comments"></i> <span>Interactions</span></a></li>
-                <li><a href="#"><i class="fa-regular fa-folder"></i> <span>Files</span></a></li>
-            </ul>
+    
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <a href="index.html">
+                <img src="assets/dashboard-icon.svg" alt="" width="18" height="18">
+                Dashboard
+            </a>
+            <a href="people.html">
+                <img src="assets/people-icon.svg" alt="" width="18" height="18">
+                People
+            </a>
+            <a href="interactions.html">
+                <img src="assets/interactions-icon.svg" alt="" width="18" height="18">
+                Interactions
+            </a>
+            <a href="files.html" aria-current="page">
+                <img src="assets/files-icon.svg" alt="" width="18" height="18">
+                Files
+            </a>
         </nav>
-        <div class="sidebar-footer">
-            <p>PERSONAL RELATIONSHIP MANAGER</p>
-        </div>
+    
+        <div class="sidebar-footer">Personal Relationship<br>Manager</div>
     </aside>
 
     <main class="main-content">
