@@ -2,6 +2,7 @@ import { initPagination } from './pagination.js';
 import { initModal } from './modal.js';
 import { initInteractions } from './interactions.js';
 import { initActions } from './actions.js';
+import { people } from '../data.js';
 
 const interactions = initInteractions(people);
 const pagination = initPagination(interactions);

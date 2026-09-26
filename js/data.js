@@ -1,6 +1,6 @@
 // Hardcoded mock data
 
-const people = [
+export const people = [
   {
     id: 1,
     firstName: "Alex",
