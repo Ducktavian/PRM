@@ -1,0 +1,101 @@
+.files-page .modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    z-index: 1000;
+}
+
+
+.files-page .modal {
+    box-sizing: border-box;
+
+    width: min(511.98px, 100%);
+    min-height: 198.95px;
+
+    padding: 24px;
+
+    background-color: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.files-page .modal h2 {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+.files-page .modal p {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #777;
+}
+
+
+.files-page .modal-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+}
+
+
+.files-page .modal-actions button {
+    height: 44.95px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.files-page .modal-cancel-button {
+    border: 1px solid #E3DFE7;
+
+    background-color: white;
+
+    color: black;
+}
+
+
+.files-page .modal-confirm-button {
+    border: 0;
+
+    background-color: #C34B4B;
+
+    color: white;
+}
+
+.files-page .modal-cancel-button:hover {
+    background-color: #F8F6F3;
+}
+
+
+.files-page .modal-confirm-button:hover {
+    background-color: #A63B3B;
+}

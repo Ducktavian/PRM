@@ -1,0 +1,396 @@
+/* ==========================================
+   GLOBAL FONT FAMILY OVERRIDE (ARIAL SANS)
+   ========================================== */
+.people-grid,
+.person-view-page,
+.person-card,
+.person-profile-header,
+.person-details-grid,
+.person-tags-notes-section,
+.bottom-sections-grid {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================
+   PEOPLE CARDS & GRID (LIST PAGE)
+   ========================================== */
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .people-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .people-grid { grid-template-columns: 1fr; }
+}
+
+.person-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color, #DFE3E0);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.person-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-title h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.card-title h2 a {
+    text-decoration: none;
+    color: #111827;
+}
+
+/* Avatars */
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.avatar-xl { width: 64px; height: 64px; font-size: 1.25rem; }
+.avatar-green { background: #d1fae5; color: #065f46; }
+.avatar-purple { background: #ede9fe; color: #5b21b6; }
+.avatar-orange { background: #ffedd5; color: #9a3412; }
+.avatar-red { background: #fee2e2; color: #991b1b; }
+.avatar-blue { background: #dbeafe; color: #1e40af; }
+.avatar-yellow { background: #fef3c7; color: #92400e; }
+.avatar-gray { background: #f3f4f6; color: #374151; }
+
+/* Tags & Footer */
+.tags-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tag { 
+    background: #f3f4f6; 
+    color: #4b5563; 
+    padding: 0.2rem 0.6rem; 
+    border-radius: 6px; 
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.card-footer { 
+    margin-top: auto; 
+    font-size: 0.8rem; 
+    color: #6b7280; 
+    border-top: 1px solid #f3f4f6; 
+    padding-top: 0.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.badge-green { background: #d1fae5; color: #065f46; }
+.badge-purple { background: #ede9fe; color: #5b21b6; }
+.badge-yellow { background: #fef3c7; color: #92400e; }
+
+/* ==========================================
+   PERSON DETAIL VIEW PAGE (person.html)
+   ========================================== */
+
+.person-view-page .main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header Banner Card */
+.person-profile-header {
+    background: #ffffff;
+    border: 1px solid #DFE3E0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Vertical Stack Layout for Name & Details */
+.profile-header-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+
+.profile-header-details h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pronouns {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.role-company {
+    margin: 0.25rem 0 0 0;
+    color: #4b5563;
+    font-size: 0.95rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Details Grid */
+.person-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .person-details-grid { grid-template-columns: 1fr; }
+}
+
+.detail-group {
+    background: #ffffff;
+    border: 1px solid #DFE3E0;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.group-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.detail-item {
+    margin-bottom: 1rem;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item label {
+    display: block;
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.detail-item p, .detail-item a {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #111827;
+    word-break: break-word;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.detail-item a.link-text {
+    color: #111827;
+    text-decoration: none;
+}
+
+.detail-item a.link-text:hover {
+    color: #6d28d9;
+    text-decoration: underline;
+}
+
+/* Tags & Notes Block */
+.person-tags-notes-section {
+    background: #ffffff;
+    border: 1px solid #DFE3E0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.tag-category label, .notes-block label {
+    display: block;
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.two-column-tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.notes-block p {
+    margin: 0;
+    color: #374151;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Bottom Grid (Reminders & Interactions) */
+.bottom-sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .bottom-sections-grid { grid-template-columns: 1fr; }
+}
+
+.card-box {
+    background: #ffffff;
+    border: 1px solid #DFE3E0;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.card-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-box-header h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+.reminder-item, .interaction-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.reminder-item:last-child, .interaction-item:last-child {
+    border-bottom: none;
+}
+
+.reminder-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.reminder-details h4, .interaction-item h3 {
+    margin: 0 0 0.2rem 0;
+    font-size: 0.95rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.reminder-details p, .interaction-item p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #4b5563;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.interaction-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.interaction-meta .date {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dropdown Menu Container (For Reminders 3 dots) */
+.dropdown-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-trigger {
+    color: #9ca3af;
+    padding: 0.25rem 0.5rem;
+}
+
+.dropdown-trigger:hover {
+    color: #111827;
+}
+
+.dropdown-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #ffffff;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.dropdown-dropdown a {
+    color: #374151;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.85rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dropdown-dropdown a:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown-dropdown a.text-danger {
+    color: #dc2626;
+}
+
+.dropdown-menu-container:hover .dropdown-dropdown {
+    display: block;
+}

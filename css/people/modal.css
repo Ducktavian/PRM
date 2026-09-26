@@ -1,0 +1,328 @@
+/* ========================================
+   GLOBAL FONT MATCH (GROUPMATE DESIGN SYSTEM)
+   ======================================== */
+.modal-overlay,
+.modal-content,
+.modal-content input,
+.modal-content select,
+.modal-content textarea,
+.modal-content button,
+.modal-content label {
+    font-family: Arial, sans-serif;
+}
+
+/* ========================================
+   MODAL OVERLAY & CONTAINER
+   ======================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(2px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* Show modal via CSS :target */
+.modal-overlay:target {
+    display: flex !important;
+}
+
+/* Modal Box (Flex layout para hindi masama sa scroll ang buttons) */
+.modal-content {
+    background: #ffffff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: none;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Form Container inside Modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* ========================================
+   MODAL HEADER (Fixed at Top)
+   ======================================== */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem 1rem 2rem;
+    border-bottom: 1px solid #E3DFE7;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.close-btn {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    line-height: 1;
+    transition: color 0.15s ease;
+}
+
+.close-btn:hover {
+    color: #374151;
+}
+
+/* ========================================
+   MODAL BODY / FORM SCROLLABLE AREA
+   ======================================== */
+.modal-body {
+    padding: 1.5rem 2rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Smooth Scrollbar for Modal Body */
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+}
+
+/* ========================================
+   FORM SECTIONS & FIELDSETS
+   ======================================== */
+.form-section {
+    border: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.section-title {
+    display: block;
+    width: 100%;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #6d28d9;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+
+/* ========================================
+   FORM INPUTS & GRID
+   ======================================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.form-group label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: #4b5563;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #111827;
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    border-color: #6d28d9;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.sub-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+/* ========================================
+   MODAL ACTIONS (FIXED FOOTER BUTTONS)
+   ======================================== */
+.modal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem 2rem 1.5rem 2rem;
+    border-top: 1px solid #E3DFE7;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.btn-modal-cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.65rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    color: #374151;
+    background-color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-modal-cancel:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.btn-modal-submit {
+    padding: 0.65rem;
+    background-color: #6d28d9;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-modal-submit:hover {
+    background-color: #5b21b6;
+}
+
+.btn-modal-danger {
+    background-color: #dc2626 !important;
+    color: #ffffff !important;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-modal-danger:hover {
+    background-color: #b91c1c !important;
+}
+
+/* ========================================
+   REMINDER DROPDOWN MENU
+   ======================================== */
+.dropdown-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-trigger {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #6b7280;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.dropdown-menu-container:focus-within .dropdown-dropdown {
+    display: flex;
+}
+
+.dropdown-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex-direction: column;
+    min-width: 110px;
+    z-index: 100;
+    padding: 4px 0;
+}
+
+.dropdown-dropdown a {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-dropdown a:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown-dropdown a.text-danger {
+    color: #dc2626;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .modal-header,
+    .modal-body,
+    .modal-actions {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

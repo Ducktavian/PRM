@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Files | PRM</title>
+
+    <link rel="stylesheet" href="css/files/layout.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/files/button.css">
+    <link rel="stylesheet" href="css/files/content.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
+    <link rel="stylesheet" href="css/files/modal.css">
+</head>
+
+<body class="files-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <img src="assets/relm-logo-icon.svg" alt="" width="48" height="48">
+            <div class="sidebar-brand-text">
+                <strong>RELM</strong>
+                <span>Personal Relationship<br>Manager</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <a href="index.html">
+                <img src="assets/dashboard-icon.svg" alt="" width="18" height="18">
+                Dashboard
+            </a>
+            <a href="people.html">
+                <img src="assets/people-icon.svg" alt="" width="18" height="18">
+                People
+            </a>
+            <a href="interactions.html">
+                <img src="assets/interactions-icon.svg" alt="" width="18" height="18">
+                Interactions
+            </a>
+            <a href="files.html" aria-current="page">
+                <img src="assets/files-icon.svg" alt="" width="18" height="18">
+                Files
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">Personal Relationship<br>Manager</div>
+    </aside>
+
+    <!-- top header -->
+    <header></header>
+
+
+    <main>
+
+        <!-- Page Header -->
+        <section class="page-header">
+
+            <div>
+                <h1>Files</h1>
+
+                <p>
+                    Open, back up, or start a personal network file.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Current File -->
+        <section class="current-file">
+
+            <div class="current-file-info">
+
+                <div class="file-icon">
+                    <img src="./assets/document-icon.svg" alt="Document">
+                </div>
+
+                <div class="current-file-details">
+
+                    <span class="section-label">CURRENT FILE</span>
+
+                    <div class="file-name-status">
+
+                        <h2 id="current-file-name">No file open</h2>
+
+                        <span class="file-status is-closed" id="current-file-status">
+                            Closed
+                        </span>
+
+                    </div>
+
+                    <div class="file-meta">
+                         <span id="people-count">0 people</span>
+                         <span id="interaction-count">0 interactions</span>
+                         <span id="reminder-count">0 reminders</span>
+                         <span id="file-updated">No file loaded</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button
+                type="button"
+                class="close-file-button"
+                id="close-file-button">
+
+                Close File
+            </button>
+
+        </section>
+
+
+        <!-- File Actions -->
+        <section class="file-actions">
+
+
+            <!-- Open File -->
+            <article class="file-action-card">
+
+                <div class="file-action-icon">
+
+                    <img
+                        src="./assets/open-file-icon.svg"
+                        alt="Open File">
+
+                </div>
+
+                <h2>Open File</h2>
+
+                <p>
+                    Continue working with a RelM file saved on this device.
+                </p>
+
+                <button
+                      type="button"
+                      class="file-action-button"
+                      id="choose-file-button">
+
+                    Choose File
+
+                </button>
+
+            </article>
+
+
+            <!-- Save Backup -->
+            <article class="file-action-card">
+
+                <div class="file-action-icon">
+
+                    <img
+                        src="./assets/save-backup-icon.svg"
+                        alt="Save Backup">
+
+                </div>
+
+                <h2>Save Backup</h2>
+
+                <p>
+                    Download the latest copy of your people,
+                    reminders, and interactions.
+                </p>
+
+                <button
+                    type="button"
+                    class="file-action-button"
+                    id="download-backup-button">
+
+                    Download Backup
+
+                </button>
+
+            </article>
+
+
+            <!-- Start New -->
+            <article class="file-action-card">
+
+                <div class="file-action-icon">
+
+                    <img
+                        src="./assets/start-new-icon.svg"
+                        alt="Start New">
+
+                </div>
+
+                <h2>Start New</h2>
+
+                <p>
+                    Create an empty file for a new personal network.
+                </p>
+
+                <button
+                    type="button"
+                    class="file-action-button"
+                    id="create-new-file-button">
+
+                    Create New File
+
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <!-- How RelM File Works -->
+        <section class="how-it-works">
+
+            <h2>
+                How your RelM file works
+            </h2>
+
+            <div class="steps">
+
+
+                <!-- Step 1 -->
+                <article class="step">
+
+                    <span class="step-number">
+                        1
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Open your file
+                        </h3>
+
+                        <p>
+                            Choose your saved RelM file
+                            to load your network.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Step 2 -->
+                <article class="step">
+
+                    <span class="step-number">
+                        2
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Manage your network
+                        </h3>
+
+                        <p>
+                            Add people, interactions,
+                            and reminders as you use the app.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Step 3 -->
+                <article class="step">
+
+                    <span class="step-number">
+                        3
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Save a backup
+                        </h3>
+
+                        <p>
+                            Download an updated copy
+                            before closing or changing devices.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- File Information -->
+        <p class="file-footer">
+
+            RelM files use the JSON format so they can be
+            backed up and opened on another device.
+
+        </p>
+
+    </main>
+
+
+
+
+     
+         <!-- CLOSE FILE MODAL -->
+          
+
+    <div
+        class="modal-overlay"
+        id="close-file-modal">
+
+        <div class="modal">
+
+            <h2>
+                Close file?
+            </h2>
+
+            <p>
+                The current file will be removed from the
+                active session. Your data will not be saved
+                unless you download a backup first.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-cancel-button"
+                    id="close-modal-cancel-button">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="button"
+                    class="modal-confirm-button"
+                    id="close-modal-confirm-button">
+
+
+                    Close File
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+     
+         <!-- CREATE NEW FILE MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="create-new-file-modal">
+
+        <div class="modal">
+
+            <h2>
+                Create new file?
+            </h2>
+
+            <p>
+                This will replace your current data with
+                an empty network. Save a backup first if
+                you want to keep your current data.
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-cancel-button"
+                    id="create-modal-cancel-button">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="button"
+                    class="modal-confirm-button"
+                    id="create-modal-confirm-button">
+
+                    Create New File
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/files/main.js"></script>
+
+</body>
+
+</html>
