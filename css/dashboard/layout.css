@@ -1,0 +1,48 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    width: 100%;
+    flex: 1;
+    min-height: 100vh;
+}
+
+.sidebar {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+.top-bar {
+    grid-column: 2;
+    grid-row: 1;
+    height: 60px;
+    border-bottom: 1px solid #E3DFE7;
+}
+
+.dashboard {
+    position: relative;
+    grid-column: 2;
+    padding: 36px 2.21vw 40px;
+    grid-row: 2;
+}
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.dashboard-inner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    grid-column: span 3;
+}
+
+.span-2-g {
+    grid-column: span 1.5;
+}
+
+
+

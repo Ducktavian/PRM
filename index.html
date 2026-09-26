@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/navbar.css">
         <link rel="stylesheet" href="./css/dashboard/dashboard.css">
+        <link rel="stylesheet" href="./css/dashboard/layout.css">
     </head>
     <body>
-        <div class="flex main-container">
+        <div class="main-container">
             <!-- Sidebar Navigation -->
             <aside class="sidebar">
                 <div class="sidebar-brand">
@@ -42,50 +43,75 @@
             
                 <div class="sidebar-footer">Personal Relationship<br>Manager</div>
             </aside>
+
+            <div class="top-bar" aria-hidden="true"></div>
             
             <!-- Main Content Area -->
-            <main>
-                <div class="top-bar" aria-hidden="true"></div>
+            <main class="dashboard">
                 <!-- Main Heading of the page -->
-                <h1>Your Network</h1>
-                <p>Track, remember, and nurture the people who matter.</p>
-            
-                <!-- Content goes here -->
-            
-                <!-- People - Recent - Categories-->
-                <div class="grid dashboard-container1">
+                 <header>
+                    <h1>Your Network</h1>
+                    <p>Track, remember, and nurture the people who matter.</p>
+                 </header>
+                
+                <section class="dashboard-grid">
                     <div class="card">
                         <p>PEOPLE</p>
-                        <p class="main-stat">24</p>
+                        <p 
+                          class="main-stat"
+                          id="total-people"
+                        >0</p>
                         <p>In your network</p>
                     </div>
                     <div class="card">
                         <p>RECENT</p>
-                        <p class="main-stat">11</p>
+                        <p 
+                          class="main-stat"
+                          id="total-interactions-this-month"
+                        >0</p>
                         <p>Interactions this month</p>
                     </div>
                     <div class="card">
                         <p>CATEGORIES</p>
-                        <p class="main-stat">6</p>
+                        <p 
+                          class="main-stat"
+                          id="total-categories"
+                        >0</p>
                         <p>Types of connection</p>
                     </div>
-                </div>
-            
-                <!-- Network By Category - Recent Activity-->
-                <div>
-                    <div class="card">
-                        <p>NETWORK BY CATEGORY</p>
-                        <div>
-            
+                    
+                    <!-- Inner Grid -->
+                     <div class="dashboard-inner-grid">
+                        <div class="card network-by-category span-2-g">
+                            <p>NETWORK BY CATEGORY</p>
+                            <div>
+                        
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <p>RECENT ACTIVITY</p>
-                        <div>
-            
+                        <div class="card recent-activity span-2-g">
+                            <p>RECENT ACTIVITY</p>
+                            <div>
+                        
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        
+                        <div class="card reconnect-soon span-2-g">
+                            <p>RECONECT SOON</p>
+                            <div>
+                        
+                            </div>
+                        </div>
+                        
+                        <div class="card upcoming-important-dates span-2-g">
+                            <p>UPCOMING IMPORTANT DATES</p>
+                            <div>
+                        
+                            </div>
+                        </div>
+                     </div>
+                    
+                    
+                </section>
             </main>
         </div>
         
