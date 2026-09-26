@@ -1,3 +1,5 @@
+import { people } from "../data.js";
+
 let currentFileData = null;
 let currentFileName = null;
 
