@@ -5,7 +5,6 @@ body.people-page {
     min-height: 100dvh;
 }
 
-
 .top-bar {
     grid-column: 2;
     border-bottom: 1px solid #E3DFE7;
