@@ -6,11 +6,15 @@ const totalCategoriesEl = document.getElementById("total-categories");
 document.addEventListener("DOMContentLoaded", () => {
     const totalPeople = getTotalPeople(people);
     const totalInteractionsThisMonth = getTotalInteractionsThisMonth(people);
-    const totalCategories = getTotalCategories(people);
+    const categories = getCategories(people); // object
+    const totalCategories = getTotalCategories(categories);
 
+    // Display Info First 3 Cards
     totalPeopleEl.innerText = totalPeople;
     totalInteractionsThisMonthEl.innerText = totalInteractionsThisMonth;
     totalCategoriesEl.innerText = totalCategories;
+
+    displayNetworkByCategory(categories)
 })
 
 
@@ -46,12 +50,46 @@ function isInCurrentMonth(dateString) {
     );
 }
 
-function getTotalCategories(people) {
-    let categories = new Set();
+function getCategories(people) {
+    let categories = {};
 
     for (const person of people) {
-        categories.add(person.relationship.category);
+        if (Object.hasOwn(categories, person.relationship.category)) {
+            categories[person.relationship.category]++;
+        } else {
+            categories[person.relationship.category] = 1;
+        }        
     }
 
-    return categories.size;
+    return categories;
+}
+
+function getTotalCategories(categories) {
+    return Object.keys(categories).length;
+}
+
+// Network By Category
+function displayNetworkByCategory(categories) {
+    const networkByCategory = document.querySelector(".network-by-category div");
+
+    let innerHTML = "";
+    for (const category in categories) {
+        innerHTML += `
+        <div>
+            <div class="category-info">
+                <div>
+                    <span class="circle"></span>
+                    <span>${category}</span> 
+                </div>
+                
+                <span>${categories[category]}</span>
+            </div>
+            <div class="background-bar">
+                <div class="bar"></div>
+            </div>
+        </div>
+        `
+    }
+
+    networkByCategory.innerHTML = innerHTML;
 }
