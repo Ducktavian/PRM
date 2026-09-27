@@ -1,4 +1,5 @@
-body.people-page {
+body.people-page,
+body.person-view-page {
     display: grid;
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
     grid-template-rows: var(--top-bar-height) auto;
@@ -25,6 +26,10 @@ body.people-page {
     line-height: 1.5;
 }
 
+.people-page .page-filters {
+    margin-bottom: 20px;
+}
+
 .people-page .header-text h1 {
     font-weight: 700;
     font-size: 32px;
@@ -37,13 +42,27 @@ body.people-page {
     font-size: 14px;
     color: #716D78;
 }
+
+.person-view-page .main-content {
+    flex-grow: 1;
+    background-color: var(--main-bg);
+    grid-column: 2;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 @media (max-width: 1024px) {
-    body.people-page {
+    body.people-page,
+    body.person-view-page {
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: var(--top-bar-height) auto;
     }
 
-    .people-page .main-content {
+    .people-page .main-content,
+    .person-view-page .main-content {
         grid-column: 1;
     }
 }
@@ -51,13 +70,4 @@ body.people-page {
 .people-page .pagination {
     margin-top: 28px;
     padding-bottom: 24px;
-}
-
-.person-view-page .main-content {
-    flex-grow: 1;
-    background-color: var(--main-bg);
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
