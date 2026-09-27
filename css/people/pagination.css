@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
-    padding-top: 8px;
+    margin-top: 28px;
+    padding-bottom: 24px;
     font-family: Arial, sans-serif;
 }
 
@@ -17,25 +18,25 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 28px;
-    height: 30px;
-    padding: 0 8px;
+    min-width: 32px;
+    height: 34px;
+    padding: 0 10px;
     border: 0;
     border-radius: 8px;
-    background: white;
+    background: #ffffff;
     color: #202622;
     font: inherit;
     font-size: 12px;
     cursor: pointer;
 }
 
-.people-page .pagination button[aria-current="page"] {
+.people-page .pagination-page[aria-current="page"] {
     background: #6E5BCF;
-    color: white;
+    color: #ffffff;
 }
 
-.people-page .pagination .pagination-direction {
-    gap: 12px;
+.people-page .pagination-direction {
+    gap: 8px;
     padding: 0 12px;
     border: 0.83px solid #DFE3E0;
 }
