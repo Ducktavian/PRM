@@ -1,6 +1,7 @@
 import { renderPersonAvatar } from '../avatar.js';
 import { people } from '../data.js';
 import { getFullName, renderCategoryBadge, formatDate, getLatestInteraction } from './helpers.js';
+import { initPersonModal } from './person-modal.js';
 
 const peopleGrid = document.querySelector('#people-grid');
 const resultsCount = document.querySelector('.results-count');
@@ -90,3 +91,6 @@ pageButtons.forEach((button) => {
 });
 
 updatePeoplePage();
+
+const personModal = initPersonModal();
+document.querySelector('#open-add-person-btn').addEventListener('click', personModal.openAdd);
