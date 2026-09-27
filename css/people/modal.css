@@ -215,9 +215,9 @@
     justify-content: center;
     align-items: center;
     padding: 0.65rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid #DFE3E0;
     border-radius: 8px;
-    color: #374151;
+    color: #202622;
     background-color: #ffffff;
     text-decoration: none;
     font-weight: 500;
@@ -226,13 +226,12 @@
 }
 
 .btn-modal-cancel:hover {
-    background-color: #f9fafb;
-    border-color: #9ca3af;
+    background-color: #F8F6F3;
 }
 
 .btn-modal-submit {
     padding: 0.65rem;
-    background-color: #6d28d9;
+    background-color: #6E5BCF;
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -243,20 +242,7 @@
 }
 
 .btn-modal-submit:hover {
-    background-color: #5b21b6;
-}
-
-.btn-modal-danger {
-    background-color: #dc2626 !important;
-    color: #ffffff !important;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn-modal-danger:hover {
-    background-color: #b91c1c !important;
+    background-color: #5B48B8;
 }
 
 /* ========================================
