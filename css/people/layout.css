@@ -43,10 +43,8 @@ body.person-view-page {
 .person-view-page .main-content {
     background-color: var(--main-bg);
     grid-column: 2;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 1.5rem;
+    min-width: 0;
+    padding: 32px;
 }
 
 @media (max-width: 1024px) {
