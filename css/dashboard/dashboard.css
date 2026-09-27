@@ -63,7 +63,7 @@
     background-color: purple;
 }
 
-.activity .vertical-container {
+.vertical-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -73,4 +73,17 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+/* RECONNECT SOON*/
+.reconnect-item {
+    display: flex;
+    align-items: center;
+}
+
+.reconnect-item button {
+    border: 1px solid purple;
+    color: purple;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
