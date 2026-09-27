@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="css/pagination.css">
     <link rel="stylesheet" href="css/people/layout.css">
     <link rel="stylesheet" href="css/people/cards.css">
-    <link rel="stylesheet" href="css/people/filters.css">
+    <link rel="stylesheet" href="css/avatar.css">
+    <link rel="stylesheet" href="css/filters.css">
     <link rel="stylesheet" href="css/people/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
@@ -73,13 +74,16 @@
             </a>
         </header>
 
-        <section class="controls-section">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" placeholder="Search by name, skill, interest, or location..." aria-label="Search people">
+        <section class="page-filters" aria-label="People filters">
+            <div class="search-field">
+                <img class="search-icon" src="assets/search-icon.svg" alt="" width="16" height="16">
+                <input type="search" placeholder="Search by name, skill, interest, or location..." aria-label="Search people">
+                <button class="search-clear" type="button" aria-label="Clear search" hidden>
+                    <img src="assets/close-icon.svg" alt="" width="14" height="14">
+                </button>
             </div>
 
-            <div class="filter-box">
+            <div class="filter-select">
                 <select aria-label="Filter by category">
                     <option value="all">All categories</option>
                     <option value="mentor">Mentor</option>
@@ -89,6 +93,7 @@
                     <option value="classmate">Classmate</option>
                     <option value="other">Other</option>
                 </select>
+                <img src="assets/dropdown-icon.svg" alt="" width="12" height="12">
             </div>
         </section>
 
@@ -226,7 +231,7 @@
         </div>
     </div>
 
-    <script src="js/people/main.js"></script>
+    <script type="module" src="js/people/main.js"></script>
     <script type="module" src="js/navbar.js"></script>
 </body>
 

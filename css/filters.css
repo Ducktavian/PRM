@@ -29,7 +29,7 @@
 .search-field {
     position: relative;
     flex: 1;
-    min-width: 0;
+    min-width: 44px;
 }
 
 .search-field input {
@@ -76,7 +76,7 @@
 
 .filter-select {
     position: relative;
-    flex: 0 0 150px;
+    flex: 0 1 150px;
 }
 
 .filter-select select {
@@ -94,21 +94,10 @@
 
 @media (max-width: 600px) {
     .page-filters {
-        flex-wrap: wrap;
         gap: 10px;
     }
 
-    .search-field {
-        flex-basis: 100%;
-    }
-
-    .filter-select {
-        flex: 1 1 0;
-    }
-
-    .page-filters input,
-    .page-filters select {
-        height: 44px;
-        font-size: 16px;
+    .search-field input {
+        padding-right: 0;
     }
 }
