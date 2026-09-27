@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
     totalCategoriesEl.innerText = totalCategories;
 
     displayNetworkByCategory(categories)
+
+    // Display Recent activity
+    const interactions = getInteractions(people);
+    const sortedInteractions = getSortedInteractions(interactions);
+    displayRecentActivity(people, getRecentActivity(sortedInteractions))
+
 })
 
 
@@ -92,4 +98,63 @@ function displayNetworkByCategory(categories) {
     }
 
     networkByCategory.innerHTML = innerHTML;
+}
+
+
+
+
+// Recent Activity //
+function getInteractions(people) {
+    const interactions = [];
+    for (const person of people) {
+        for (const interaction of person.interactions) {
+            const copy = {...interaction, personId: person.id}
+            interactions.push(copy);
+        }
+    }
+
+    return interactions;
+}
+
+// Sort date and time
+function getSortedInteractions(interactions) {
+    return interactions.toSorted((a, b) => {
+        const dateTimeA = new Date(`${a.date} ${a.time}`);
+        const dateTimeB = new Date(`${b.date} ${b.time}`);
+
+        return dateTimeA - dateTimeB;
+    });
+}
+
+// returns the 5 Latest Interactions
+function getRecentActivity(sortedInteractions) {
+    return sortedInteractions.slice(-5);
+}
+
+function displayRecentActivity(people, recentActivity) {
+    const recentActivityEl = document.querySelector(".recent-activity div");
+    let innerHTML = "";
+    for (const activity of recentActivity) {
+        innerHTML += `
+        <div class="activity">
+            <div class="profile"></div>
+            <div class="name--activity--date">
+                <span>${getPersonFullName(people, activity.personId)}</span>
+                <span>${activity.type}</span>
+                <span>${activity.date}</span>
+            </div>
+            <div class="acitivity-title">${activity.title}</div>
+        </div>
+        `
+    }
+
+    recentActivityEl.innerHTML = innerHTML;
+}
+
+
+
+// Helper: Finds Person name
+function getPersonFullName(people, id) {
+    const foundPerson = people.find(person => person.id === id);
+    return `${foundPerson.firstName} ${foundPerson.lastName}`;
 }
