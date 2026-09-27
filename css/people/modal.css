@@ -229,22 +229,6 @@
     background-color: #F8F6F3;
 }
 
-.btn-modal-submit {
-    padding: 0.65rem;
-    background-color: #6E5BCF;
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-}
-
-.btn-modal-submit:hover {
-    background-color: #5B48B8;
-}
-
 /* ========================================
    REMINDER DROPDOWN MENU
    ======================================== */
