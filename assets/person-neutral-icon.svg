@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500" fill="#000000">
+    <defs>
+        <clipPath id="inner">
+            <circle cx="750" cy="750" r="547"/>
+        </clipPath>
+        <mask id="cutout">
+            <circle cx="750" cy="750" r="580" fill="#ffffff"/>
+            <circle cx="750" cy="634" r="199" fill="#000000"/>
+            <ellipse cx="750" cy="1219" rx="400" ry="345" fill="#000000" clip-path="url(#inner)"/>
+        </mask>
+    </defs>
+    <circle cx="750" cy="750" r="580" mask="url(#cutout)"/>
+</svg>

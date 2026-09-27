@@ -1,6 +1,4 @@
-function getInitials(name) {
-    return name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase();
-}
+import { renderPersonAvatar } from '../avatar.js';
 
 function getToday() {
     const today = new Date();
@@ -35,8 +33,7 @@ export function initInteractions(sharedPeople) {
         const person = peopleById.get(id);
         return {
             name: `${person.firstName} ${person.lastName}`,
-            role: person.personalInfo?.occupation || '',
-            relationship: (person.relationship?.category || 'other').toLowerCase()
+            role: person.personalInfo?.occupation || ''
         };
     }
 
@@ -108,9 +105,7 @@ export function initInteractions(sharedPeople) {
 
         row.querySelector('.person-name').textContent = person.name;
         row.querySelector('.role').textContent = person.role;
-        const avatar = row.querySelector('.person-avatar');
-        avatar.textContent = getInitials(person.name);
-        avatar.dataset.relationship = person.relationship;
+        row.querySelector('.person-avatar').innerHTML = renderPersonAvatar(peopleById.get(interaction.personId));
 
         const badge = document.createElement('span');
         badge.className = `type-badge type-${interaction.type.toLowerCase()}`;

@@ -37,7 +37,7 @@
     background: #ffffff;
     border: 1px solid #DFE3E0;
     border-radius: 8px;
-    padding: 1.05rem;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
@@ -57,10 +57,10 @@
 }
 
 .card-title h2 {
-    font-size: 0.92rem;
+    font-size: 14px;
     margin: 0 0 0.2rem;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .card-title h2 a {
@@ -70,21 +70,6 @@
 
 .person-card:hover .card-title h2 a {
     color: #6E5BCF;
-}
-
-/* ==========================================
-   PEOPLE ADD BUTTON
-   ========================================== */
-.people-page .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.people-page .btn-primary img {
-    display: block;
-    flex-shrink: 0;
 }
 
 /* ==========================================
@@ -104,33 +89,9 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.avatar img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
-}
-
 .avatar-xl {
     width: 64px;
     height: 64px;
-}
-
-.avatar-xl img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
-}
-
-.avatar-green,
-.avatar-purple,
-.avatar-orange,
-.avatar-yellow,
-.avatar-red,
-.avatar-blue,
-.avatar-gray {
-    color: inherit;
 }
 
 /* ==========================================
@@ -143,19 +104,21 @@
 }
 
 .tag {
-    background: #F4F4F5;
-    color: #566070;
+    background: #F4F3F2;
+    color: #716D78;
     padding: 0.22rem 0.55rem;
     border-radius: 999px;
-    font-size: 0.72rem;
+    font-size: 12px;
+    font-weight: normal;
     line-height: 1.2;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .card-footer {
     margin-top: auto;
-    font-size: 0.78rem;
-    color: #64748B;
+    font-size: 12px;
+    font-weight: normal;
+    color: #96938F;
     border-top: 1px solid #F1F2F4;
     padding-top: 0.55rem;
     font-family: Arial, Helvetica, sans-serif;
@@ -171,9 +134,14 @@
     padding: 0.18rem 0.48rem;
     border-radius: 9999px;
     font-size: 0.72rem;
-    font-weight: 600;
+    font-weight: normal;
     line-height: 1.2;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.person-view-page .badge {
+    font-size: 11px;
+    font-weight: 500;
 }
 
 .badge-green {
@@ -210,12 +178,6 @@
 /* ==========================================
    PERSON DETAIL VIEW PAGE
    ========================================== */
-.person-view-page .main-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    font-family: Arial, Helvetica, sans-serif;
-}
 
 .top-nav-actions {
     display: flex;
@@ -232,6 +194,8 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
 }
 
 .back-link img {
@@ -275,10 +239,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.pronouns {
-    color: #6B7280;
+.profile-header-details .pronouns {
+    color: #9ca3af;
     font-size: 0.85rem;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 

@@ -1,11 +1,11 @@
-.interactions-page .interaction-filters {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 150px 150px;
+/* shared search bar and filter dropdowns */
+.page-filters {
+    display: flex;
     gap: 12px;
 }
 
-.interactions-page .interaction-filters input,
-.interactions-page .interaction-filters select {
+.page-filters input,
+.page-filters select {
     border: 1px solid #E3DFE7;
     border-radius: 8px;
     box-shadow: none;
@@ -14,47 +14,46 @@
     min-width: 0;
     height: 42px;
     padding: 0 12px;
+    background-color: white;
     font-family: inherit;
     font-size: 14px;
 }
 
-.interactions-page .interaction-filters input:focus,
-.interactions-page .interaction-filters select:focus {
+.page-filters input:focus,
+.page-filters select:focus {
     border-color: #6E5BCF;
     box-shadow: 0 0 0 2px #EFEAFB;
     outline: none;
 }
 
-.interactions-page .filter-select {
+.search-field {
     position: relative;
+    flex: 1;
+    min-width: 44px;
 }
 
-.interactions-page .search-field {
-    position: relative;
-}
-
-.interactions-page .search-field input {
+.search-field input {
     padding-left: 40px;
     padding-right: 40px;
 }
 
-.interactions-page .search-field input::-webkit-search-cancel-button {
+.search-field input::-webkit-search-cancel-button {
     appearance: none;
 }
 
-.interactions-page .search-icon,
-.interactions-page .search-clear {
+.search-icon,
+.search-clear {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.interactions-page .search-icon {
+.search-icon {
     left: 14px;
     pointer-events: none;
 }
 
-.interactions-page .search-clear {
+.search-clear {
     right: 10px;
     display: grid;
     width: 26px;
@@ -66,23 +65,39 @@
     cursor: pointer;
 }
 
-.interactions-page .search-clear:hover,
-.interactions-page .search-clear:focus-visible {
+.search-clear:hover,
+.search-clear:focus-visible {
     background: #F2F0F7;
 }
 
-.interactions-page .search-clear[hidden] {
+.search-clear[hidden] {
     display: none;
 }
 
-.interactions-page .filter-select select {
-    appearance: none;
-    padding-right: 32px;
+.filter-select {
+    position: relative;
+    flex: 0 1 150px;
 }
 
-.interactions-page .filter-select img {
+.filter-select select {
+    appearance: none;
+    padding-right: 32px;
+    cursor: pointer;
+}
+
+.filter-select img {
     position: absolute;
     right: 12px;
     top: 15px;
     pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .page-filters {
+        gap: 10px;
+    }
+
+    .search-field input {
+        padding-right: 0;
+    }
 }

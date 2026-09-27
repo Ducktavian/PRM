@@ -10,15 +10,22 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/interactions/buttons.css">
     <link rel="stylesheet" href="css/interactions/table.css">
-    <link rel="stylesheet" href="css/interactions/filters.css">
-    <link rel="stylesheet" href="css/interactions/pagination.css">
+    <link rel="stylesheet" href="css/filters.css">
+    <link rel="stylesheet" href="css/pagination.css">
+    <link rel="stylesheet" href="css/avatar.css">
+    <link rel="stylesheet" href="css/interaction-types.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
     <link rel="stylesheet" href="css/interactions/modal.css">
+    <link rel="stylesheet" href="css/delete-modal.css">
+    <link rel="stylesheet" href="css/buttons.css">
 </head>
 
 <body class="interactions-page">
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="site-sidebar">
+        <button type="button" class="navigation-close" aria-label="Close navigation">
+            <img src="assets/close-icon.svg" alt="" width="16" height="16">
+        </button>
         <div class="sidebar-brand">
             <img src="assets/relm-logo-icon.svg" alt="" width="48" height="48">
             <div class="sidebar-brand-text">
@@ -48,7 +55,12 @@
 
         <div class="sidebar-footer">Personal Relationship<br>Manager</div>
     </aside>
-    <header></header>
+    <div class="navigation-backdrop" aria-hidden="true"></div>
+    <div class="top-bar">
+        <button type="button" class="menu-toggle" aria-label="Open navigation" aria-controls="site-sidebar" aria-expanded="false">
+            <img src="assets/menu-icon.svg" alt="" width="32" height="32">
+        </button>
+    </div>
 
     <main>        
         <!-- page title -->
@@ -61,14 +73,14 @@
             </p>
             </div>
             <!-- add interaction button -->
-            <button type="button" class="add-interaction">
+            <button type="button" class="add-interaction btn-primary">
                 <img src="assets/plus-icon.svg" alt="" width="16" height="16">
                 Add Interaction
             </button>
         </section>
 
         <!-- search bar and filters -->
-        <section class="interaction-filters" aria-label="Interaction filters">
+        <section class="page-filters" aria-label="Interaction filters">
 
             <div class="search-field">
                 <img class="search-icon" src="assets/search-icon.svg" alt="" width="16" height="16">
@@ -128,7 +140,7 @@
 
         <!-- pagination -->
         <nav class="pagination" aria-label="Interaction pages">
-            <output id="interaction-status" class="interaction-status"></output>
+            <output id="interaction-status" class="interaction-status pagination-status"></output>
             <button type="button" class="pagination-direction" disabled>
                 <img src="assets/chevron-left-icon.svg" alt="" width="16" height="16"> Previous
             </button>
@@ -206,7 +218,7 @@
     </dialog>
 
     <!-- Delete interaction confirmation -->
-    <dialog id="delete-interaction-dialog" class="interaction-modal delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
+    <dialog id="delete-interaction-dialog" class="delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
         <form method="dialog">
             <div class="delete-icon" aria-hidden="true"><span></span></div>
             <h2 id="delete-interaction-title">Delete interaction?</h2>
@@ -241,5 +253,6 @@
     </template>
 
     <script type="module" src="js/interactions/main.js"></script>
+    <script type="module" src="js/navbar.js"></script>
 </body>
 </html>

@@ -20,6 +20,7 @@ export const people = [
     personalInfo: {
       birthday: "2002-05-14",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "Software Developer"
     },
 
@@ -112,6 +113,7 @@ export const people = [
     personalInfo: {
       birthday: "2001-11-03",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "Graphic Designer"
     },
 
@@ -188,6 +190,7 @@ export const people = [
     personalInfo: {
       birthday: "1998-03-21",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "Project Manager"
     },
 
@@ -271,6 +274,7 @@ export const people = [
     personalInfo: {
       birthday: "2003-07-09",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "University Student"
     },
 
@@ -356,6 +360,7 @@ export const people = [
     personalInfo: {
       birthday: "2000-01-28",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "Entrepreneur"
     },
 
@@ -432,6 +437,7 @@ export const people = [
     personalInfo: {
       birthday: "2002-09-17",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "Teacher"
     },
 
@@ -508,6 +514,7 @@ export const people = [
     personalInfo: {
       birthday: "1999-12-11",
       pronouns: "they/them",
+      gender: "Non-binary",
       occupation: "UX Designer"
     },
 
@@ -584,6 +591,7 @@ export const people = [
     personalInfo: {
       birthday: "2001-04-30",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "Content Writer"
     },
 
@@ -660,6 +668,7 @@ export const people = [
     personalInfo: {
       birthday: "2000-06-25",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "IT Specialist"
     },
 
