@@ -8,11 +8,9 @@ body.person-view-page {
 }
 
 .people-page .main-content {
-    flex-grow: 1;
     background-color: var(--main-bg);
     grid-column: 2;
     min-width: 0;
-    max-width: none;
     padding: 36px 2.21vw 40px;
 }
 
@@ -33,7 +31,6 @@ body.person-view-page {
 .people-page .header-text h1 {
     font-weight: 700;
     font-size: 32px;
-    letter-spacing: normal;
     color: black;
 }
 
@@ -44,7 +41,6 @@ body.person-view-page {
 }
 
 .person-view-page .main-content {
-    flex-grow: 1;
     background-color: var(--main-bg);
     grid-column: 2;
     width: 100%;
@@ -57,7 +53,6 @@ body.person-view-page {
     body.people-page,
     body.person-view-page {
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: var(--top-bar-height) auto;
     }
 
     .people-page .main-content,

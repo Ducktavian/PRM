@@ -22,12 +22,11 @@
     align-items: center;
     z-index: 1000;
     padding: 1rem;
-    box-sizing: border-box;
 }
 
 /* Show modal via CSS :target */
 .modal-overlay:target {
-    display: flex !important;
+    display: flex;
 }
 
 /* Modal Box (Flex layout para hindi masama sa scroll ang buttons) */
@@ -42,7 +41,6 @@
     position: relative;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border: none;
-    box-sizing: border-box;
     overflow: hidden;
 }
 
@@ -136,10 +134,6 @@
     margin-bottom: 1rem;
 }
 
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
 .form-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -167,7 +161,6 @@
     background-color: #ffffff;
     outline: none;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    box-sizing: border-box;
 }
 
 .form-group input:focus, 
