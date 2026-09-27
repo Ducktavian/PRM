@@ -1,4 +1,3 @@
-.interactions-page .add-interaction:hover,
 .interactions-page .modal-submit:hover {
     background: #5B48B8;
     border-color: #5B48B8;
@@ -71,57 +70,8 @@
     display: block;
 }
 
-.interactions-page .add-interaction {
-    appearance: none;
-    background: #6E5BCF;
-    color: white;
-    border: 0;
-    border-radius: 8px;
-    box-shadow: none;
-    transition: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    flex: 0 0 158px;
-    height: 40px;
-    font-family: inherit;
-    font-size: 14px;
-}
-
-.interactions-page .menu-toggle {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 0;
-    border-radius: 8px;
-    background: transparent;
-    cursor: pointer;
-}
-
-.interactions-page .menu-toggle:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: -2px;
-}
-
 @media (max-width: 1024px) {
-    .interactions-page .menu-toggle {
-        display: inline-flex;
-    }
-
     .interactions-page .action-button {
         height: 44px;
-    }
-}
-
-@media (max-width: 600px) {
-    .interactions-page .add-interaction {
-        flex: 0 0 auto;
-        min-height: 44px;
-        padding: 0 12px;
-        font-size: 12px;
     }
 }

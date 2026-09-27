@@ -1,26 +1,26 @@
-.interactions-page .interaction-status {
+.pagination-status {
     margin-right: auto;
     font-size: 12px;
     color: #716D78;
 }
 
-.interactions-page .pagination {
+.pagination {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
-    padding-top: 8px;
+    font-family: Arial, sans-serif;
 }
 
-.interactions-page .pagination button {
+.pagination button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    min-width: 28px;
-    height: 30px;
-    padding: 0 8px;
+    min-width: 32px;
+    height: 34px;
+    padding: 0 10px;
     border: 0;
     border-radius: 8px;
     background: white;
@@ -30,38 +30,43 @@
     cursor: pointer;
 }
 
-.interactions-page .pagination button[aria-current="page"] {
+.pagination button[aria-current="page"] {
     background: #6E5BCF;
     color: white;
 }
 
-.interactions-page .pagination .pagination-direction {
-    gap: 12px;
+.pagination .pagination-direction {
+    gap: 8px;
     padding: 0 12px;
     border: 0.83px solid #DFE3E0;
 }
 
-.interactions-page .pagination button:disabled {
+.pagination button:disabled {
     opacity: 0.4;
     cursor: default;
 }
 
-.interactions-page .pagination-direction img {
+.pagination-direction img {
     display: block;
     flex-shrink: 0;
 }
 
 @media (max-width: 600px) {
-    .interactions-page .interaction-status {
+    .pagination-status {
         flex-basis: 100%;
     }
 
-    .interactions-page .pagination button {
+    .pagination button {
         min-width: 44px;
         height: 44px;
     }
 
-    .interactions-page .pagination .pagination-direction {
+    .pagination .pagination-direction {
         gap: 6px;
     }
+}
+
+.pagination button:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: 2px;
 }
