@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const sortedInteractions = getSortedInteractions(interactions);
     displayRecentActivity(people, getRecentActivity(sortedInteractions))
 
+    // Reconnect Soon
+    const oldestInteractions = getOldestInteractions(sortedInteractions);
+    displayReconnectSoon(people, oldestInteractions);
+
 })
 
 
@@ -173,23 +177,47 @@ function getPersonFullName(people, id) {
 
 // Reconnect Soon
 // Returns the last 4 people interacted with
-function getLastInteractedWith(sortedInteractions) {
+function getOldestInteractions(sortedInteractions) {
     // Interactions are sorted from oldest to latest
-    return sortedInteractions.slice(4); 
+    return sortedInteractions.slice(0, 4); 
+}
+
+function daysPassedLastInteraction(pastDate) {
+    const now = new Date();
+    const formattedPastDate = new Date(pastDate);
+
+    // date in milliseconds
+    const differenceInMs = now - formattedPastDate;
+
+    const msPerDay = 1000 * 60 * 60 * 24;
+    const differenceInDays = differenceInMs / msPerDay;
+
+    return Math.floor(differenceInDays);
 }
 
 
-function displayReconnectSoon() {
+function displayReconnectSoon(people, oldestInteractions) {
+    console.log(oldestInteractions)
+    const reconnectSoonEl = document.querySelector(".reconnect-soon div");
+    let innerHTML = "";
 
+    for (const interaction of oldestInteractions) {
+        const fullName = getPersonFullName(people, interaction.personId);
+        const daysPassed = +daysPassedLastInteraction(interaction.date);
+
+        innerHTML += `
+        <div class="reconnect-item">
+            <div class="profile"></div>
+            <div class="vertical-container">
+                <span>${fullName}</span>
+                <span>${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
+            </div>
+            <button>View</buton>
+        </div>
+         `
+    }
+
+    reconnectSoonEl.innerHTML = innerHTML;
 }
 
-const now = new Date();
-const date = new Date("2026-9-7");
 
-// date in milliseconds
-const differenceInMs = now - date;
-
-const msPerDay = 1000 * 60 * 60 * 24;
-const differenceInDays = differenceInMs / msPerDay;
-
-console.log(Math.floor(differenceInDays));
