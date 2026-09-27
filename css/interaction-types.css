@@ -1,0 +1,34 @@
+.type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.type-message {
+    color: #8C72D9;
+    background: #8C72D914;
+}
+
+.type-meeting,
+.type-meetup {
+    color: #439AD6;
+    background: #439AD614;
+}
+
+.type-conversation {
+    color: #6E5BCF;
+    background: #6E5BCF14;
+}
+
+.type-event {
+    color: #F2A51A;
+    background: #F2A51A14;
+}
+
+.type-call {
+    color: #3DBB86;
+    background: #3DBB8614;
+}

@@ -101,46 +101,10 @@
     display: block;
     width: 30px;
     height: 30px;
-    object-fit: contain;
 }
 
 .interactions-page tbody td:nth-child(2) {
     font-size: 10px;
-}
-
-.interactions-page .type-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 10px;
-    line-height: 1.5;
-    white-space: nowrap;
-}
-
-.interactions-page .type-message {
-    color: #8C72D9;
-    background: #8C72D914;
-}
-
-.interactions-page .type-meeting,
-.interactions-page .type-meetup {
-    color: #439AD6;
-    background: #439AD614;
-}
-
-.interactions-page .type-conversation {
-    color: #6E5BCF;
-    background: #6E5BCF14;
-}
-
-.interactions-page .type-event {
-    color: #F2A51A;
-    background: #F2A51A14;
-}
-
-.interactions-page .type-call {
-    color: #3DBB86;
-    background: #3DBB8614;
 }
 
 .interactions-page .actions-column {

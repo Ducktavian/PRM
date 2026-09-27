@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/interactions/buttons.css">
     <link rel="stylesheet" href="css/interactions/table.css">
-    <link rel="stylesheet" href="css/interactions/filters.css">
+    <link rel="stylesheet" href="css/filters.css">
     <link rel="stylesheet" href="css/pagination.css">
+    <link rel="stylesheet" href="css/avatar.css">
+    <link rel="stylesheet" href="css/interaction-types.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
     <link rel="stylesheet" href="css/interactions/modal.css">
+    <link rel="stylesheet" href="css/delete-modal.css">
     <link rel="stylesheet" href="css/buttons.css">
 </head>
 
@@ -77,7 +80,7 @@
         </section>
 
         <!-- search bar and filters -->
-        <section class="interaction-filters" aria-label="Interaction filters">
+        <section class="page-filters" aria-label="Interaction filters">
 
             <div class="search-field">
                 <img class="search-icon" src="assets/search-icon.svg" alt="" width="16" height="16">
@@ -215,7 +218,7 @@
     </dialog>
 
     <!-- Delete interaction confirmation -->
-    <dialog id="delete-interaction-dialog" class="interaction-modal delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
+    <dialog id="delete-interaction-dialog" class="delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
         <form method="dialog">
             <div class="delete-icon" aria-hidden="true"><span></span></div>
             <h2 id="delete-interaction-title">Delete interaction?</h2>
@@ -231,7 +234,7 @@
         <tr>
             <th scope="row">
                 <span class="person-cell">
-                    <img class="person-avatar" alt="" width="30" height="30">
+                    <span class="person-avatar" aria-hidden="true"></span>
                     <span class="person-text">
                         <span class="person-name"></span>
                         <span class="role"></span>
