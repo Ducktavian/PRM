@@ -51,7 +51,6 @@
 
 .activity {
     display: flex;
-    font-size: 0.8rem;
     width: 100%;
     align-items: center;
 }
@@ -86,4 +85,11 @@
     color: purple;
     padding: 5px 10px;
     border-radius: 10px;
+}
+
+
+/* Upcoming Important Dates*/
+.upcoming-important-dates-item {
+    display: flex;
+    align-items: center;
 }
