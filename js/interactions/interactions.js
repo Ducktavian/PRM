@@ -1,3 +1,5 @@
+import { renderPersonAvatar } from '../avatar.js';
+
 function getToday() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -31,8 +33,7 @@ export function initInteractions(sharedPeople) {
         const person = peopleById.get(id);
         return {
             name: `${person.firstName} ${person.lastName}`,
-            role: person.personalInfo?.occupation || '',
-            icon: person.icon || 'assets/people-icon.svg'
+            role: person.personalInfo?.occupation || ''
         };
     }
 
@@ -104,7 +105,7 @@ export function initInteractions(sharedPeople) {
 
         row.querySelector('.person-name').textContent = person.name;
         row.querySelector('.role').textContent = person.role;
-        row.querySelector('.person-avatar').src = person.icon;
+        row.querySelector('.person-avatar').innerHTML = renderPersonAvatar(peopleById.get(interaction.personId));
 
         const badge = document.createElement('span');
         badge.className = `type-badge type-${interaction.type.toLowerCase()}`;

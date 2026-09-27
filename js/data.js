@@ -4,7 +4,6 @@ export const people = [
   {
     id: 1,
     firstName: "Alex",
-    icon: "assets/friend-male-icon.svg",
     lastName: "Santos",
 
     contact: {
@@ -21,6 +20,7 @@ export const people = [
     personalInfo: {
       birthday: "2002-05-14",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "Software Developer"
     },
 
@@ -97,7 +97,6 @@ export const people = [
   {
     id: 2,
     firstName: "Mia",
-    icon: "assets/friend-female-icon.svg",
     lastName: "Reyes",
 
     contact: {
@@ -114,6 +113,7 @@ export const people = [
     personalInfo: {
       birthday: "2001-11-03",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "Graphic Designer"
     },
 
@@ -174,7 +174,6 @@ export const people = [
   {
     id: 3,
     firstName: "Daniel",
-    icon: "assets/mentor-male-icon.svg",
     lastName: "Cruz",
 
     contact: {
@@ -191,6 +190,7 @@ export const people = [
     personalInfo: {
       birthday: "1998-03-21",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "Project Manager"
     },
 
@@ -258,7 +258,6 @@ export const people = [
   {
     id: 4,
     firstName: "Sofia",
-    icon: "assets/classmate-female-icon.svg",
     lastName: "Garcia",
 
     contact: {
@@ -275,6 +274,7 @@ export const people = [
     personalInfo: {
       birthday: "2003-07-09",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "University Student"
     },
 
@@ -344,7 +344,6 @@ export const people = [
   {
     id: 5,
     firstName: "Ethan",
-    icon: "assets/coworker-male-icon.svg",
     lastName: "Tan",
 
     contact: {
@@ -361,6 +360,7 @@ export const people = [
     personalInfo: {
       birthday: "2000-01-28",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "Entrepreneur"
     },
 
@@ -421,7 +421,6 @@ export const people = [
   {
     id: 6,
     firstName: "Lara",
-    icon: "assets/friend-female-icon.svg",
     lastName: "Villanueva",
 
     contact: {
@@ -438,6 +437,7 @@ export const people = [
     personalInfo: {
       birthday: "2002-09-17",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "Teacher"
     },
 
@@ -498,7 +498,6 @@ export const people = [
   {
     id: 7,
     firstName: "Noah",
-    icon: "assets/other-male-icon.svg",
     lastName: "Lim",
 
     contact: {
@@ -515,6 +514,7 @@ export const people = [
     personalInfo: {
       birthday: "1999-12-11",
       pronouns: "they/them",
+      gender: "Non-binary",
       occupation: "UX Designer"
     },
 
@@ -575,7 +575,6 @@ export const people = [
   {
     id: 8,
     firstName: "Grace",
-    icon: "assets/friend-female-icon.svg",
     lastName: "Mendoza",
 
     contact: {
@@ -592,6 +591,7 @@ export const people = [
     personalInfo: {
       birthday: "2001-04-30",
       pronouns: "she/her",
+      gender: "Female",
       occupation: "Content Writer"
     },
 
@@ -652,7 +652,6 @@ export const people = [
   {
     id: 9,
     firstName: "Marco",
-    icon: "assets/family-male-icon.svg",
     lastName: "Dela Cruz",
 
     contact: {
@@ -669,6 +668,7 @@ export const people = [
     personalInfo: {
       birthday: "2000-06-25",
       pronouns: "he/him",
+      gender: "Male",
       occupation: "IT Specialist"
     },
 

@@ -1,0 +1,32 @@
+.person-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--avatar-color, #909088);
+    mask: url(../assets/person-neutral-icon.svg) center / contain no-repeat;
+}
+
+.avatar-mentor {
+    --avatar-color: #38b880;
+}
+
+.avatar-friend {
+    --avatar-color: #f0a018;
+}
+
+.avatar-coworker,
+.avatar-professional {
+    --avatar-color: #4098d0;
+}
+
+.avatar-family {
+    --avatar-color: #e86870;
+}
+
+.avatar-classmate {
+    --avatar-color: #8870d8;
+}
+
+.avatar-other {
+    --avatar-color: #909088;
+}
