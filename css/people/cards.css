@@ -1,17 +1,4 @@
 /* ==========================================
-   GLOBAL FONT FAMILY OVERRIDE (ARIAL SANS)
-   ========================================== */
-.people-grid,
-.person-view-page,
-.person-card,
-.person-profile-header,
-.person-details-grid,
-.person-tags-notes-section,
-.bottom-sections-grid {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* ==========================================
    PEOPLE CARDS & GRID
    ========================================== */
 .people-grid {
@@ -42,7 +29,6 @@
     flex-direction: column;
     gap: 0.7rem;
     transition: border-color 0.2s, box-shadow 0.2s;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .person-card:hover {
@@ -59,7 +45,6 @@
 .card-title h2 {
     font-size: 14px;
     margin: 0 0 0.2rem;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
 }
 
@@ -89,7 +74,6 @@
     font-size: 12px;
     font-weight: normal;
     line-height: 1.2;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .card-footer {
@@ -99,7 +83,6 @@
     color: #96938F;
     border-top: 1px solid #F1F2F4;
     padding-top: 0.55rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* ==========================================
@@ -114,7 +97,6 @@
     font-size: 0.72rem;
     font-weight: normal;
     line-height: 1.2;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .person-view-page .badge {
@@ -169,7 +151,6 @@
     align-items: center;
     gap: 6px;
     color: #4B5563;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
     text-decoration: none;
     font-weight: 500;
@@ -214,21 +195,18 @@
     font-size: 1.75rem;
     font-weight: 700;
     color: #111827;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .profile-header-details .pronouns {
     color: #9ca3af;
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .role-company {
     margin: 0.25rem 0 0;
     color: #4B5563;
     font-size: 0.95rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .person-details-grid {
@@ -257,7 +235,6 @@
     color: #6B7280;
     margin-top: 0;
     margin-bottom: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
 
@@ -275,7 +252,6 @@
     color: #9CA3AF;
     font-weight: 700;
     margin-bottom: 0.2rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .detail-item p,
@@ -284,7 +260,6 @@
     font-size: 0.9rem;
     color: #111827;
     word-break: break-word;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .detail-item a.link-text {
@@ -315,7 +290,6 @@
     color: #9CA3AF;
     font-weight: 700;
     margin-bottom: 0.4rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .two-column-tags {
@@ -329,7 +303,6 @@
     color: #374151;
     font-size: 0.9rem;
     line-height: 1.5;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .bottom-sections-grid {
@@ -363,7 +336,6 @@
     letter-spacing: 0.05em;
     color: #6B7280;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
 
@@ -388,7 +360,6 @@
 .interaction-item h3 {
     margin: 0 0 0.2rem;
     font-size: 0.95rem;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .reminder-details p,
@@ -396,7 +367,6 @@
     margin: 0;
     font-size: 0.85rem;
     color: #4B5563;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .interaction-meta {
@@ -409,7 +379,6 @@
 .interaction-meta .date {
     font-size: 0.75rem;
     color: #9CA3AF;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .dropdown-menu-container {

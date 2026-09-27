@@ -1,14 +1,9 @@
-/* ========================================
-   GLOBAL FONT MATCH (GROUPMATE DESIGN SYSTEM)
-   ======================================== */
-.modal-overlay,
-.modal-content,
+/*form fields use the page font */
 .modal-content input,
 .modal-content select,
 .modal-content textarea,
-.modal-content button,
-.modal-content label {
-    font-family: Arial, sans-serif;
+.modal-content button {
+    font-family: inherit;
 }
 
 /* ========================================
