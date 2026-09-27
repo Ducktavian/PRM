@@ -30,14 +30,6 @@
     flex-shrink: 0;
 }
 
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible,
-.btn-icon-danger:focus-visible,
-.reminder-add-btn:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}
-
 .btn-primary:disabled,
 .btn-secondary:disabled,
 .btn-icon-danger:disabled {

@@ -192,11 +192,6 @@
     background: #F8F6F3;
 }
 
-.interaction-modal button:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}
-
 @media (max-width: 480px) {
     .interaction-modal .modal-header,
     .interaction-modal .modal-body,

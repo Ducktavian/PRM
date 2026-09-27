@@ -388,11 +388,6 @@
     display: none;
 }
 
-.dropdown-trigger:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}
-
 .dropdown-dropdown {
     display: none;
     flex-direction: column;
@@ -433,7 +428,3 @@
     background: #FDF0F0;
 }
 
-.dropdown-dropdown a:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: -2px;
-}

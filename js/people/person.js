@@ -108,3 +108,10 @@ setText(
 
 const personModal = initPersonModal();
 document.querySelector('[data-edit-person]').addEventListener('click', () => personModal.openEdit(person));
+
+const backLink = document.querySelector('.back-link');
+const cameFrom = document.referrer && new URL(document.referrer);
+
+if (cameFrom && cameFrom.origin === window.location.origin && !cameFrom.pathname.endsWith('/person.html')) {
+    backLink.href = cameFrom.pathname + cameFrom.search;
+}
