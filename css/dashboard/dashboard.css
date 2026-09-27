@@ -1,0 +1,42 @@
+
+
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.card {
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 10px;
+    height: 100px;
+}
+
+.dashboard-container1 .card {
+    min-width: calc(100% / 3.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard-container1 .card p.main-stat {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.dashboard-container1 .card p:not(.main-stat) {
+    font-size: 0.8rem;
+}
+
+
+.dashboard-container1 {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+

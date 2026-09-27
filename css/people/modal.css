@@ -1,3 +1,6 @@
+/* ========================================
+   GLOBAL FONT MATCH (GROUPMATE DESIGN SYSTEM)
+   ======================================== */
 .modal-overlay,
 .modal-content,
 .modal-content input,
@@ -8,6 +11,9 @@
     font-family: Arial, sans-serif;
 }
 
+/* ========================================
+   MODAL OVERLAY & CONTAINER
+   ======================================== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -24,10 +30,12 @@
     box-sizing: border-box;
 }
 
+/* Show modal via CSS :target */
 .modal-overlay:target {
     display: flex !important;
 }
 
+/* Modal Box (Flex layout para hindi masama sa scroll ang buttons) */
 .modal-content {
     background: #ffffff;
     border-radius: 16px;
@@ -43,6 +51,7 @@
     overflow: hidden;
 }
 
+/* Form Container inside Modal */
 .modal-content form {
     display: flex;
     flex-direction: column;
@@ -51,6 +60,9 @@
     margin: 0;
 }
 
+/* ========================================
+   MODAL HEADER (Fixed at Top)
+   ======================================== */
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -80,12 +92,16 @@
     color: #374151;
 }
 
+/* ========================================
+   MODAL BODY / FORM SCROLLABLE AREA
+   ======================================== */
 .modal-body {
     padding: 1.5rem 2rem;
     overflow-y: auto;
     flex: 1;
 }
 
+/* Smooth Scrollbar for Modal Body */
 .modal-body::-webkit-scrollbar {
     width: 6px;
 }
@@ -95,6 +111,9 @@
     border-radius: 3px;
 }
 
+/* ========================================
+   FORM SECTIONS & FIELDSETS
+   ======================================== */
 .form-section {
     border: none;
     padding: 0;
@@ -113,6 +132,9 @@
     padding: 0;
 }
 
+/* ========================================
+   FORM INPUTS & GRID
+   ======================================== */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -175,6 +197,9 @@
     margin-top: 0.25rem;
 }
 
+/* ========================================
+   MODAL ACTIONS (FIXED FOOTER BUTTONS)
+   ======================================== */
 .modal-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -234,6 +259,9 @@
     background-color: #b91c1c !important;
 }
 
+/* ========================================
+   REMINDER DROPDOWN MENU
+   ======================================== */
 .dropdown-menu-container {
     position: relative;
     display: inline-block;
@@ -285,6 +313,7 @@
     color: #dc2626;
 }
 
+/* Responsive adjustments */
 @media (max-width: 480px) {
     .modal-header,
     .modal-body,
