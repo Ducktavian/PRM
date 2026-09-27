@@ -170,7 +170,7 @@
 
 .person-profile-header {
     background: #ffffff;
-    border: 1px solid #DFE3E0;
+    border: 1px solid #E3DFE7;
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
@@ -188,21 +188,21 @@
 
 .profile-header-details h1 {
     margin: 0;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #111827;
+    font-size: 24px;
+    font-weight: 400;
+    color: #211F26;
 }
 
 .profile-header-details .pronouns {
-    color: #9ca3af;
-    font-size: 0.85rem;
+    color: #716D78;
+    font-size: 12px;
     margin-bottom: 0.25rem;
 }
 
 .role-company {
     margin: 0.25rem 0 0;
-    color: #4B5563;
-    font-size: 0.95rem;
+    color: #716D78;
+    font-size: 14px;
 }
 
 .person-details-grid {
@@ -220,7 +220,7 @@
 
 .detail-group {
     background: #ffffff;
-    border: 1px solid #DFE3E0;
+    border: 1px solid #E3DFE7;
     border-radius: 12px;
     padding: 1.25rem;
 }
@@ -228,10 +228,10 @@
 .group-title {
     font-size: 0.75rem;
     letter-spacing: 0.05em;
-    color: #6B7280;
+    color: #6E5BCF;
     margin-top: 0;
     margin-bottom: 1rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .detail-item {
@@ -240,14 +240,6 @@
 
 .detail-item:last-child {
     margin-bottom: 0;
-}
-
-.detail-item label {
-    display: block;
-    font-size: 0.7rem;
-    color: #9CA3AF;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
 }
 
 .detail-item p,
@@ -270,7 +262,7 @@
 
 .person-tags-notes-section {
     background: #ffffff;
-    border: 1px solid #DFE3E0;
+    border: 1px solid #E3DFE7;
     border-radius: 12px;
     padding: 1.25rem;
     margin-bottom: 1.5rem;
@@ -279,13 +271,14 @@
     gap: 1.25rem;
 }
 
+.detail-item label,
 .tag-category label,
 .notes-block label {
     display: block;
-    font-size: 0.7rem;
-    color: #9CA3AF;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
+    font-size: 10px;
+    font-weight: 600;
+    color: #716D78;
+    margin-bottom: 6px;
 }
 
 .two-column-tags {
@@ -315,7 +308,7 @@
 
 .card-box {
     background: #ffffff;
-    border: 1px solid #DFE3E0;
+    border: 1px solid #E3DFE7;
     border-radius: 12px;
     padding: 1.25rem;
 }
@@ -335,15 +328,17 @@
     font-weight: 700;
 }
 
-.reminder-item,
-.interaction-item {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #F3F4F6;
+.reminders-list,
+.interactions-list {
+    display: grid;
+    gap: 16px;
 }
 
-.reminder-item:last-child,
-.interaction-item:last-child {
-    border-bottom: none;
+.reminder-item,
+.interaction-item {
+    padding: 16px;
+    border-radius: 8px;
+    background: #F9F6F2;
 }
 
 .reminder-item {

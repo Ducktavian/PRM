@@ -98,6 +98,9 @@
    MODAL BODY / FORM SCROLLABLE AREA
    ======================================== */
 .modal-body {
+    display: grid;
+    align-content: start;
+    gap: 16px;
     padding: 24px;
     overflow-y: auto;
     flex: 1;
@@ -117,9 +120,15 @@
    FORM SECTIONS & FIELDSETS
    ======================================== */
 .form-section {
+    display: grid;
+    gap: 16px;
     border: none;
     padding: 0;
-    margin: 0 0 24px;
+    margin: 0;
+}
+
+.form-section + .form-section {
+    margin-top: 24px;
 }
 
 .section-title {
@@ -142,7 +151,6 @@
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
 }
 
 .form-row {
