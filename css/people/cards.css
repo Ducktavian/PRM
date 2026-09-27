@@ -367,40 +367,6 @@
     font-weight: 700;
 }
 
-.reminder-add-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-height: 30px;
-    padding: 0 12px;
-    border: 1px solid #D8CDFB;
-    border-radius: 8px;
-    background: #ffffff;
-    color: #6E5BCF;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1;
-    text-decoration: none;
-}
-
-.reminder-add-btn img {
-    display: block;
-    flex-shrink: 0;
-}
-
-.reminder-add-btn:hover {
-    background: #F5F1FF;
-    border-color: #C7B8F5;
-    color: #5B45C6;
-}
-
-.reminder-add-btn:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}
-
 .reminder-item,
 .interaction-item {
     padding: 0.75rem 0;
