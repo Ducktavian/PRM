@@ -4,6 +4,7 @@ export const people = [
   {
     id: 1,
     firstName: "Alex",
+    icon: "assets/friend-male-icon.svg",
     lastName: "Santos",
 
     contact: {
@@ -96,6 +97,7 @@ export const people = [
   {
     id: 2,
     firstName: "Mia",
+    icon: "assets/friend-female-icon.svg",
     lastName: "Reyes",
 
     contact: {
@@ -172,6 +174,7 @@ export const people = [
   {
     id: 3,
     firstName: "Daniel",
+    icon: "assets/mentor-male-icon.svg",
     lastName: "Cruz",
 
     contact: {
@@ -255,6 +258,7 @@ export const people = [
   {
     id: 4,
     firstName: "Sofia",
+    icon: "assets/classmate-female-icon.svg",
     lastName: "Garcia",
 
     contact: {
@@ -340,6 +344,7 @@ export const people = [
   {
     id: 5,
     firstName: "Ethan",
+    icon: "assets/coworker-male-icon.svg",
     lastName: "Tan",
 
     contact: {
@@ -416,6 +421,7 @@ export const people = [
   {
     id: 6,
     firstName: "Lara",
+    icon: "assets/friend-female-icon.svg",
     lastName: "Villanueva",
 
     contact: {
@@ -492,6 +498,7 @@ export const people = [
   {
     id: 7,
     firstName: "Noah",
+    icon: "assets/other-male-icon.svg",
     lastName: "Lim",
 
     contact: {
@@ -568,6 +575,7 @@ export const people = [
   {
     id: 8,
     firstName: "Grace",
+    icon: "assets/friend-female-icon.svg",
     lastName: "Mendoza",
 
     contact: {
@@ -644,6 +652,7 @@ export const people = [
   {
     id: 9,
     firstName: "Marco",
+    icon: "assets/family-male-icon.svg",
     lastName: "Dela Cruz",
 
     contact: {
