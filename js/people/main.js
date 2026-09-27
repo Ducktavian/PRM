@@ -1,6 +1,7 @@
 import { renderPersonAvatar } from '../avatar.js';
 import { people } from '../data.js';
 import { getFullName, renderCategoryBadge, formatDate, getLatestInteraction } from './helpers.js';
+import { initPersonModal } from './person-modal.js';
 
 const peopleGrid = document.querySelector('#people-grid');
 const resultsCount = document.querySelector('.results-count');
@@ -9,7 +10,9 @@ const nextButton = document.querySelector('[data-pagination="next"]');
 const pageButtons = Array.from(document.querySelectorAll('[data-page]'));
 
 const peoplePerPage = 9;
-let currentPage = 1;
+const totalPages = Math.ceil(people.length / peoplePerPage);
+const savedPage = Number(new URLSearchParams(window.location.search).get('page'));
+let currentPage = savedPage >= 1 && savedPage <= totalPages ? savedPage : 1;
 
 function createPersonCard(person) {
     const latest = getLatestInteraction(person);
@@ -38,7 +41,6 @@ function createPersonCard(person) {
 
 function updatePeoplePage() {
     const totalPeople = people.length;
-    const totalPages = Math.ceil(totalPeople / peoplePerPage);
     const visibleStart = (currentPage - 1) * peoplePerPage;
     const visibleEnd = visibleStart + peoplePerPage;
     const currentPeople = people.slice(visibleStart, visibleEnd);
@@ -64,6 +66,8 @@ function updatePeoplePage() {
 
         button.hidden = page > totalPages;
     });
+
+    history.replaceState(null, '', currentPage > 1 ? `?page=${currentPage}` : window.location.pathname);
 }
 
 prevButton.addEventListener('click', () => {
@@ -74,8 +78,6 @@ prevButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
-    const totalPages = Math.ceil(people.length / peoplePerPage);
-
     if (currentPage < totalPages) {
         currentPage += 1;
         updatePeoplePage();
@@ -90,3 +92,6 @@ pageButtons.forEach((button) => {
 });
 
 updatePeoplePage();
+
+const personModal = initPersonModal();
+document.querySelector('#open-add-person-btn').addEventListener('click', personModal.openAdd);

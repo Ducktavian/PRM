@@ -1,6 +1,7 @@
 import { renderPersonAvatar } from '../avatar.js';
 import { people } from '../data.js';
 import { getFullName, renderCategoryBadge, formatDate } from './helpers.js';
+import { initPersonModal } from './person-modal.js';
 
 const personId = new URLSearchParams(window.location.search).get('id');
 const person = people.find((entry) => String(entry.id) === personId) || people[0];
@@ -104,3 +105,13 @@ setText(
     '[data-delete-person-description]',
     `This will permanently remove ${name} and all their interactions and reminders.`
 );
+
+const personModal = initPersonModal();
+document.querySelector('[data-edit-person]').addEventListener('click', () => personModal.openEdit(person));
+
+const backLink = document.querySelector('.back-link');
+const cameFrom = document.referrer && new URL(document.referrer);
+
+if (cameFrom && cameFrom.origin === window.location.origin && !cameFrom.pathname.endsWith('/person.html')) {
+    backLink.href = cameFrom.pathname + cameFrom.search;
+}

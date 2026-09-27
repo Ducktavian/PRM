@@ -1,0 +1,30 @@
+/* Standard focus outline */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-icon-danger:focus-visible,
+.reminder-add-btn:focus-visible,
+
+/* Modal and pagination controls */
+.delete-modal .modal-footer > *:focus-visible,
+.pagination button:focus-visible,
+.close-btn:focus-visible,
+.btn-modal-cancel:focus-visible,
+.interaction-modal button:focus-visible,
+
+/* Page-specific controls */
+.dropdown-trigger:focus-visible,
+.interactions-page .person-cell:focus-visible,
+.interactions-page .action-button:focus-visible,
+.files-page .file-action-button:focus-visible,
+.files-page .close-file-button:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: 2px;
+}
+
+/* Focus stays inside dropdown items */
+.dropdown-dropdown a:focus-visible,
+.interactions-page .action-edit:focus-visible,
+.interactions-page .action-delete:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: -2px;
+}

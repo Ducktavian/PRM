@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
     <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/focus.css">
 </head>
 
 <body class="people-page">
@@ -68,7 +69,7 @@
                 <p>Your personal and professional network.</p>
             </div>
 
-            <a href="#add-person-modal" class="btn btn-primary" id="open-add-person-btn">
+            <a href="#person-modal" class="btn btn-primary" id="open-add-person-btn">
                 <img src="assets/add-icon.svg" alt="" width="16" height="16">
                 Add Person
             </a>
@@ -118,11 +119,12 @@
         </nav>
     </main>
 
-    <div class="modal-overlay" id="add-person-modal">
-        <div class="modal-content">
+    <!-- add / edit person modal, controlled by js/people/person-modal.js -->
+    <div class="modal-overlay" id="person-modal">
+        <div class="modal-content" role="dialog" aria-labelledby="person-modal-title">
             <div class="modal-header">
-                <h2>Add Person</h2>
-                <a href="#" class="close-btn">&times;</a>
+                <h2 id="person-modal-title">Add Person</h2>
+                <a href="#" class="close-btn" aria-label="Close">&times;</a>
             </div>
 
             <form>
@@ -131,14 +133,14 @@
                         <legend class="section-title">BASIC INFORMATION</legend>
 
                         <div class="form-group full-width">
-                            <label for="add-fullname">FULL NAME *</label>
-                            <input type="text" id="add-fullname" placeholder="e.g. Jordan Rivera" required>
+                            <label for="person-fullname">FULL NAME *</label>
+                            <input type="text" id="person-fullname" name="fullName" placeholder="e.g. Jordan Rivera" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="add-category">RELATIONSHIP CATEGORY *</label>
-                                <select id="add-category" required>
+                                <label for="person-category">RELATIONSHIP CATEGORY *</label>
+                                <select id="person-category" name="category" required>
                                     <option value="" disabled selected>Select category</option>
                                     <option value="Friend">Friend</option>
                                     <option value="Mentor">Mentor</option>
@@ -150,21 +152,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="add-pronouns">PRONOUNS (OPTIONAL)</label>
-                                <input type="text" id="add-pronouns" placeholder="e.g. she/her, he/him, they/them">
+                                <label for="person-pronouns">PRONOUNS (OPTIONAL)</label>
+                                <input type="text" id="person-pronouns" name="pronouns" placeholder="e.g. she/her, he/him, they/them">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="add-birthday">BIRTHDAY</label>
-                                <input type="date" id="add-birthday">
+                                <label for="person-birthday">BIRTHDAY</label>
+                                <input type="date" id="person-birthday" name="birthday">
                                 <small class="sub-label">Age will be calculated automatically.</small>
                             </div>
 
                             <div class="form-group">
-                                <label for="add-occupation">OCCUPATION OR ROLE</label>
-                                <input type="text" id="add-occupation" placeholder="e.g. Designer, Engineer, Student">
+                                <label for="person-occupation">OCCUPATION OR ROLE</label>
+                                <input type="text" id="person-occupation" name="occupation" placeholder="e.g. Designer, Engineer, Student">
                             </div>
                         </div>
                     </fieldset>
@@ -174,25 +176,25 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="add-email">EMAIL</label>
-                                <input type="email" id="add-email" placeholder="email@example.com">
+                                <label for="person-email">EMAIL</label>
+                                <input type="email" id="person-email" name="email" placeholder="email@example.com">
                             </div>
 
                             <div class="form-group">
-                                <label for="add-phone">PHONE NUMBER</label>
-                                <input type="tel" id="add-phone" placeholder="+1 (000) 000-0000">
+                                <label for="person-phone">PHONE NUMBER</label>
+                                <input type="tel" id="person-phone" name="phone" placeholder="+1 (000) 000-0000">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="add-location">LOCATION</label>
-                                <input type="text" id="add-location" placeholder="City, Country">
+                                <label for="person-location">LOCATION</label>
+                                <input type="text" id="person-location" name="location" placeholder="City, Country">
                             </div>
 
                             <div class="form-group">
-                                <label for="add-preferred-contact">PREFERRED CONTACT METHOD</label>
-                                <select id="add-preferred-contact">
+                                <label for="person-preferred-contact">PREFERRED CONTACT METHOD</label>
+                                <select id="person-preferred-contact" name="preferredContact">
                                     <option value="Email">Email</option>
                                     <option value="Phone">Phone</option>
                                     <option value="Message">Message</option>
@@ -206,26 +208,62 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="add-workplace">WORKPLACE OR SCHOOL</label>
-                                <input type="text" id="add-workplace" placeholder="e.g. Google, MIT">
+                                <label for="person-workplace">WORKPLACE OR SCHOOL</label>
+                                <input type="text" id="person-workplace" name="workplace" placeholder="e.g. Google, MIT">
                             </div>
 
                             <div class="form-group">
-                                <label for="add-date-met">DATE YOU MET</label>
-                                <input type="date" id="add-date-met">
+                                <label for="person-date-met">DATE YOU MET</label>
+                                <input type="date" id="person-date-met" name="dateMet">
                             </div>
                         </div>
 
                         <div class="form-group full-width">
-                            <label for="add-how-met">HOW YOU MET</label>
-                            <textarea id="add-how-met" placeholder="Where did you meet? What's the context?" rows="3"></textarea>
+                            <label for="person-how-met">HOW YOU MET</label>
+                            <textarea id="person-how-met" name="howMet" placeholder="Where did you meet? What's the context?" rows="3"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend class="section-title">THINGS TO REMEMBER</legend>
+
+                        <div class="form-group full-width">
+                            <label for="person-interests">INTERESTS</label>
+                            <input type="text" id="person-interests" name="interests" placeholder="Ceramics, Hiking, Jazz...">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="person-skills">SKILLS</label>
+                            <input type="text" id="person-skills" name="skills" placeholder="Python, Design Systems, Teaching...">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="person-likes">LIKES</label>
+                                <input type="text" id="person-likes" name="likes" placeholder="What they appreciate...">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="person-dislikes">DISLIKES</label>
+                                <input type="text" id="person-dislikes" name="dislikes" placeholder="What they avoid...">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="person-shared-topics">SHARED TOPICS</label>
+                            <input type="text" id="person-shared-topics" name="sharedTopics" placeholder="Topics you discuss together...">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="person-notes">NOTES</label>
+                            <textarea id="person-notes" name="notes" placeholder="Conversation starters, personality notes, important context..." rows="4"></textarea>
                         </div>
                     </fieldset>
                 </div>
 
                 <div class="modal-actions">
                     <a href="#" class="btn-modal-cancel">Cancel</a>
-                    <button type="submit" class="btn-modal-submit">Save Person</button>
+                    <button type="submit" class="btn-primary">Save Person</button>
                 </div>
             </form>
         </div>

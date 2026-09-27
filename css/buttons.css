@@ -24,16 +24,10 @@
 
 .btn-primary img,
 .btn-secondary img,
-.btn-icon-danger img {
+.btn-icon-danger img,
+.reminder-add-btn img {
     display: block;
     flex-shrink: 0;
-}
-
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible,
-.btn-icon-danger:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
 }
 
 .btn-primary:disabled,
@@ -88,6 +82,27 @@
     background-color: #fef2f2;
     border-color: #fca5a5;
     color: #dc2626;
+}
+
+.reminder-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 30px;
+    padding: 0 12px;
+    border: 1px solid #D8CDFB;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #6E5BCF;
+    font: 500 13px/1 Arial, sans-serif;
+    text-decoration: none;
+}
+
+.reminder-add-btn:hover {
+    background: #F5F1FF;
+    border-color: #C7B8F5;
+    color: #5B45C6;
 }
 
 @media (max-width: 600px) {

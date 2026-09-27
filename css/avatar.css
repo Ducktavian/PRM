@@ -1,3 +1,17 @@
+.avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+}
+
+.avatar-xl {
+    width: 64px;
+    height: 64px;
+}
+
 .person-icon {
     display: block;
     width: 100%;

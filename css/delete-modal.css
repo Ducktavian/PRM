@@ -91,7 +91,3 @@
     border-color: #A63B3B;
 }
 
-.delete-modal .modal-footer > *:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}

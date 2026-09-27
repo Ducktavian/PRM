@@ -70,7 +70,3 @@
     }
 }
 
-.pagination button:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}
