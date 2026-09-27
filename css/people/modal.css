@@ -15,13 +15,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(2px);
+    background: rgb(0 0 0 / 32%);
+    backdrop-filter: blur(3px);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    padding: 1rem;
+    padding: 16px;
 }
 
 /* Show modal via CSS :target */
@@ -32,15 +32,14 @@
 /* Modal Box (Flex layout para hindi masama sa scroll ang buttons) */
 .modal-content {
     background: #ffffff;
+    color: #202622;
     border-radius: 16px;
     width: 100%;
-    max-width: 600px;
-    max-height: 90vh;
+    max-width: 672px;
+    max-height: calc(100dvh - 32px);
     display: flex;
     flex-direction: column;
-    position: relative;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border: none;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.10);
     overflow: hidden;
 }
 
@@ -60,36 +59,46 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem 1rem 2rem;
+    gap: 16px;
+    padding: 24px;
     border-bottom: 1px solid #E3DFE7;
-    background: #ffffff;
     flex-shrink: 0;
 }
 
 .modal-header h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #111827;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
     margin: 0;
 }
 
 .close-btn {
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: #9ca3af;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    color: #716D78;
+    font-size: 22px;
     line-height: 1;
-    transition: color 0.15s ease;
+    text-decoration: none;
 }
 
 .close-btn:hover {
-    color: #374151;
+    background: #F8F6F3;
+}
+
+.close-btn:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: 2px;
 }
 
 /* ========================================
    MODAL BODY / FORM SCROLLABLE AREA
    ======================================== */
 .modal-body {
-    padding: 1.5rem 2rem;
+    padding: 24px;
     overflow-y: auto;
     flex: 1;
 }
@@ -110,18 +119,20 @@
 .form-section {
     border: none;
     padding: 0;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 24px;
 }
 
 .section-title {
     display: block;
     width: 100%;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #6d28d9;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    color: #6E5BCF;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     padding: 0;
 }
 
@@ -131,58 +142,85 @@
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+    gap: 16px;
 }
 
 .form-group label {
-    font-size: 0.7rem;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.03em;
-    color: #4b5563;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    color: #716D78;
     text-transform: uppercase;
-    margin-bottom: 0.35rem;
+    margin-bottom: 6px;
 }
 
-.form-group input, 
-.form-group select, 
+.form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.65rem 0.85rem;
-    border: 1px solid #d1d5db;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #E3DFE7;
     border-radius: 8px;
-    font-size: 0.875rem;
-    color: #111827;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #202622;
     background-color: #ffffff;
     outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.form-group input:focus, 
-.form-group select:focus, 
+.form-group select {
+    appearance: none;
+    padding-right: 36px;
+    background-image: url('../../assets/dropdown-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background: url('../../assets/calendar-icon.svg') center / contain no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
-    border-color: #6d28d9;
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+    border-color: #6E5BCF;
+    box-shadow: 0 0 0 3px #EFEAFB;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #9ca3af;
+    color: #929292;
+    opacity: 1;
 }
 
 .form-group textarea {
+    min-height: 102px;
     resize: vertical;
 }
 
 .sub-label {
-    font-size: 0.75rem;
-    color: #9ca3af;
-    margin-top: 0.25rem;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #96938F;
+    margin-top: 6px;
 }
 
 /* ========================================
@@ -191,10 +229,9 @@
 .modal-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    padding: 1rem 2rem 1.5rem 2rem;
+    gap: 12px;
+    padding: 24px;
     border-top: 1px solid #E3DFE7;
-    background: #ffffff;
     flex-shrink: 0;
 }
 
@@ -202,19 +239,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.65rem;
-    border: 1px solid #DFE3E0;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 0.83px solid #DFE3E0;
     border-radius: 8px;
     color: #202622;
     background-color: #ffffff;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    font-size: 14px;
 }
 
 .btn-modal-cancel:hover {
     background-color: #F8F6F3;
+}
+
+.btn-modal-cancel:focus-visible {
+    outline: 2px solid #6E5BCF;
+    outline-offset: 2px;
 }
 
 /* Responsive adjustments */
@@ -222,8 +263,7 @@
     .modal-header,
     .modal-body,
     .modal-actions {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+        padding: 16px;
     }
     
     .form-row {
