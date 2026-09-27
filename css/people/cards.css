@@ -73,28 +73,6 @@
 }
 
 /* ==========================================
-   AVATARS
-   ========================================== */
-.avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    overflow: visible;
-    background: transparent;
-    border: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.avatar-xl {
-    width: 64px;
-    height: 64px;
-}
-
-/* ==========================================
    TAGS & FOOTER
    ========================================== */
 .tags-list {
