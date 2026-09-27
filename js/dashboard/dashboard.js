@@ -138,12 +138,16 @@ function displayRecentActivity(people, recentActivity) {
         innerHTML += `
         <div class="activity">
             <div class="profile"></div>
-            <div class="name--activity--date">
-                <span>${getPersonFullName(people, activity.personId)}</span>
-                <span>${activity.type}</span>
-                <span>${activity.date}</span>
+            <div class="vertical-container">
+                <div class="name--activity--date">
+                    <span>
+                        <span>${getPersonFullName(people, activity.personId)}</span>
+                        <span>${activity.type}</span>
+                    </span>
+                    <span>${activity.date}</span>
+                </div>
+                <div class="acitivity-title">${activity.title}</div>
             </div>
-            <div class="acitivity-title">${activity.title}</div>
         </div>
         `
     }
@@ -158,3 +162,34 @@ function getPersonFullName(people, id) {
     const foundPerson = people.find(person => person.id === id);
     return `${foundPerson.firstName} ${foundPerson.lastName}`;
 }
+
+
+
+
+
+
+
+
+
+// Reconnect Soon
+// Returns the last 4 people interacted with
+function getLastInteractedWith(sortedInteractions) {
+    // Interactions are sorted from oldest to latest
+    return sortedInteractions.slice(4); 
+}
+
+
+function displayReconnectSoon() {
+
+}
+
+const now = new Date();
+const date = new Date("2026-9-7");
+
+// date in milliseconds
+const differenceInMs = now - date;
+
+const msPerDay = 1000 * 60 * 60 * 24;
+const differenceInDays = differenceInMs / msPerDay;
+
+console.log(Math.floor(differenceInDays));
