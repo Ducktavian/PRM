@@ -6,7 +6,7 @@
 
 .interactions-page .pagination {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
@@ -49,4 +49,19 @@
 .interactions-page .pagination-direction img {
     display: block;
     flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .interactions-page .interaction-status {
+        flex-basis: 100%;
+    }
+
+    .interactions-page .pagination button {
+        min-width: 44px;
+        height: 44px;
+    }
+
+    .interactions-page .pagination .pagination-direction {
+        gap: 6px;
+    }
 }

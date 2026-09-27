@@ -86,3 +86,20 @@
     top: 15px;
     pointer-events: none;
 }
+
+@media (max-width: 600px) {
+    .interactions-page .interaction-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .interactions-page .search-field {
+        grid-column: 1 / -1;
+    }
+
+    .interactions-page .interaction-filters input,
+    .interactions-page .interaction-filters select {
+        height: 44px;
+        font-size: 16px;
+    }
+}

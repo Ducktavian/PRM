@@ -11,12 +11,12 @@
     box-sizing: border-box;
     border: 1px solid #E3DFE7;
     border-radius: 12px;
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 .interactions-page table {
     width: 100%;
-    min-width: 0;
+    min-width: 760px;
     table-layout: fixed;
     border-collapse: collapse;
     background-color: white;
@@ -223,4 +223,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-right: 12px;
+}
+
+@media (max-width: 1024px) {
+    .interactions-page .table-container {
+        min-height: 0;
+    }
 }
