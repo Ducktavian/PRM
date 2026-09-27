@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const oldestInteractions = getOldestInteractions(sortedInteractions);
     displayReconnectSoon(people, oldestInteractions);
 
+    // Upcoming Important Dates
+    const reminders = getActiveReminders(people);
+    displayUpcomingImportantDates(people, reminders);
 })
 
 
@@ -167,6 +170,10 @@ function getPersonFullName(people, id) {
     return `${foundPerson.firstName} ${foundPerson.lastName}`;
 }
 
+function getPerson(people, id) {
+    return people.find(person => person.id === id);
+}
+
 
 
 
@@ -197,7 +204,7 @@ function daysPassedLastInteraction(pastDate) {
 
 
 function displayReconnectSoon(people, oldestInteractions) {
-    console.log(oldestInteractions)
+
     const reconnectSoonEl = document.querySelector(".reconnect-soon div");
     let innerHTML = "";
 
@@ -218,6 +225,46 @@ function displayReconnectSoon(people, oldestInteractions) {
     }
 
     reconnectSoonEl.innerHTML = innerHTML;
+}
+
+
+// Upcoming Important Dates (Reminders)
+
+function getActiveReminders(people) {
+    const reminders = [];
+
+    for (const person of people) {
+        for (const reminder of person.reminders) {
+            if (!reminder.completed) {
+                reminders.push({...reminder, personId: person.id})
+            }
+        }
+    }
+    return reminders;
+}
+
+function displayUpcomingImportantDates(people, reminders) {
+    const upcomingDatesEl = document.querySelector(".upcoming-important-dates div");
+    let innerHTML = "";
+
+    for (const reminder of reminders) {
+        const person = getPerson(people, reminder.personId)
+        innerHTML += `
+        <div class="upcoming-important-dates-item">
+            <div class="profile"></div>
+            <div class="vertical-container">
+                <span>${reminder.title}</span>
+                <div>
+                    <span>${reminder.date}</span>
+                    <span>${person.relationship.category}</span>
+                </div>
+            </div>
+        </div>
+        
+        `
+    }
+
+    upcomingDatesEl.innerHTML = innerHTML;
 }
 
 
