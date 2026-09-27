@@ -98,46 +98,10 @@
 
 .interactions-page .person-avatar {
     flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    font-size: 11px;
-    font-weight: 600;
-    color: #96938F;
-    background: #96938F14;
-}
-
-.interactions-page .person-avatar[data-relationship="mentor"] {
-    color: #3DBB86;
-    background: #3DBB8614;
-}
-
-.interactions-page .person-avatar[data-relationship="coworker"] {
-    color: #8C72D9;
-    background: #8C72D914;
-}
-
-.interactions-page .person-avatar[data-relationship="family"] {
-    color: #E96B73;
-    background: #E96B7314;
-}
-
-.interactions-page .person-avatar[data-relationship="friend"] {
-    color: #F2A51A;
-    background: #F2A51A14;
-}
-
-.interactions-page .person-avatar[data-relationship="classmate"] {
-    color: #439AD6;
-    background: #439AD614;
-}
-
-.interactions-page .person-avatar[data-relationship="other"] {
-    color: #96938F;
-    background: #96938F14;
+    object-fit: contain;
 }
 
 .interactions-page tbody td:nth-child(2) {

@@ -1,7 +1,3 @@
-function getInitials(name) {
-    return name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase();
-}
-
 function getToday() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -36,7 +32,7 @@ export function initInteractions(sharedPeople) {
         return {
             name: `${person.firstName} ${person.lastName}`,
             role: person.personalInfo?.occupation || '',
-            relationship: (person.relationship?.category || 'other').toLowerCase()
+            icon: person.icon || 'assets/people-icon.svg'
         };
     }
 
@@ -108,9 +104,7 @@ export function initInteractions(sharedPeople) {
 
         row.querySelector('.person-name').textContent = person.name;
         row.querySelector('.role').textContent = person.role;
-        const avatar = row.querySelector('.person-avatar');
-        avatar.textContent = getInitials(person.name);
-        avatar.dataset.relationship = person.relationship;
+        row.querySelector('.person-avatar').src = person.icon;
 
         const badge = document.createElement('span');
         badge.className = `type-badge type-${interaction.type.toLowerCase()}`;
