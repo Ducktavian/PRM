@@ -17,29 +17,6 @@
     height: fit-content;
 }
 
-.dashboard-container1 .card {
-    min-width: calc(100% / 3.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.dashboard-container1 .card p.main-stat {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.dashboard-container1 .card p:not(.main-stat) {
-    font-size: 0.8rem;
-}
-
-
-.dashboard-container1 {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
 
 .circle {
     display: inline-block;
