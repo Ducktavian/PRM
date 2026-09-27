@@ -46,6 +46,10 @@
     cursor: default;
 }
 
+.pagination button[hidden] {
+    display: none;
+}
+
 .pagination-direction img {
     display: block;
     flex-shrink: 0;
