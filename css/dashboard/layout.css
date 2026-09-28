@@ -54,6 +54,10 @@
     height: 100%;
 }
 
+.activity .activity-type {
+    border-radius: 10px;
+}
+
 
 
 

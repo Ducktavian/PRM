@@ -94,14 +94,14 @@ function displayNetworkByCategory(categories) {
         <div class="network-by-category-item">
             <div class="category-info">
                 <div>
-                    <span class="circle"></span>
+                    <span class="circle avatar-${category.toLowerCase()}"></span>
                     <span class="category-name">${category}</span> 
                 </div>
                 
                 <span class="category-count">${categories[category]}</span>
             </div>
             <div class="background-bar">
-                <div class="bar"></div>
+                <div class="bar avatar-${category.toLowerCase()}"></div>
             </div>
         </div>
         `
@@ -183,8 +183,8 @@ function displayRecentActivity(people, recentActivity) {
             <div class="vertical-container">
                 <div class="name--activity--date">
                     <span>
-                        <span>${getPersonFullName(people, activity.personId)}</span>
-                        <span>${activity.type}</span>
+                        <span class="person-name">${getPersonFullName(people, activity.personId)}</span>
+                        <span class="activity-type type-${activity.type.toLowerCase()}">${activity.type}</span>
                     </span>
                     <span>${activity.date}</span>
                 </div>
@@ -265,10 +265,10 @@ function displayReconnectSoon(people, oldestInteractions) {
                 ${renderPersonAvatar(person)}
             </div>
             <div class="vertical-container">
-                <span>${fullName}</span>
-                <span>${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
+                <span class="full-name">${fullName}</span>
+                <span class="days-passed">${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
             </div>
-            <button>View</buton>
+            <button>View</button>
         </div>
          `
     }
@@ -312,7 +312,7 @@ function displayUpcomingImportantDates(people, reminders) {
                 <span>${reminder.title}</span>
                 <div>
                     <span>${reminder.date}</span>
-                    <span>${person.relationship.category}</span>
+                    <span class="relationship-category avatar-${person.relationship.category.toLowerCase()}">${person.relationship.category}</span>
                 </div>
             </div>
         </div>

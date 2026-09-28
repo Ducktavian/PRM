@@ -1,3 +1,9 @@
+
+
+header {
+    margin: 1rem auto;
+}
+
 .flex {
     display: flex;
 }
@@ -9,30 +15,43 @@
 .card {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
-    padding: 10px;
+    padding: 1rem;
     border-radius: 10px;
     height: fit-content;
 }
 
+.dashboard-inner-grid .card p:first-of-type {
+    margin-bottom: 1rem;
+}
+
+.dashboard-grid .card p:not(.main-stat) {
+    font-size: 0.8rem;
+}
+
+
+.main-stat {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
 
 .circle {
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 20px;
-    background-color: red;
+    background-color: var(--avatar-color, #909088);
 }
 
 .background-bar {
     width: 100%;
     height: 10px;
-    background-color: grey;
+    background-color: rgb(236, 234, 234);
     border-radius: 50px;
 }
 
 .bar {
     height: 100%;
-    background-color: red;
+    background-color: var(--avatar-color, #909088);
     border-radius: inherit;
 }
 
@@ -49,6 +68,17 @@
     display: flex;
     width: 100%;
     align-items: center;
+}
+
+
+
+.activity .vertical-container *:not(.person-name) {
+    font-size: 0.8rem;
+}
+
+.person-name {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 
@@ -70,6 +100,41 @@
     justify-content: space-between;
 }
 
+.activity-type {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.activity-type.type-message {
+    color: #8C72D9;
+    background: #8C72D914;
+}
+
+.activity-type.type-meeting,
+.activity-type.type-meetup {
+    color: #439AD6;
+    background: #439AD614;
+}
+
+.activity-type.type-conversation {
+    color: #6E5BCF;
+    background: #6E5BCF14;
+}
+
+.activity-type.type-event {
+    color: #F2A51A;
+    background: #F2A51A14;
+}
+
+.activity-type.type-call {
+    color: #3DBB86;
+    background: #3DBB8614;
+}
+
 /* RECONNECT SOON*/
 .reconnect-item {
     display: flex;
@@ -77,11 +142,32 @@
     gap: 10px;
 }
 
+.reconnect-item .full-name {
+    font-weight: bold;
+}
+
+.reconnect-item .days-passed {
+    font-size: 0.8rem;
+}
+
+
 .reconnect-item button {
-    border: 1px solid purple;
-    color: purple;
+    border: 1px solid var(--primary-purple);
+    color: var(--primary-purple);
     padding: 5px 10px;
     border-radius: 10px;
+    background-color: var(--card-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.reconnect-item button:hover {
+    background-color: var(--primary-purple-hover);
+    color: white;
+}
+
+.reconnect-item button:active {
+    background-color: var(--primary-purple-hover);
+    color: white;
 }
 
 
@@ -95,16 +181,26 @@
 .notification-icon {
     width: 60%;
     flex-shrink: 0;
-
 }
 
 .notification-icon-container {
     width: 30px;
     height: 30px;
-    background-color: rgba(147, 112, 219, 0.3);
+    background-color: color-mix(in srgb, var(--primary-purple) 10%, transparent);
 
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
+}
+
+
+.upcoming-important-dates-item .relationship-category {
+    display: inline-block;
+    color: white;
+    font-size: 10px;
+    line-height: 1.2;
+    padding: 2px 6px;
     border-radius: 10px;
+    background-color: var(--avatar-color, #909088);
 }
