@@ -1,8 +1,10 @@
 import { people } from "../data.js";
+import { renderPersonAvatar } from "../avatar.js";
 const totalPeopleEl = document.getElementById("total-people");
 const totalInteractionsThisMonthEl = document.getElementById("total-interactions-this-month");
 const totalCategoriesEl = document.getElementById("total-categories");
 
+// Main
 document.addEventListener("DOMContentLoaded", () => {
     const totalPeople = getTotalPeople(people);
     const totalInteractionsThisMonth = getTotalInteractionsThisMonth(people);
@@ -108,14 +110,13 @@ function displayNetworkByCategory(categories) {
     networkByCategory.innerHTML = innerHTML;
 }
 
-
-
+// Applies responsive bar widths base on category count
 function setNetworkCategoryBars(categories) {
     // Gets the most amount of category type and set is as the basis for max bar
     let mostCategoryType = 0;
     for (const category in categories) {
         if (categories[category] > mostCategoryType) {
-            mostCategoryType = categories[category]
+            mostCategoryType = categories[category];
         }
     }
     
@@ -169,10 +170,16 @@ function getRecentActivity(sortedInteractions) {
 function displayRecentActivity(people, recentActivity) {
     const recentActivityEl = document.querySelector(".recent-activity div");
     let innerHTML = "";
+
     for (const activity of recentActivity) {
+        const person = getPerson(people, activity.personId);
+
         innerHTML += `
-        <div class="activity">
-            <div class="profile"></div>
+        <div class="activity" data-personId="${activity.personId}">
+            <div class="profile avatar" aria-label="${person.firstName} ${person.lastName}">
+                ${renderPersonAvatar(person)}
+            </div>
+
             <div class="vertical-container">
                 <div class="name--activity--date">
                     <span>
@@ -189,6 +196,17 @@ function displayRecentActivity(people, recentActivity) {
 
     recentActivityEl.innerHTML = innerHTML;
 }
+
+
+
+// Display Profiles in Recent Activity
+
+
+
+
+
+
+
 
 
 
@@ -239,10 +257,13 @@ function displayReconnectSoon(people, oldestInteractions) {
     for (const interaction of oldestInteractions) {
         const fullName = getPersonFullName(people, interaction.personId);
         const daysPassed = +daysPassedLastInteraction(interaction.date);
+        const person = getPerson(people, interaction.personId);
 
         innerHTML += `
         <div class="reconnect-item">
-            <div class="profile"></div>
+            <div class="profile avatar" aria-label="${person.firstName} ${person.lastName}">
+                ${renderPersonAvatar(person)}
+            </div>
             <div class="vertical-container">
                 <span>${fullName}</span>
                 <span>${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
@@ -279,7 +300,14 @@ function displayUpcomingImportantDates(people, reminders) {
         const person = getPerson(people, reminder.personId)
         innerHTML += `
         <div class="upcoming-important-dates-item">
-            <div class="profile"></div>
+            <div class="notification-icon-container">
+                <img
+                    class="notification-icon"
+                    src="assets/notification-icon.svg"
+                    alt="Upcoming reminder"
+                >
+            </div>
+            
             <div class="vertical-container">
                 <span>${reminder.title}</span>
                 <div>
@@ -294,5 +322,8 @@ function displayUpcomingImportantDates(people, reminders) {
 
     upcomingDatesEl.innerHTML = innerHTML;
 }
+
+
+
 
 
