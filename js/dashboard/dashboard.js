@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     totalInteractionsThisMonthEl.innerText = totalInteractionsThisMonth;
     totalCategoriesEl.innerText = totalCategories;
 
-    displayNetworkByCategory(categories)
+    displayNetworkByCategory(categories);
+    setNetworkCategoryBars(categories);
 
     // Display Recent activity
     const interactions = getInteractions(people);
@@ -88,14 +89,14 @@ function displayNetworkByCategory(categories) {
     let innerHTML = "";
     for (const category in categories) {
         innerHTML += `
-        <div>
+        <div class="network-by-category-item">
             <div class="category-info">
                 <div>
                     <span class="circle"></span>
-                    <span>${category}</span> 
+                    <span class="category-name">${category}</span> 
                 </div>
                 
-                <span>${categories[category]}</span>
+                <span class="category-count">${categories[category]}</span>
             </div>
             <div class="background-bar">
                 <div class="bar"></div>
@@ -105,6 +106,33 @@ function displayNetworkByCategory(categories) {
     }
 
     networkByCategory.innerHTML = innerHTML;
+}
+
+
+
+function setNetworkCategoryBars(categories) {
+    // Gets the most amount of category type and set is as the basis for max bar
+    let mostCategoryType = 0;
+    for (const category in categories) {
+        if (categories[category] > mostCategoryType) {
+            mostCategoryType = categories[category]
+        }
+    }
+    
+    // apply bar styling
+    const netWorkByCategoryElements = document.querySelectorAll(".network-by-category-item");
+    
+    for (const category of netWorkByCategoryElements) {
+        const bar = category.querySelector(".bar");
+        const categoryCount = +category.querySelector(".category-count").innerText;
+        const width = categoryCount / mostCategoryType * 100;
+        applyBarStyle(bar, width);
+    }
+}
+
+
+function applyBarStyle(element, width) {
+    element.style.width = `${width}%`;
 }
 
 
