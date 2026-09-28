@@ -1,8 +1,10 @@
 import { people } from "../data.js";
+import { renderPersonAvatar } from "../avatar.js";
 const totalPeopleEl = document.getElementById("total-people");
 const totalInteractionsThisMonthEl = document.getElementById("total-interactions-this-month");
 const totalCategoriesEl = document.getElementById("total-categories");
 
+// Main
 document.addEventListener("DOMContentLoaded", () => {
     const totalPeople = getTotalPeople(people);
     const totalInteractionsThisMonth = getTotalInteractionsThisMonth(people);
@@ -14,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     totalInteractionsThisMonthEl.innerText = totalInteractionsThisMonth;
     totalCategoriesEl.innerText = totalCategories;
 
-    displayNetworkByCategory(categories)
+    displayNetworkByCategory(categories);
+    setNetworkCategoryBars(categories);
 
     // Display Recent activity
     const interactions = getInteractions(people);
@@ -88,23 +91,49 @@ function displayNetworkByCategory(categories) {
     let innerHTML = "";
     for (const category in categories) {
         innerHTML += `
-        <div>
+        <div class="network-by-category-item">
             <div class="category-info">
                 <div>
-                    <span class="circle"></span>
-                    <span>${category}</span> 
+                    <span class="circle avatar-${category.toLowerCase()}"></span>
+                    <span class="category-name">${category}</span> 
                 </div>
                 
-                <span>${categories[category]}</span>
+                <span class="category-count">${categories[category]}</span>
             </div>
             <div class="background-bar">
-                <div class="bar"></div>
+                <div class="bar avatar-${category.toLowerCase()}"></div>
             </div>
         </div>
         `
     }
 
     networkByCategory.innerHTML = innerHTML;
+}
+
+// Applies responsive bar widths base on category count
+function setNetworkCategoryBars(categories) {
+    // Gets the most amount of category type and set is as the basis for max bar
+    let mostCategoryType = 0;
+    for (const category in categories) {
+        if (categories[category] > mostCategoryType) {
+            mostCategoryType = categories[category];
+        }
+    }
+    
+    // apply bar styling
+    const netWorkByCategoryElements = document.querySelectorAll(".network-by-category-item");
+    
+    for (const category of netWorkByCategoryElements) {
+        const bar = category.querySelector(".bar");
+        const categoryCount = +category.querySelector(".category-count").innerText;
+        const width = categoryCount / mostCategoryType * 100;
+        applyBarStyle(bar, width);
+    }
+}
+
+
+function applyBarStyle(element, width) {
+    element.style.width = `${width}%`;
 }
 
 
@@ -141,15 +170,21 @@ function getRecentActivity(sortedInteractions) {
 function displayRecentActivity(people, recentActivity) {
     const recentActivityEl = document.querySelector(".recent-activity div");
     let innerHTML = "";
+
     for (const activity of recentActivity) {
+        const person = getPerson(people, activity.personId);
+
         innerHTML += `
-        <div class="activity">
-            <div class="profile"></div>
+        <div class="activity" data-personId="${activity.personId}">
+            <div class="profile avatar" aria-label="${person.firstName} ${person.lastName}">
+                ${renderPersonAvatar(person)}
+            </div>
+
             <div class="vertical-container">
                 <div class="name--activity--date">
                     <span>
-                        <span>${getPersonFullName(people, activity.personId)}</span>
-                        <span>${activity.type}</span>
+                        <span class="person-name">${getPersonFullName(people, activity.personId)}</span>
+                        <span class="activity-type type-${activity.type.toLowerCase()}">${activity.type}</span>
                     </span>
                     <span>${activity.date}</span>
                 </div>
@@ -161,6 +196,17 @@ function displayRecentActivity(people, recentActivity) {
 
     recentActivityEl.innerHTML = innerHTML;
 }
+
+
+
+// Display Profiles in Recent Activity
+
+
+
+
+
+
+
 
 
 
@@ -211,15 +257,18 @@ function displayReconnectSoon(people, oldestInteractions) {
     for (const interaction of oldestInteractions) {
         const fullName = getPersonFullName(people, interaction.personId);
         const daysPassed = +daysPassedLastInteraction(interaction.date);
+        const person = getPerson(people, interaction.personId);
 
         innerHTML += `
         <div class="reconnect-item">
-            <div class="profile"></div>
-            <div class="vertical-container">
-                <span>${fullName}</span>
-                <span>${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
+            <div class="profile avatar" aria-label="${person.firstName} ${person.lastName}">
+                ${renderPersonAvatar(person)}
             </div>
-            <button>View</buton>
+            <div class="vertical-container">
+                <span class="full-name">${fullName}</span>
+                <span class="days-passed">${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
+            </div>
+            <button>View</button>
         </div>
          `
     }
@@ -251,12 +300,19 @@ function displayUpcomingImportantDates(people, reminders) {
         const person = getPerson(people, reminder.personId)
         innerHTML += `
         <div class="upcoming-important-dates-item">
-            <div class="profile"></div>
+            <div class="notification-icon-container">
+                <img
+                    class="notification-icon"
+                    src="assets/notification-icon.svg"
+                    alt="Upcoming reminder"
+                >
+            </div>
+            
             <div class="vertical-container">
                 <span>${reminder.title}</span>
                 <div>
                     <span>${reminder.date}</span>
-                    <span>${person.relationship.category}</span>
+                    <span class="relationship-category avatar-${person.relationship.category.toLowerCase()}">${person.relationship.category}</span>
                 </div>
             </div>
         </div>
@@ -266,5 +322,8 @@ function displayUpcomingImportantDates(people, reminders) {
 
     upcomingDatesEl.innerHTML = innerHTML;
 }
+
+
+
 
 
