@@ -13,9 +13,9 @@ function parseDate(value) {
 }
 
 export function initInteractions(sharedPeople) {
-    const table = document.querySelector('.interaction-history table');
+    const list = document.querySelector('.interaction-list');
     const status = document.getElementById('interaction-status');
-    const rowTemplate = document.getElementById('interaction-row-template').content.querySelector('tr');
+    const cardTemplate = document.getElementById('interaction-card-template').content.querySelector('li');
     const peopleById = new Map(sharedPeople.map((person) => [person.id, person]));
     const interactions = sharedPeople.flatMap((person) => (person.interactions || []).map((entry) => ({
         ...entry,
@@ -28,12 +28,10 @@ export function initInteractions(sharedPeople) {
     const pageSize = 10;
     let filteredInteractions = interactions;
     let nextId = Math.max(0, ...interactions.map((entry) => Number(entry.id))) + 1;
-    const body = table.tBodies[0];
     function getPerson(id) {
         const person = peopleById.get(id);
         return {
-            name: `${person.firstName} ${person.lastName}`,
-            role: person.personalInfo?.occupation || ''
+            name: `${person.firstName} ${person.lastName}`
         };
     }
 
@@ -92,44 +90,58 @@ export function initInteractions(sharedPeople) {
         });
     }
 
-    // Table rendering
-    function createRow(interaction) {
-        const row = rowTemplate.cloneNode(true);
+    function createCard(interaction) {
+        const card = cardTemplate.cloneNode(true);
         const person = getPerson(interaction.personId);
-        row.dataset.interactionId = interaction.id;
+        card.dataset.interactionId = interaction.id;
 
-        const actionButton = row.querySelector('.action-button');
+        const actionButton = card.querySelector('.action-button');
         actionButton.setAttribute('aria-expanded', 'false');
         actionButton.setAttribute('aria-controls', 'interaction-actions');
         actionButton.setAttribute('aria-label', `Actions for ${interaction.title}`);
 
-        row.querySelector('.person-name').textContent = person.name;
-        row.querySelector('.role').textContent = person.role;
-        row.querySelector('.person-avatar').innerHTML = renderPersonAvatar(peopleById.get(interaction.personId));
+        card.querySelector('.person-name').textContent = person.name;
+        card.querySelector('.person-avatar').innerHTML = renderPersonAvatar(peopleById.get(interaction.personId));
 
-        const badge = document.createElement('span');
+        const badge = card.querySelector('.type-badge');
         badge.className = `type-badge type-${interaction.type.toLowerCase()}`;
         badge.textContent = interaction.type;
-        row.cells[1].replaceChildren(badge);
 
-        row.querySelector('strong').textContent = interaction.title;
-        row.querySelector('p').textContent = interaction.notes;
-        const time = row.querySelector('time');
+        card.querySelector('.interaction-title').textContent = interaction.title;
+        const time = card.querySelector('time');
         time.dateTime = interaction.date;
         time.textContent = new Date(interaction.date + 'T00:00:00').toLocaleDateString('en-US', {
             month: 'short', day: 'numeric', year: 'numeric'
         });
+        
+        const notes = card.querySelector('.interaction-notes');
+        const toggle = card.querySelector('.interaction-toggle');
+        notes.id = `notes-${interaction.id}`;
+        notes.querySelector('p').textContent = interaction.notes;
+        toggle.setAttribute('aria-controls', notes.id);
+        toggle.hidden = interaction.notes === '';
 
-        return row;
+        return card;
     }
+
+    list.addEventListener('click', (event) => {
+        const toggle = event.target.closest('.interaction-toggle');
+        if (!toggle) return;
+
+        const notes = toggle.closest('.interaction-card').querySelector('.interaction-notes');
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        notes.hidden = isOpen;
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.textContent = isOpen ? 'View' : 'Hide';
+    });
 
     function renderPage(page) {
         const fragment = document.createDocumentFragment();
         const pageInteractions = filteredInteractions.slice(page * pageSize, (page + 1) * pageSize);
         pageInteractions.forEach((interaction) => {
-            fragment.append(createRow(interaction));
+            fragment.append(createCard(interaction));
         });
-        body.replaceChildren(fragment);
+        list.replaceChildren(fragment);
         const total = filteredInteractions.length;
         const first = total === 0 ? 0 : page * pageSize + 1;
         const last = page * pageSize + pageInteractions.length;
@@ -139,13 +151,12 @@ export function initInteractions(sharedPeople) {
             : `Showing ${first}-${last} of ${total} ${label}`;
 
         if (filteredInteractions.length === 0) {
-            const row = body.insertRow();
-            const cell = row.insertCell();
-            cell.colSpan = 5;
-            cell.className = 'empty-message';
-            cell.textContent = interactions.length === 0
+            const empty = document.createElement('li');
+            empty.className = 'empty-message';
+            empty.textContent = interactions.length === 0
                 ? 'No interactions yet. Add an interaction to get started.'
                 : 'No interactions match your filters.';
+            list.append(empty);
         }
     }
 
@@ -187,12 +198,7 @@ export function initInteractions(sharedPeople) {
         const index = filteredInteractions.indexOf(interaction);
         return index === -1 ? 0 : Math.floor(index / pageSize);
     }
-
-    /**
-     * Uses the entry's ID so sorting or paging cannot delete the wrong row.
-     * @param {string} id - ID from the confirmed delete dialog.
-     * @returns {boolean} False if the entry is already gone.
-     */
+    
     function deleteInteraction(id) {
         const index = interactions.findIndex((entry) => entry.id === id);
         if (index === -1) return false;

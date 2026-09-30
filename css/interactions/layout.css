@@ -92,3 +92,89 @@ body.interactions-page {
 .interactions-page .pagination {
     padding-top: 8px;
 }
+
+.interactions-page .interaction-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.interactions-page .interaction-card {
+    background: white;
+    border: 1px solid #a1a4ab;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.interactions-page .interaction-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+}
+
+.interactions-page .person-avatar {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+}
+
+.interactions-page .interaction-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.interactions-page .interaction-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.interactions-page .person-name {
+    font-weight: 600;
+}
+
+.interactions-page .interaction-meta time {
+    color: #716D78;
+    font-size: 14px;
+}
+
+.interactions-page .interaction-title {
+    margin: 4px 0 0;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.interactions-page .interaction-toggle {
+    flex-shrink: 0;
+    padding: 4px 8px;
+    border: 0;
+    background: transparent;
+    color: #6E5BCF;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.interactions-page .interaction-notes {
+    margin: 0 16px;
+    padding: 16px 0;
+    border-top: 1px solid #E3DFE7;
+}
+
+.interactions-page .interaction-notes p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.interactions-page .empty-message {
+    padding: 60px 20px;
+    text-align: center;
+    color: #716D78;
+    font-size: 12px;
+}

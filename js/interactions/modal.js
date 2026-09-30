@@ -97,7 +97,7 @@ export function initModal(onSave, onDelete) {
 
     function openDelete(trigger) {
         deleteTrigger = trigger;
-        deletingId = trigger.closest('tr').dataset.interactionId;
+        deletingId = trigger.closest('li').dataset.interactionId;
         deleteDialog.showModal();
     }
 
