@@ -120,25 +120,8 @@
                 Interaction History
             </h2>
 
-            <div class="table-container">
-                <table aria-labelledby="interaction-heading">
-
-                    <!-- table header -->
-                    <thead>
-                        <tr>
-                            <th scope="col">Person</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Interaction</th>
-                            <th scope="col">Date</th>
-                            <th scope="col" class="actions-column">Actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody></tbody>
-                </table>
-            </div>
+            <ul class="interaction-list"></ul>
         </section>
-
         <!-- pagination -->
         <nav class="pagination" aria-label="Interaction pages">
             <output id="interaction-status" class="interaction-status pagination-status"></output>
@@ -231,26 +214,31 @@
         </form>
     </dialog>
 
-    <template id="interaction-row-template">
-        <tr>
-            <th scope="row">
-                <span class="person-cell">
-                    <span class="person-avatar" aria-hidden="true"></span>
-                    <span class="person-text">
+    <template id="interaction-card-template">
+        <li class="interaction-card">
+            <div class="interaction-summary">
+                <span class="person-avatar" aria-hidden="true"></span>
+
+                <div class="interaction-main">
+                    <div class="interaction-meta">
                         <span class="person-name"></span>
-                        <span class="role"></span>
-                    </span>
-                </span>
-            </th>
-            <td></td>
-            <td><strong></strong><p></p></td>
-            <td><time></time></td>
-            <td class="actions-column">
+                        <span class="type-badge"></span>
+                        <time></time>
+                    </div>
+                    <p class="interaction-title"></p>
+                </div>
+
+                <button type="button" class="interaction-toggle" aria-expanded="false">View</button>
+
                 <button type="button" class="action-button" aria-label="Actions for this interaction">
                     <img src="assets/more-options-icon.svg" alt="" width="26" height="28">
                 </button>
-            </td>
-        </tr>
+            </div>
+
+            <div class="interaction-notes" hidden>
+                <p></p>
+            </div>
+        </li>
     </template>
 
     <script type="module" src="js/interactions/main.js"></script>
