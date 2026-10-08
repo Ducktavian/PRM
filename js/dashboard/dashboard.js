@@ -268,12 +268,19 @@ function displayReconnectSoon(people, oldestInteractions) {
                 <span class="full-name">${fullName}</span>
                 <span class="days-passed">${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
             </div>
-            <button>View</button>
+            <button type="button" data-person-id="${person.id}">View</button>
         </div>
          `
     }
 
     reconnectSoonEl.innerHTML = innerHTML;
+
+    reconnectSoonEl.addEventListener("click", (event) => {
+        const viewButton = event.target.closest("button[data-person-id]");
+        if (!viewButton) return;
+
+        window.location.href = `person.html?id=${encodeURIComponent(viewButton.dataset.personId)}`;
+    });
 }
 
 
