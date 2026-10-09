@@ -1,0 +1,391 @@
+/* Shared page layout, spacing, and responsive styles. */
+body.people-page,
+body.person-view-page,
+body.interactions-page,
+body.files-page {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    font-family: Arial, sans-serif;
+}
+
+.people-page .main-content,
+.interactions-page main,
+.files-page main,
+.dashboard {
+    grid-column: 2;
+    padding: 36px 2.21vw 40px;
+}
+
+.people-page .page-header,
+.interactions-page .page-header,
+.files-page .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.people-page .header-text p,
+.interactions-page .page-header p,
+.files-page .page-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #716D78;
+}
+
+body.people-page,
+body.person-view-page {
+    grid-template-rows: var(--top-bar-height) auto;
+    min-height: 100dvh;
+}
+
+.people-page .main-content {
+    background-color: var(--main-bg);
+    min-width: 0;
+}
+
+.people-page .page-header {
+    min-height: 58px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.people-page .page-filters {
+    margin-bottom: 20px;
+}
+
+.people-page .header-text h1 {
+    font-weight: 700;
+    font-size: 32px;
+    color: black;
+}
+
+.person-view-page .main-content {
+    background-color: var(--main-bg);
+    grid-column: 2;
+    min-width: 0;
+    padding: 32px;
+}
+
+@media (max-width: 1024px) {
+    body.people-page,
+    body.person-view-page {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .people-page .main-content,
+    .person-view-page .main-content {
+        grid-column: 1;
+    }
+}
+
+.people-page .pagination {
+    margin-top: 28px;
+    padding-bottom: 24px;
+}
+
+body.interactions-page {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    background-color: white;
+    grid-template-rows: var(--top-bar-height) auto;
+    min-height: 100dvh;
+}
+
+.interactions-page main {
+    max-width: none;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    align-content: start;
+    gap: 20px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.interactions-page .page-header h1 {
+    margin: 0;
+}
+
+.interactions-page .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.interactions-page .page-header {
+    min-width: 0;
+}
+
+@media (max-width: 1024px) {
+    body.interactions-page {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: var(--top-bar-height) auto;
+        align-content: start;
+    }
+
+    .interactions-page main {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 24px 20px 32px;
+    }
+}
+
+@media (max-width: 600px) {
+    .interactions-page main {
+        padding: 20px 16px 28px;
+        gap: 16px;
+    }
+
+    .interactions-page .page-header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .interactions-page .page-header > div {
+        flex: 1 1 220px;
+        min-width: 0;
+    }
+
+    .interactions-page .page-header h1 {
+        font-size: 26px;
+    }
+}
+
+.interactions-page .pagination {
+    padding-top: 8px;
+}
+
+.interactions-page .interaction-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.interactions-page .interaction-card {
+    background: white;
+    border: 1px solid #a1a4ab;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.interactions-page .interaction-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+}
+
+.interactions-page .person-avatar {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+}
+
+.interactions-page .interaction-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.interactions-page .interaction-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.interactions-page .person-name {
+    font-weight: 600;
+}
+
+.interactions-page .interaction-meta time {
+    color: #716D78;
+    font-size: 14px;
+}
+
+.interactions-page .interaction-title {
+    margin: 4px 0 0;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.interactions-page .interaction-toggle {
+    flex-shrink: 0;
+    padding: 4px 8px;
+    border: 0;
+    background: transparent;
+    color: #6E5BCF;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.interactions-page .interaction-notes {
+    margin: 0 16px;
+    padding: 16px 0;
+    border-top: 1px solid #E3DFE7;
+}
+
+.interactions-page .interaction-notes p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.interactions-page .empty-message {
+    padding: 60px 20px;
+    text-align: center;
+    color: #716D78;
+    font-size: 12px;
+}
+
+body.files-page {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    background-color: white;
+    grid-template-rows: var(--top-bar-height) minmax(0, 1fr);
+    height: 100dvh;
+}
+
+.files-page main {
+    max-width: none;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.files-page .page-header {
+    min-width: 0;
+    margin-bottom: 20px;
+}
+
+.files-page .page-header h1 {
+    margin: 0;
+
+    font-size: 30px;
+}
+
+.files-page .page-header p {
+    font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+
+    body.files-page {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: var(--top-bar-height) minmax(0, 1fr);
+    }
+
+    .files-page main {
+        grid-column: 1;
+        padding: 30px 2vw 32px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    body.files-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: var(--top-bar-height) minmax(0, 1fr);
+    }
+
+    .files-page main {
+        grid-column: 1;
+
+        padding: 24px 16px 30px;
+    }
+
+    .files-page .page-header {
+        margin-bottom: 16px;
+    }
+
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    grid-template-rows: var(--top-bar-height) 1fr;
+    width: 100%;
+    flex: 1;
+    min-height: 100vh;
+}
+
+:where(.main-container) .dashboard {
+    position: relative;
+    grid-row: 2;
+}
+
+:where(.main-container) .dashboard .card {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+:where(.main-container) .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+:where(.main-container) .dashboard-inner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    grid-column: span 3;
+}
+
+:where(.main-container) .span-2-g {
+    grid-column: span 1.5;
+}
+
+:where(.main-container) .profile {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    outline: none;
+}
+
+:where(.main-container) .activity {
+    gap: 10px;
+}
+
+:where(.main-container) .activity .person-icon {
+    width: 100%;
+    height: 100%;
+}
+
+:where(.main-container) .activity .activity-type {
+    border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+    :where(.main-container) .dashboard-inner-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: var(--top-bar-height) minmax(0, 1fr);
+    }
+
+    :where(.main-container) .dashboard {
+        grid-column: 1;
+        min-width: 0;
+    }
+}

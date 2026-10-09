@@ -1,0 +1,596 @@
+:where(.people-page, .person-view-page, .interactions-page) .modal-header,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #E3DFE7;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .modal-header h2,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-header h2 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .close-btn,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-close {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .modal-content,
+.interactions-page .interaction-modal,
+:where(.people-page, .person-view-page, .interactions-page) .delete-modal {
+    color: #202622;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.10);
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .modal-overlay,
+.interactions-page .interaction-modal::backdrop,
+:where(.people-page, .person-view-page, .interactions-page) .delete-modal::backdrop {
+    background: rgb(0 0 0 / 32%);
+    backdrop-filter: blur(3px);
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .modal-body,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-body {
+    display: grid;
+    gap: 16px;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-row,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-row {
+    display: grid;
+    gap: 16px;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group label,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field label {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    color: #716D78;
+    text-transform: uppercase;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group input,
+:where(.people-page, .person-view-page, .interactions-page) .form-group select,
+:where(.people-page, .person-view-page, .interactions-page) .form-group textarea,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field input,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field select,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field textarea {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+    line-height: 1.4;
+    color: #202622;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group select,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field select {
+    appearance: none;
+    padding-right: 36px;
+    background-image: url('../assets/dropdown-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group input[type="date"]::-webkit-calendar-picker-indicator,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background: url('../assets/calendar-icon.svg') center / contain no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group input:focus,
+:where(.people-page, .person-view-page, .interactions-page) .form-group select:focus,
+:where(.people-page, .person-view-page, .interactions-page) .form-group textarea:focus,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field input:focus,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field select:focus,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field textarea:focus {
+    border-color: #6E5BCF;
+    box-shadow: 0 0 0 3px #EFEAFB;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group input::placeholder,
+:where(.people-page, .person-view-page, .interactions-page) .form-group textarea::placeholder,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field input::placeholder,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field textarea::placeholder {
+    color: #929292;
+    opacity: 1;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .form-group textarea,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field textarea {
+    min-height: 102px;
+    resize: vertical;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .modal-actions,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-footer {
+    display: grid;
+    gap: 12px;
+    border-top: 1px solid #E3DFE7;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .btn-modal-cancel,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-footer button {
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+:where(.people-page, .person-view-page, .interactions-page) .delete-modal .modal-cancel,
+:where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-cancel,
+:where(.people-page, .person-view-page, .interactions-page) .btn-modal-cancel {
+    border: 0.83px solid #DFE3E0;
+    color: #202622;
+}
+
+:where(.people-page, .person-view-page) .modal-content input,
+:where(.people-page, .person-view-page) .modal-content select,
+:where(.people-page, .person-view-page) .modal-content textarea,
+:where(.people-page, .person-view-page) .modal-content button {
+    font-family: inherit;
+}
+
+:where(.people-page, .person-view-page) .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+:where(.people-page, .person-view-page) .modal-overlay:target {
+    display: flex;
+}
+
+:where(.people-page, .person-view-page) .modal-content {
+    background: #ffffff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 672px;
+    max-height: calc(100dvh - 32px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+:where(.people-page, .person-view-page) .modal-content form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
+:where(.people-page, .person-view-page) .modal-header {
+    padding: 24px;
+    flex-shrink: 0;
+}
+
+:where(.people-page, .person-view-page) .close-btn {
+    color: #716D78;
+    font-size: 22px;
+    line-height: 1;
+    text-decoration: none;
+}
+
+:where(.people-page, .person-view-page) .close-btn:hover {
+    background: #F8F6F3;
+}
+
+:where(.people-page, .person-view-page) .modal-body {
+    align-content: start;
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+:where(.people-page, .person-view-page) .modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+:where(.people-page, .person-view-page) .modal-body::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+}
+
+:where(.people-page, .person-view-page) .form-section {
+    display: grid;
+    gap: 16px;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+:where(.people-page, .person-view-page) .form-section + .form-section {
+    margin-top: 24px;
+}
+
+:where(.people-page, .person-view-page) .section-title {
+    display: block;
+    width: 100%;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    color: #6E5BCF;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding: 0;
+}
+
+:where(.people-page, .person-view-page) .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+:where(.people-page, .person-view-page) .form-row {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+:where(.people-page, .person-view-page) .form-group label {
+    margin-bottom: 6px;
+}
+
+:where(.people-page, .person-view-page) .form-group input,
+:where(.people-page, .person-view-page) .form-group select,
+:where(.people-page, .person-view-page) .form-group textarea {
+    font-size: 14px;
+    background-color: #ffffff;
+    outline: none;
+}
+
+:where(.people-page, .person-view-page) .sub-label {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #96938F;
+    margin-top: 6px;
+}
+
+:where(.people-page, .person-view-page) .modal-actions {
+    grid-template-columns: 1fr 1fr;
+    padding: 24px;
+    flex-shrink: 0;
+}
+
+:where(.people-page, .person-view-page) .btn-modal-cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+:where(.people-page, .person-view-page) .btn-modal-cancel:hover {
+    background-color: #F8F6F3;
+}
+
+@media (max-width: 480px) {
+    :where(.people-page, .person-view-page) .modal-header,
+:where(.people-page, .person-view-page) .modal-body,
+:where(.people-page, .person-view-page) .modal-actions {
+        padding: 16px;
+    }
+    
+    :where(.people-page, .person-view-page) .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.interactions-page .interaction-modal {
+    box-sizing: border-box;
+    width: min(672px, calc(100% - 32px));
+    max-width: 672px;
+    max-height: min(921.6px, calc(100dvh - 32px));
+    margin: auto;
+    padding: 0;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 16px;
+    background: white;
+}
+
+.interactions-page .interaction-modal[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.interaction-modal form {
+    width: 100%;
+    min-width: 0;
+}
+
+.interaction-modal .modal-header,
+.interaction-modal .modal-body,
+.interaction-modal .modal-footer {
+    padding: 24px;
+}
+
+.interaction-modal button,
+.interaction-modal input,
+.interaction-modal select,
+.interaction-modal textarea {
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.interaction-modal .modal-close {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.interaction-modal .modal-close img {
+    display: block;
+}
+
+.interaction-modal .modal-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.interaction-modal .modal-field {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-width: 0;
+}
+
+.interaction-modal .modal-field label span {
+    color: #B54747;
+}
+
+.interaction-modal .modal-field input,
+.interaction-modal .modal-field select,
+.interaction-modal .modal-field textarea {
+    box-sizing: border-box;
+    min-width: 0;
+    background-color: white;
+}
+
+.interaction-modal .modal-field input:focus,
+.interaction-modal .modal-field select:focus,
+.interaction-modal .modal-field textarea:focus {
+    outline: none;
+}
+
+.interaction-modal .modal-footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.interaction-modal .modal-footer button {
+    cursor: pointer;
+}
+
+.interaction-modal .modal-cancel {
+    background: white;
+}
+
+.interaction-modal .modal-submit {
+    border: 1px solid #6E5BCF;
+    background: #6E5BCF;
+    color: white;
+}
+
+.interaction-modal .modal-close:hover,
+.interaction-modal .modal-cancel:hover {
+    background: #F8F6F3;
+}
+
+@media (max-width: 480px) {
+    .interaction-modal .modal-header,
+    .interaction-modal .modal-body,
+    .interaction-modal .modal-footer {
+        padding: 16px;
+    }
+
+    .interaction-modal .modal-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.files-page .modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    z-index: 1000;
+}
+
+.files-page .modal {
+    box-sizing: border-box;
+
+    width: min(511.98px, 100%);
+    min-height: 198.95px;
+
+    padding: 24px;
+
+    background-color: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.files-page .modal h2 {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.files-page .modal p {
+    margin: 0 0 18px;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #777;
+}
+
+.files-page .modal-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+}
+
+.files-page .modal-actions button {
+    height: 44.95px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.files-page .modal-cancel-button {
+    border: 1px solid #E3DFE7;
+
+    background-color: white;
+
+    color: black;
+}
+
+.files-page .modal-confirm-button {
+    border: 0;
+
+    background-color: #C34B4B;
+
+    color: white;
+}
+
+.files-page .modal-cancel-button:hover {
+    background-color: #F8F6F3;
+}
+
+.files-page .modal-confirm-button:hover {
+    background-color: #A63B3B;
+}
+
+.delete-modal {
+    box-sizing: border-box;
+    width: min(400px, calc(100% - 32px));
+    padding: 20px;
+    border: 0;
+    border-radius: 12px;
+    background: white;
+    font-family: Arial, sans-serif;
+}
+
+.delete-modal .delete-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: #FDF0F0;
+}
+
+.delete-modal .delete-icon span {
+    width: 14px;
+    height: 14px;
+    background: #BB4545;
+    mask: url('../assets/delete-icon.svg') center / contain no-repeat;
+}
+
+.delete-modal h2 {
+    margin: 0 0 8px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.delete-modal p {
+    margin: 0;
+    color: #716D78;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.delete-modal .modal-footer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.delete-modal .modal-footer > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 34px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.delete-modal .modal-cancel {
+    background: white;
+}
+
+.delete-modal .modal-cancel:hover {
+    background: #F8F6F3;
+}
+
+.delete-modal .delete-confirm {
+    border: 1px solid #BB4545;
+    background: #BB4545;
+    color: white;
+    font-weight: 600;
+}
+
+.delete-modal .delete-confirm:hover {
+    background: #A63B3B;
+    border-color: #A63B3B;
+}

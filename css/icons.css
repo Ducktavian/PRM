@@ -1,0 +1,11 @@
+.btn-primary img,
+.btn-secondary img,
+.btn-icon-danger img,
+.reminder-add-btn img,
+.sidebar-brand > img,
+.sidebar-nav img,
+.pagination-direction img,
+.back-link img {
+    display: block;
+    flex-shrink: 0;
+}

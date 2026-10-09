@@ -1,3 +1,17 @@
+.btn-primary:hover,
+.interactions-page .modal-submit:hover {
+    background: #5B48B8;
+    border-color: #5B48B8;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-icon-danger:disabled,
+.pagination button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
 .btn-primary {
     box-sizing: border-box;
     appearance: none;
@@ -15,26 +29,6 @@
     font: 500 14px/1.5 Arial, sans-serif;
     text-decoration: none;
     cursor: pointer;
-}
-
-.btn-primary:hover {
-    background: #5B48B8;
-    border-color: #5B48B8;
-}
-
-.btn-primary img,
-.btn-secondary img,
-.btn-icon-danger img,
-.reminder-add-btn img {
-    display: block;
-    flex-shrink: 0;
-}
-
-.btn-primary:disabled,
-.btn-secondary:disabled,
-.btn-icon-danger:disabled {
-    opacity: 0.4;
-    cursor: default;
 }
 
 .btn-icon {
@@ -110,5 +104,99 @@
         min-height: 44px;
         padding: 0 12px;
         font-size: 12px;
+    }
+}
+
+.files-page .file-action-button,
+.files-page .close-file-button {
+    appearance: none;
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.files-page .file-action-button {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+.files-page .close-file-button {
+    height: 34px;
+    padding: 0 16px;
+    font-size: 13px;
+}
+
+.files-page .file-action-button:hover,
+.files-page .close-file-button:hover {
+    background-color: #F8F6F3;
+}
+
+.interactions-page .action-menu {
+    position: fixed;
+    z-index: 10;
+    min-width: 110px;
+    padding: 4px;
+    border: 1px solid #E3DFE7;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+.interactions-page .action-edit,
+.interactions-page .action-delete {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 4px;
+    background: white;
+    color: #202622;
+    font: inherit;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.interactions-page .action-edit:hover {
+    background: #F8F6F3;
+}
+
+.interactions-page .action-delete {
+    color: #BB4545;
+}
+
+.interactions-page .action-delete:hover {
+    background: #FDF0F0;
+}
+
+.interactions-page .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.interactions-page .action-button img {
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .interactions-page .action-button {
+        height: 44px;
     }
 }
