@@ -1,3 +1,25 @@
+.card-header,
+.header-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-title h2 a,
+.detail-item a.link-text {
+    text-decoration: none;
+    color: #111827;
+}
+
+.detail-group,
+.card-box,
+.person-tags-notes-section {
+    background: #ffffff;
+    border: 1px solid #E3DFE7;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
 /* ==========================================
    PEOPLE CARDS & GRID
    ========================================== */
@@ -36,21 +58,10 @@
     box-shadow: 0 4px 12px rgba(110, 91, 207, 0.12);
 }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
 .card-title h2 {
     font-size: 14px;
     margin: 0 0 0.2rem;
     font-weight: 600;
-}
-
-.card-title h2 a {
-    text-decoration: none;
-    color: #111827;
 }
 
 .person-card:hover .card-title h2 a {
@@ -153,19 +164,8 @@
     transition: color 0.15s ease;
 }
 
-.back-link img {
-    display: block;
-    flex-shrink: 0;
-}
-
 .back-link:hover {
     color: #6E5BCF;
-}
-
-.header-action-buttons {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
 }
 
 .person-profile-header {
@@ -218,13 +218,6 @@
     }
 }
 
-.detail-group {
-    background: #ffffff;
-    border: 1px solid #E3DFE7;
-    border-radius: 12px;
-    padding: 1.25rem;
-}
-
 .group-title {
     font-size: 0.75rem;
     letter-spacing: 0.05em;
@@ -250,21 +243,12 @@
     word-break: break-word;
 }
 
-.detail-item a.link-text {
-    color: #111827;
-    text-decoration: none;
-}
-
 .detail-item a.link-text:hover {
     color: #6D28D9;
     text-decoration: underline;
 }
 
 .person-tags-notes-section {
-    background: #ffffff;
-    border: 1px solid #E3DFE7;
-    border-radius: 12px;
-    padding: 1.25rem;
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -304,13 +288,6 @@
     .bottom-sections-grid {
         grid-template-columns: 1fr;
     }
-}
-
-.card-box {
-    background: #ffffff;
-    border: 1px solid #E3DFE7;
-    border-radius: 12px;
-    padding: 1.25rem;
 }
 
 .card-box-header {
@@ -427,4 +404,3 @@
 .dropdown-dropdown a.text-danger:hover {
     background: #FDF0F0;
 }
-
