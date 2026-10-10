@@ -41,18 +41,8 @@
     border: 0.83px solid #DFE3E0;
 }
 
-.pagination button:disabled {
-    opacity: 0.4;
-    cursor: default;
-}
-
 .pagination button[hidden] {
     display: none;
-}
-
-.pagination-direction img {
-    display: block;
-    flex-shrink: 0;
 }
 
 @media (max-width: 600px) {
@@ -69,4 +59,3 @@
         gap: 6px;
     }
 }
-

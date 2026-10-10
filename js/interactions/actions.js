@@ -1,12 +1,12 @@
 /**
  * Leaves opening the edit form to onEdit so the dropdown doesn't depend on the modal.
  * @param {(id: string) => void} onEdit - Receives the selected entry's ID after
- * the dropdown closes. Uses an ID because sorting can change the row's position.
+ * the dropdown closes. Uses an ID because sorting can change the card's position.
  * @param {(trigger: HTMLButtonElement) => void} onDelete - Opens the confirmation.
- * Receives the row button so the modal can identify the entry and restore focus.
+ * Receives the card button so the modal can identify the entry and restore focus.
  */
 export function initActions(onEdit, onDelete) {
-    const table = document.querySelector('.interaction-history table');
+    const list = document.querySelector('.interaction-list');
     const menu = document.getElementById('interaction-actions');
     const editButton = menu.querySelector('.action-edit');
     const deleteButton = menu.querySelector('.action-delete');
@@ -19,7 +19,7 @@ export function initActions(onEdit, onDelete) {
         activeButton = null;
     }
 
-    table.addEventListener('click', (event) => {
+    list.addEventListener('click', (event) => {
         const button = event.target.closest('.action-button');
         if (!button) return;
         const wasOpen = activeButton === button;
@@ -41,7 +41,7 @@ export function initActions(onEdit, onDelete) {
     });
 
     editButton.addEventListener('click', () => {
-        const id = activeButton?.closest('tr').dataset.interactionId;
+        const id = activeButton?.closest('li').dataset.interactionId;
         closeMenu();
         if (id) onEdit(id);
     });

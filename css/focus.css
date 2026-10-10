@@ -1,4 +1,5 @@
 /* Standard focus outline */
+.sidebar-nav a:focus-visible,
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible,
 .btn-icon-danger:focus-visible,
@@ -22,6 +23,8 @@
 }
 
 /* Focus stays inside dropdown items */
+.menu-toggle:focus-visible,
+.navigation-close:focus-visible,
 .dropdown-dropdown a:focus-visible,
 .interactions-page .action-edit:focus-visible,
 .interactions-page .action-delete:focus-visible {

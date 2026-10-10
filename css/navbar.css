@@ -34,12 +34,6 @@
     white-space: nowrap;
 }
 
-.sidebar-brand > img,
-.sidebar-nav img {
-    display: block;
-    flex-shrink: 0;
-}
-
 .sidebar-brand strong {
     font-size: 16px;
     line-height: 1.2;
@@ -90,11 +84,6 @@
     background-color: #EFEAFB;
 }
 
-.sidebar-nav a:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: 2px;
-}
-
 .sidebar-footer {
     margin-top: auto;
     padding: 16px;
@@ -132,12 +121,6 @@
     border-radius: 8px;
     background: transparent;
     cursor: pointer;
-}
-
-.menu-toggle:focus-visible,
-.navigation-close:focus-visible {
-    outline: 2px solid #6E5BCF;
-    outline-offset: -2px;
 }
 
 .navigation-backdrop {

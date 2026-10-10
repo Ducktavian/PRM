@@ -1,4 +1,5 @@
-.type-badge {
+.type-badge,
+.activity-type {
     display: inline-block;
     padding: 2px 8px;
     border-radius: 999px;
@@ -8,27 +9,27 @@
 }
 
 .type-message {
-    color: #8C72D9;
-    background: #8C72D914;
+    color: white;
+    background: #8870d8;
 }
 
 .type-meeting,
 .type-meetup {
-    color: #439AD6;
-    background: #439AD614;
+    color: white;
+    background: #4098d0;
 }
 
 .type-conversation {
-    color: #6E5BCF;
-    background: #6E5BCF14;
+    color: white;
+    background: #e86870;
 }
 
 .type-event {
-    color: #F2A51A;
-    background: #F2A51A14;
+    color: white;
+    background: #f0a018;
 }
 
 .type-call {
-    color: #3DBB86;
-    background: #3DBB8614;
+    color: white;
+    background: #38b880;
 }
