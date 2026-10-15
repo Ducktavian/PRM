@@ -1,54 +1,48 @@
+import { updateDocument, getDocument } from './document-access.js';
 import { getFullName } from './helpers.js';
-
-export function initPersonModal() {
+import { savePerson } from './models.js';
+import { initDialogs } from './dialogs.js';
+export function initPersonModal(onSaved = () => {}) {
+    initDialogs();
     const modal = document.getElementById('person-modal');
     const form = modal.querySelector('form');
     const heading = document.getElementById('person-modal-title');
-    const saveButton = modal.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', (event) => {
+    const button = form.querySelector('[type="submit"]');
+    const error = modal.querySelector('[role="alert"]');
+    let editingId = null;
+    form.addEventListener('submit', async event => {
         event.preventDefault();
-        if (!form.reportValidity()) return;
-        location.hash = '';
+        if (button.disabled || !form.reportValidity()) return;
+        error.textContent = '';
+        button.disabled = true;
+        try {
+            const values = Object.fromEntries(new FormData(form));
+            await updateDocument(document => { savePerson(document, values, editingId); });
+            location.hash = '';
+            onSaved();
+        } catch (failure) { error.textContent = failure.message; }
+        finally { button.disabled = false; }
     });
-
-    function openAdd() {
-        heading.textContent = 'Add Person';
-        saveButton.textContent = 'Save Person';
-        form.reset();
-    }
-
-    function openEdit(person) {
-        heading.textContent = 'Edit Person';
-        saveButton.textContent = 'Save Changes';
-        form.reset();
-
-        const { contact = {}, personalInfo = {}, relationship = {} } = person;
-        const values = {
-            fullName: getFullName(person),
-            category: relationship.category,
-            pronouns: personalInfo.pronouns,
-            birthday: personalInfo.birthday,
-            occupation: personalInfo.occupation,
-            email: contact.emails?.[0],
-            phone: contact.phones?.[0],
-            location: contact.location,
-            preferredContact: contact.preferredContact,
-            workplace: relationship.workplaceOrSchool,
-            dateMet: relationship.dateYouMet,
-            howMet: relationship.howYouMet,
-            interests: person.interests?.join(', '),
-            skills: person.skills?.join(', '),
-            likes: person.likes?.join(', '),
-            dislikes: person.dislikes?.join(', '),
-            sharedTopics: person.sharedTopics?.join(', '),
-            notes: person.notes
-        };
-
-        for (const [name, value] of Object.entries(values)) {
-            form.elements.namedItem(name).value = value ?? '';
+    function prepare(person = null) {
+        if (!getDocument()) return;
+        editingId = person?.id ?? null;
+        form.reset(); error.textContent = '';
+        heading.textContent = person ? 'Edit Person' : 'Add Person';
+        button.textContent = person ? 'Save Changes' : 'Save Person';
+        if (person) {
+            const { contact, personalInfo, relationship } = person;
+            const values = { fullName: getFullName(person), category: relationship.category, ...personalInfo,
+                email: contact.emails[0], phone: contact.phones[0], location: contact.location, preferredContact: contact.preferredContact,
+                workplace: relationship.workplaceOrSchool, dateMet: relationship.dateYouMet, howMet: relationship.howYouMet, notes: person.notes,
+                ...Object.fromEntries(['interests', 'skills', 'likes', 'dislikes', 'sharedTopics'].map(key => [key, person[key].join(', ')])) };
+            for (const [key, value] of Object.entries(values)) {
+                const field = form.elements.namedItem(key);
+                if (!field) continue;
+                if (field.tagName === 'SELECT' && ![...field.options].some(o => o.value === (value ?? ''))) field.add(new Option(value ?? '', value ?? ''));
+                field.value = value ?? '';
+            }
         }
+        location.hash = 'person-modal';
     }
-
-    return { openAdd, openEdit };
+    return { openAdd: () => prepare(), openEdit: person => prepare(person) };
 }
