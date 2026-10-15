@@ -14,9 +14,13 @@ This guide follows the intended **draw.io-style workflow**. The user's JSON file
 
 ## What exists now
 
-- `backend/server.js` serves `frontend/`, parses JSON, and has `/api/health`. Run it from `backend/` with `npm.cmd run dev` on PowerShell.
+- `backend/server.js` serves `frontend/`, parses JSON with a 2 MB request limit, handles JSON errors, and has `/api/health`. Run it from `backend/` with `npm.cmd run dev` on PowerShell.
+- `backend/lib/document.js` already defines the version 1.0 document format in code. `createDocument()` returns an empty document; `validateDocument()` checks all required person, reminder, and interaction fields, rejects duplicate IDs and unsupported versions, converts numeric IDs to strings, fills optional reminder/interaction fields, and preserves extra imported fields. **Use this existing shape; do not design a second person schema for the frontend.**
+- `backend/routes/documents.js` already implements `POST /api/documents/new`, `/open`, and `/download`. Open validates and normalizes without writing a file; Download validates again and returns a JSON attachment with a safe filename.
+- `backend/package.json` still has a placeholder `test` script, and `backend/test/documents.test.js` does not exist yet. Route and validation tests remain to be written.
 - `frontend/js/data.js` supplies nine hardcoded sample people. The dashboard, people pages, and interactions page currently import that data.
 - `frontend/js/files/main.js` downloads a snapshot of sample data. Its Open button is an alert, and Create only changes an in-memory object.
+- `frontend/js/api.js` and `frontend/js/document-store.js` do not exist yet; the shared browser draft contract below is planned work for Person 2.
 - Add/Edit Person does not save; the person delete confirmation is a link. Interaction edits exist only in that page's memory. Reminder controls are visible but not connected to data.
 
 ## Design choices for this version
@@ -113,12 +117,12 @@ Person 2 owns `document-store.js` and `api.js`; Persons 3 and 4 import them with
 
 Person 2 provides `getDocument()`, `setDocument(document, filename)`, `updateDocument(mutator)`, `getFilename()`, `isDirty()`, `markDownloaded()`, and `closeDocument()` from `document-store.js`. `updateDocument` makes the edit available to every page and marks the document dirty. It must save the working draft to `sessionStorage` before reporting success. Person 2 also provides `createDocument()`, `openDocument(file)`, and `downloadDocument()` helpers in `api.js` or the Files module and tells the team the final exported names before Persons 3 and 4 integrate.
 
-Person 3 uses the current person shape and nested reminder shape above. Person 4 uses nested interactions, converting `personId` to a string and mapping the form's `notes` field to `details`. Both show a useful empty state when no file is open.
+Person 3 uses the person and nested reminder shape already enforced by `backend/lib/document.js`; Person 3 does not need to create a new schema. New people must include its required fields and arrays, and new IDs must be UUID strings. Person 4 uses nested interactions, converting `personId` to a string and mapping the form's `notes` field to `details`. Both show a useful empty state when no file is open.
 
 ## Ordered checklist
 
-1. [ ] **Lock the contracts.** Agree on this JSON format, Express routes, and `document-store.js` exports. All four people read their owned current files.
-2. [ ] **Build the foundation.** Person 1 builds and tests stateless document routes. In parallel, Person 2 builds the shared draft store and Files page workflow. Agree on response shapes before connecting them.
+1. [ ] **Confirm the remaining frontend contract.** The JSON format and Express routes are already implemented in `backend/lib/document.js` and `backend/routes/documents.js`. Agree on `document-store.js` exports and have all four people read their owned current files.
+2. [ ] **Finish the foundation.** Person 1 adds route and validation tests and replaces the placeholder test script; Person 2 builds the shared draft store and Files page workflow. Confirm Person 2's final exported names before connecting page code.
 3. [ ] **Connect editing.** Person 3 makes people and reminder controls change the shared document. Person 4 does the same for interactions and the dashboard. Remove imports of `frontend/js/data.js` from live pages.
 4. [ ] **Handle unsaved work.** Show a dirty indicator after edits. Warn before New, Open, or Close discards edits. Keep the draft across page navigation and refresh. A successful Download clears the dirty indicator only after the browser download has been initiated.
 5. [ ] **Test the full file loop.** Create an empty file → add a person, interaction, and reminder → move between pages → download JSON → close the tab → reopen PRM → open that JSON → confirm all data is present → edit and download again.
