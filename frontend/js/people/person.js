@@ -1,117 +1,138 @@
-import { renderPersonAvatar } from '../avatar.js';
-import { people } from '../data.js';
-import { getFullName, renderCategoryBadge, formatDate } from './helpers.js';
+import { getDocument, getStoreError, updateDocument, peopleURL } from './document-access.js';
+import { getFullName, renderSafeAvatar, renderCategoryBadge, formatDate, parseDate, renderTags, escapeHTML, renderReminder } from './helpers.js';
+import { requirePerson, deletePerson, requireReminder, saveReminder } from './models.js';
 import { initPersonModal } from './person-modal.js';
-
-const personId = new URLSearchParams(window.location.search).get('id');
-const person = people.find((entry) => String(entry.id) === personId) || people[0];
-const { contact = {}, personalInfo = {}, relationship = {} } = person;
-const name = getFullName(person);
-
-function getAge(birthday) {
-    const today = new Date();
-    const birth = new Date(birthday + 'T00:00:00');
-    const hadBirthday = today.getMonth() > birth.getMonth()
-        || (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
-    return today.getFullYear() - birth.getFullYear() - (hadBirthday ? 0 : 1);
-}
-
-function setText(selector, value) {
-    const element = document.querySelector(selector);
-
-    if (element) {
-        element.textContent = value;
+const personId = new URLSearchParams(location.search).get('id');
+const select = selector => document.querySelector(selector);
+const text = (selector, value) => { select(selector).textContent = value ?? ''; };
+const html = (selector, value) => { select(selector).innerHTML = value; };
+const current = () => requirePerson(getDocument(), personId);
+const pageError = select('#person-error');
+let reminderId = null;
+function render() {
+    const document = getDocument();
+    const person = document?.people.find(p => String(p.id) === personId);
+    const available = Boolean(person);
+    select('#person-content').hidden = !available;
+    select('#person-state').hidden = available;
+    text('#person-state', available ? '' : !document ? getStoreError() || 'No file open. Open or create a file from Files first.' : 'Person not found. Return to People and choose a person.');
+    for (const button of documentButtons()) button.disabled = !available;
+    documentTitle(person);
+    if (!person) { location.hash = ''; return; }
+    const { contact, personalInfo, relationship } = person;
+    const name = getFullName(person);
+    html('[data-person-avatar]', renderSafeAvatar(person));
+    text('[data-person-name]', name);
+    text('[data-person-pronouns]', personalInfo.pronouns);
+    html('[data-person-category]', renderCategoryBadge(person));
+    text('[data-person-role-company]', [personalInfo.occupation, relationship.workplaceOrSchool].filter(Boolean).join(' - '));
+    html('[data-person-email]', `<i class="fa-regular fa-envelope"></i> ${escapeHTML(contact.emails.join(', ') || 'Not provided')}`);
+    const email = select('[data-person-email]');
+    email.removeAttribute('href');
+    if (contact.emails[0]) email.setAttribute('href', `mailto:${encodeURIComponent(contact.emails[0])}`);
+    html('[data-person-phone]', `<i class="fa-solid fa-phone"></i> ${escapeHTML(contact.phones.join(', ') || 'Not provided')}`);
+    html('[data-person-location]', `<i class="fa-solid fa-location-dot"></i> ${escapeHTML(contact.location || 'Not provided')}`);
+    text('[data-person-preferred-contact]', contact.preferredContact || 'Not provided');
+    let birthday = formatDate(personalInfo.birthday);
+    const birth = parseDate(personalInfo.birthday), today = new Date();
+    if (birth && birth <= today) {
+        const passed = today.getMonth() > birth.getMonth() || (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+        birthday += ` - ${today.getFullYear() - birth.getFullYear() - (passed ? 0 : 1)} years old`;
     }
+    text('[data-person-birthday]', birthday || 'Not provided');
+    text('[data-person-pronouns-detail]', personalInfo.pronouns || 'Not provided');
+    text('[data-person-occupation]', personalInfo.occupation || 'Not provided');
+    html('[data-person-category-detail]', renderCategoryBadge(person));
+    text('[data-person-workplace]', relationship.workplaceOrSchool || 'Not provided');
+    text('[data-person-how-met]', relationship.howYouMet || 'Not provided');
+    text('[data-person-date-met]', formatDate(relationship.dateYouMet) || 'Not provided');
+    for (const key of ['interests', 'skills', 'likes', 'dislikes', 'sharedTopics']) html(`[data-person-${key === 'sharedTopics' ? 'shared-topics' : key}]`, renderTags(person[key]));
+    text('[data-person-notes]', person.notes || 'No notes yet.');
+    html('[data-person-interactions]', [...person.interactions].sort((a, b) => b.date.localeCompare(a.date) || (b.time || '').localeCompare(a.time || '')).map(i => {
+        const type = ['message', 'meeting', 'meetup', 'conversation', 'call', 'event'].includes(i.type.toLowerCase()) ? i.type.toLowerCase() : 'conversation';
+        return `<div class="interaction-item"><div class="interaction-meta"><span class="type-badge type-${type}">${escapeHTML(i.type)}</span><span class="date">${escapeHTML(formatDate(i.date))} ${escapeHTML(i.time)}</span></div><h3>${escapeHTML(i.title)}</h3><p>${escapeHTML(i.details)}</p>${i.followUp ? `<p>Follow-up: ${escapeHTML(i.followUp)}</p>` : ''}</div>`;
+    }).join('') || '<p>No interactions yet.</p>');
+    html('[data-person-reminders]', [...person.reminders].sort((a, b) => Number(a.completed) - Number(b.completed) || a.date.localeCompare(b.date)).map(renderReminder).join('') || '<p>No reminders yet. Select Add to create one.</p>');
+    text('[data-delete-person-title]', `Delete ${name}?`);
+    text('[data-delete-person-description]', `This removes ${name} and all their interactions and reminders from the current document. Download the updated file to keep the change.`);
 }
-
-function setHTML(selector, value) {
-    const element = document.querySelector(selector);
-
-    if (element) {
-        element.innerHTML = value;
+function documentButtons() { return document.querySelectorAll('[data-edit-person], [data-delete-person], [data-add-reminder]'); }
+function documentTitle(person) { document.title = person ? `${getFullName(person)} | RELM` : 'Person unavailable | RELM'; }
+async function commit(mutator, success = render, error = pageError) {
+    error.textContent = '';
+    try { await updateDocument(mutator); success(); return true; }
+    catch (failure) { error.textContent = failure.message; return false; }
+}
+const modal = initPersonModal(render);
+select('[data-edit-person]').addEventListener('click', () => modal.openEdit(current()));
+select('[data-delete-person]').addEventListener('click', () => { location.hash = 'delete-person-modal'; });
+select('#delete-person-modal .delete-confirm').addEventListener('click', async event => {
+    const button = event.currentTarget;
+    button.disabled = true;
+    await commit(document => deletePerson(document, personId), () => { location.href = peopleURL(); }, select('#delete-person-error'));
+    button.disabled = false;
+});
+function openReminder(id = null) {
+    reminderId = id;
+    const overlay = select(id === null ? '#add-reminder-modal' : '#edit-reminder-modal');
+    const form = overlay.querySelector('form');
+    form.reset(); overlay.querySelector('[role="alert"]').textContent = '';
+    if (id !== null) {
+        const reminder = requireReminder(current(), id);
+        for (const key of ['title', 'date', 'details']) form.elements.namedItem(key).value = reminder[key];
     }
+    location.hash = overlay.id;
 }
-
-function renderTags(items = []) {
-    return items.map((item) => `<span class="tag">${item}</span>`).join('');
+select('[data-add-reminder]').addEventListener('click', () => openReminder());
+for (const overlay of document.querySelectorAll('#add-reminder-modal, #edit-reminder-modal')) {
+    const form = overlay.querySelector('form');
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const button = form.querySelector('[type="submit"]');
+        if (button.disabled || !form.reportValidity()) return;
+        button.disabled = true;
+        const id = overlay.id === 'add-reminder-modal' ? null : reminderId;
+        const values = Object.fromEntries(new FormData(form));
+        await commit(document => { saveReminder(requirePerson(document, personId), values, id); }, () => { location.hash = ''; render(); }, overlay.querySelector('[role="alert"]'));
+        button.disabled = false;
+    });
 }
-
-document.title = `${name} | RELM`;
-
-const avatar = document.querySelector('[data-person-avatar]');
-
-if (avatar) {
-    avatar.innerHTML = renderPersonAvatar(person);
-}
-
-const email = contact.emails?.[0] || '';
-const roleCompany = [personalInfo.occupation, relationship.workplaceOrSchool].filter(Boolean).join(' - ');
-const birthday = personalInfo.birthday
-    ? `${formatDate(personalInfo.birthday)} - ${getAge(personalInfo.birthday)} years old`
-    : '';
-
-setText('[data-person-name]', name);
-setText('[data-person-pronouns]', personalInfo.pronouns);
-setHTML('[data-person-category]', renderCategoryBadge(person));
-setText('[data-person-role-company]', roleCompany);
-
-setHTML('[data-person-email]', `<i class="fa-regular fa-envelope"></i> ${email}`);
-document.querySelector('[data-person-email]')?.setAttribute('href', `mailto:${email}`);
-
-setHTML('[data-person-phone]', `<i class="fa-solid fa-phone"></i> ${contact.phones?.[0] || ''}`);
-setHTML('[data-person-location]', `<i class="fa-solid fa-location-dot"></i> ${contact.location || ''}`);
-setText('[data-person-preferred-contact]', contact.preferredContact);
-
-setText('[data-person-birthday]', birthday);
-setText('[data-person-pronouns-detail]', personalInfo.pronouns);
-setText('[data-person-occupation]', personalInfo.occupation);
-
-setHTML('[data-person-category-detail]', renderCategoryBadge(person));
-setText('[data-person-workplace]', relationship.workplaceOrSchool);
-setText('[data-person-how-met]', relationship.howYouMet);
-setText('[data-person-date-met]', formatDate(relationship.dateYouMet));
-
-setHTML('[data-person-interests]', renderTags(person.interests));
-setHTML('[data-person-skills]', renderTags(person.skills));
-setHTML('[data-person-likes]', renderTags(person.likes));
-setHTML('[data-person-dislikes]', renderTags(person.dislikes));
-
-setText('[data-person-notes]', person.notes);
-
-function renderInteractions(interactions = []) {
-    if (interactions.length === 0) {
-        return '<p class="interaction-item">No interactions yet.</p>';
+select('[data-person-reminders]').addEventListener('click', event => {
+    const edit = event.target.closest('[data-edit-reminder]');
+    const remove = event.target.closest('[data-delete-reminder]');
+    if (event.target.closest('[data-reminder-menu]') || edit || remove) event.preventDefault();
+    if (edit) openReminder(edit.dataset.editReminder);
+    if (remove) {
+        reminderId = remove.dataset.deleteReminder;
+        text('#delete-reminder-title', `Delete ${requireReminder(current(), reminderId).title}?`);
+        text('#delete-reminder-error', '');
+        location.hash = 'delete-reminder-modal';
     }
+});
+select('[data-person-reminders]').addEventListener('change', async event => {
+    const checkbox = event.target.closest('[data-complete-reminder]');
+    if (!checkbox) return;
+    const completed = checkbox.checked;
+    checkbox.disabled = true;
+    const success = await commit(document => { requireReminder(requirePerson(document, personId), checkbox.dataset.completeReminder).completed = completed; });
+    if (!success) { checkbox.checked = !completed; checkbox.disabled = false; }
+});
+select('#delete-reminder-modal .delete-confirm').addEventListener('click', async event => {
+    const button = event.currentTarget;
+    button.disabled = true;
+    const id = reminderId;
+    await commit(document => {
+        const person = requirePerson(document, personId), reminder = requireReminder(person, id);
+        person.reminders.splice(person.reminders.indexOf(reminder), 1);
+    }, () => { location.hash = ''; reminderId = null; render(); }, select('#delete-reminder-error'));
+    button.disabled = false;
+});
+window.addEventListener('pageshow', render);
+render();
 
-    return [...interactions]
-        .sort((a, b) => b.date.localeCompare(a.date))
-        .map((interaction) => `
-            <div class="interaction-item">
-                <div class="interaction-meta">
-                    <span class="type-badge type-${interaction.type.toLowerCase()}">${interaction.type}</span>
-                    <span class="date">${formatDate(interaction.date)}</span>
-                </div>
-                <h3>${interaction.title}</h3>
-                <p>${interaction.details || ''}</p>
-            </div>
-        `)
-        .join('');
-}
-
-setHTML('[data-person-interactions]', renderInteractions(person.interactions));
-
-setText('[data-delete-person-title]', `Delete ${name}?`);
-setText(
-    '[data-delete-person-description]',
-    `This will permanently remove ${name} and all their interactions and reminders.`
-);
-
-const personModal = initPersonModal();
-document.querySelector('[data-edit-person]').addEventListener('click', () => personModal.openEdit(person));
-
-const backLink = document.querySelector('.back-link');
-const cameFrom = document.referrer && new URL(document.referrer);
-
-if (cameFrom && cameFrom.origin === window.location.origin && !cameFrom.pathname.endsWith('/person.html')) {
-    backLink.href = cameFrom.pathname + cameFrom.search;
+const backLink = select('.back-link');
+backLink.href = peopleURL();
+if (document.referrer) {
+    const source = new URL(document.referrer);
+    if (source.origin === location.origin && source.pathname.endsWith('/people.html')) backLink.href = source.pathname + source.search;
 }

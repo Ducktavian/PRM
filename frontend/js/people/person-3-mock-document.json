@@ -1,0 +1,92 @@
+{
+  "version": "1.0",
+  "people": [
+    {
+      "id": "6f87de45-7ef4-4e75-80b3-20c374801c01",
+      "firstName": "Alex",
+      "lastName": "Santos",
+      "contact": {
+        "emails": ["alex@example.com"],
+        "phones": ["+63 900 111 2222"],
+        "location": "Quezon City",
+        "preferredContact": "Email"
+      },
+      "personalInfo": {
+        "birthday": "2002-05-14",
+        "pronouns": "he/him",
+        "gender": "Male",
+        "occupation": "Software Developer"
+      },
+      "relationship": {
+        "category": "Friend",
+        "workplaceOrSchool": "Example Studio",
+        "howYouMet": "College",
+        "dateYouMet": "2021-08-20"
+      },
+      "interests": ["Technology", "Photography"],
+      "skills": ["JavaScript"],
+      "likes": ["Coffee"],
+      "dislikes": ["Early mornings"],
+      "sharedTopics": ["Web development"],
+      "notes": "Sample person for People page testing.",
+      "reminders": [
+        {
+          "id": "6f87de45-7ef4-4e75-80b3-20c374801c02",
+          "title": "Ask about the new project",
+          "date": "2026-10-20",
+          "completed": false,
+          "details": "Bring this up during the next chat."
+        },
+        {
+          "id": "6f87de45-7ef4-4e75-80b3-20c374801c03",
+          "title": "Send birthday message",
+          "date": "2026-05-14",
+          "completed": true,
+          "details": ""
+        }
+      ],
+      "interactions": [
+        {
+          "id": "6f87de45-7ef4-4e75-80b3-20c374801c04",
+          "type": "Message",
+          "date": "2026-09-18",
+          "time": "20:30",
+          "title": "Caught up about work",
+          "details": "Discussed Alex's current project.",
+          "followUp": "Ask for an update next month"
+        }
+      ]
+    },
+    {
+      "id": "6f87de45-7ef4-4e75-80b3-20c374801c05",
+      "firstName": "Mia",
+      "lastName": "Reyes",
+      "contact": {
+        "emails": [],
+        "phones": [],
+        "location": "",
+        "preferredContact": ""
+      },
+      "personalInfo": {
+        "birthday": "",
+        "pronouns": "",
+        "gender": "",
+        "occupation": ""
+      },
+      "relationship": {
+        "category": "Classmate",
+        "workplaceOrSchool": "",
+        "howYouMet": "",
+        "dateYouMet": ""
+      },
+      "interests": [],
+      "skills": [],
+      "likes": [],
+      "dislikes": [],
+      "sharedTopics": [],
+      "notes": "Sample person with mostly empty optional-looking values.",
+      "reminders": [],
+      "interactions": []
+    }
+  ]
+}
