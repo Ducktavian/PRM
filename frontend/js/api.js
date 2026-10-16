@@ -113,7 +113,7 @@ export async function downloadDocument(document, filename) {
     link.href = downloadUrl;
     link.download = filename || "relm-personal-network.json";
 
-    document.body.appendChild(link);
+    window.document.body.appendChild(link);
     link.click();
     link.remove();
 
