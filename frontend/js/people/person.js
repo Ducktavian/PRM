@@ -1,7 +1,8 @@
-import { getDocument, getStoreError, updateDocument, peopleURL } from './document-access.js';
+import { getDocument, readDocument, updateDocument, peopleURL, navigateWithinApp } from './document-access.js';
 import { getFullName, renderSafeAvatar, renderCategoryBadge, formatDate, parseDate, renderTags, escapeHTML, renderReminder } from './helpers.js';
 import { requirePerson, deletePerson, requireReminder, saveReminder } from './models.js';
 import { initPersonModal } from './person-modal.js';
+import { showToast, toastAfterNavigation } from '../toast.js';
 const personId = new URLSearchParams(location.search).get('id');
 const select = selector => document.querySelector(selector);
 const text = (selector, value) => { select(selector).textContent = value ?? ''; };
@@ -10,12 +11,12 @@ const current = () => requirePerson(getDocument(), personId);
 const pageError = select('#person-error');
 let reminderId = null;
 function render() {
-    const document = getDocument();
+    const document = readDocument();
     const person = document?.people.find(p => String(p.id) === personId);
     const available = Boolean(person);
     select('#person-content').hidden = !available;
     select('#person-state').hidden = available;
-    text('#person-state', available ? '' : !document ? getStoreError() || 'No file open. Open or create a file from Files first.' : 'Person not found. Return to People and choose a person.');
+    text('#person-state', available ? '' : !document ? 'No file open. Open or create a file from Files first.' : 'Person not found. Return to People and choose a person.');
     for (const button of documentButtons()) button.disabled = !available;
     documentTitle(person);
     if (!person) { location.hash = ''; return; }
@@ -58,10 +59,10 @@ function render() {
 }
 function documentButtons() { return document.querySelectorAll('[data-edit-person], [data-delete-person], [data-add-reminder]'); }
 function documentTitle(person) { document.title = person ? `${getFullName(person)} | RELM` : 'Person unavailable | RELM'; }
-async function commit(mutator, success = render, error = pageError) {
+async function commit(mutator, success = render, error = pageError, message = 'Changes saved to this file.') {
     error.textContent = '';
-    try { await updateDocument(mutator); success(); return true; }
-    catch (failure) { error.textContent = failure.message; return false; }
+    try { await updateDocument(mutator); success(); if (message) showToast(message); return true; }
+    catch (failure) { showToast(failure.message, { type: 'error', title: 'Could not save changes' }); return false; }
 }
 const modal = initPersonModal(render);
 select('[data-edit-person]').addEventListener('click', () => modal.openEdit(current()));
@@ -69,7 +70,7 @@ select('[data-delete-person]').addEventListener('click', () => { location.hash =
 select('#delete-person-modal .delete-confirm').addEventListener('click', async event => {
     const button = event.currentTarget;
     button.disabled = true;
-    await commit(document => deletePerson(document, personId), () => { location.href = peopleURL(); }, select('#delete-person-error'));
+    await commit(document => deletePerson(document, personId), () => { toastAfterNavigation('Person deleted.'); navigateWithinApp(peopleURL()); }, select('#delete-person-error'), null);
     button.disabled = false;
 });
 function openReminder(id = null) {
@@ -93,7 +94,7 @@ for (const overlay of document.querySelectorAll('#add-reminder-modal, #edit-remi
         button.disabled = true;
         const id = overlay.id === 'add-reminder-modal' ? null : reminderId;
         const values = Object.fromEntries(new FormData(form));
-        await commit(document => { saveReminder(requirePerson(document, personId), values, id); }, () => { location.hash = ''; render(); }, overlay.querySelector('[role="alert"]'));
+        await commit(document => { saveReminder(requirePerson(document, personId), values, id); }, () => { location.hash = ''; render(); }, overlay.querySelector('[role="alert"]'), id === null ? 'Reminder added.' : 'Reminder updated.');
         button.disabled = false;
     });
 }
@@ -114,7 +115,7 @@ select('[data-person-reminders]').addEventListener('change', async event => {
     if (!checkbox) return;
     const completed = checkbox.checked;
     checkbox.disabled = true;
-    const success = await commit(document => { requireReminder(requirePerson(document, personId), checkbox.dataset.completeReminder).completed = completed; });
+    const success = await commit(document => { requireReminder(requirePerson(document, personId), checkbox.dataset.completeReminder).completed = completed; }, render, pageError, completed ? 'Reminder completed.' : 'Reminder marked as incomplete.');
     if (!success) { checkbox.checked = !completed; checkbox.disabled = false; }
 });
 select('#delete-reminder-modal .delete-confirm').addEventListener('click', async event => {
@@ -124,7 +125,7 @@ select('#delete-reminder-modal .delete-confirm').addEventListener('click', async
     await commit(document => {
         const person = requirePerson(document, personId), reminder = requireReminder(person, id);
         person.reminders.splice(person.reminders.indexOf(reminder), 1);
-    }, () => { location.hash = ''; reminderId = null; render(); }, select('#delete-reminder-error'));
+    }, () => { location.hash = ''; reminderId = null; render(); }, select('#delete-reminder-error'), 'Reminder deleted.');
     button.disabled = false;
 });
 window.addEventListener('pageshow', render);

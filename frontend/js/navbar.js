@@ -1,3 +1,5 @@
+import { isDirty } from './document-store.js';
+
 const menuToggle = document.querySelector('.menu-toggle');
 const sidebar = document.getElementById('site-sidebar');
 const compactNavigation = window.matchMedia('(max-width: 1024px)');
@@ -51,6 +53,22 @@ document.addEventListener('keydown', (event) => {
 sidebar.addEventListener('click', (event) => {
     if (compactNavigation.matches && event.target.closest('a')) setNavigationOpen(false);
 });
+
+const unsavedBadge = document.createElement('span');
+unsavedBadge.className = 'unsaved-badge';
+unsavedBadge.textContent = 'Unsaved';
+unsavedBadge.title = 'You have changes that are not downloaded yet';
+sidebar.querySelector('a[href="files.html"]').append(unsavedBadge);
+
+function showUnsaved() {
+    const dirty = isDirty();
+    unsavedBadge.hidden = !dirty;
+    menuToggle.classList.toggle('has-unsaved', dirty);
+}
+
+showUnsaved();
+window.addEventListener('prm:dirtychange', showUnsaved);
+window.addEventListener('pageshow', showUnsaved);
 
 compactNavigation.addEventListener('change', () => {
     const focusWasInSidebar = sidebar.contains(document.activeElement);

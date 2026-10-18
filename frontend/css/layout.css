@@ -176,7 +176,6 @@ body.interactions-page {
     background: white;
     border: 1px solid #a1a4ab;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .interactions-page .interaction-summary {
@@ -332,6 +331,9 @@ body.files-page {
 
 :where(.main-container) .dashboard .card {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+:where(.main-container) .dashboard-grid .card {
     height: 100%;
 }
 

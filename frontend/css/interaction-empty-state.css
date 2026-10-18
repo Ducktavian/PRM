@@ -1,0 +1,41 @@
+.interactions-page [hidden] {
+    display: none !important;
+}
+
+.interactions-page .interaction-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    box-sizing: border-box;
+    padding: 48px 24px;
+    border: 1px solid #E3DFE7;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.interactions-page .empty-state-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    background: #F2EEFC;
+}
+
+.interactions-page .interaction-empty-state h2 {
+    margin: 0 0 8px;
+    color: #25212D;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.interactions-page .interaction-empty-state p {
+    max-width: 360px;
+    margin: 0 0 24px;
+    color: #716D78;
+    font-size: 14px;
+    line-height: 1.6;
+}

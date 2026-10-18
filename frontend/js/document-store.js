@@ -3,6 +3,15 @@ const STORAGE_KEY = "prm-document-draft-v1";
 let currentDocument = null;
 let currentFilename = null;
 let dirty = false;
+let storeError = '';
+let internalNavigation = false;
+let announcedDirty = false;
+
+function announceDirty() {
+    if (dirty === announcedDirty) return;
+    announcedDirty = dirty;
+    window.dispatchEvent(new CustomEvent('prm:dirtychange', { detail: { dirty } }));
+}
 
 function copyDocument(document) {
     return JSON.parse(JSON.stringify(document));
@@ -22,6 +31,8 @@ function applyState(state) {
     currentDocument = state.document;
     currentFilename = state.filename;
     dirty = state.dirty;
+    storeError = '';
+    announceDirty();
 }
 
 function persistState(state) {
@@ -42,6 +53,7 @@ function restoreState() {
         const savedState = window.sessionStorage.getItem(STORAGE_KEY);
 
         if (!savedState) {
+            applyState({ document: null, filename: null, dirty: false });
             return;
         }
 
@@ -53,21 +65,27 @@ function restoreState() {
             typeof state.filename !== "string" ||
             typeof state.dirty !== "boolean"
         ) {
-            window.sessionStorage.removeItem(STORAGE_KEY);
-            return;
+            throw new Error('Invalid saved draft');
         }
 
         applyState(state);
     } catch (error) {
-        console.error("Unable to restore the PRM working draft:", error);
+        currentDocument = null;
+        currentFilename = null;
+        dirty = false;
+        storeError = 'Could not restore your working draft. Check browser storage access or open your last downloaded file from Files. The stored draft has not been removed.';
+        announceDirty();
     }
 }
 
 restoreState();
 
 export function getDocument() {
+    restoreState();
     return currentDocument ? copyDocument(currentDocument) : null;
 }
+
+export function getStoreError() { return storeError; }
 
 export function setDocument(document, filename) {
     if (!isValidDocument(document)) {
@@ -87,6 +105,7 @@ export function setDocument(document, filename) {
 }
 
 export function updateDocument(mutator) {
+    restoreState();
     if (!currentDocument) {
         throw new Error("Open or create a file first.");
     }
@@ -123,7 +142,10 @@ export function isDirty() {
     return dirty;
 }
 
-export function markDownloaded() {
+export function markDownloaded(downloadedDocument = currentDocument, filename = currentFilename) {
+    restoreState();
+    // A response for an older snapshot must not mark newer edits as saved.
+    if (filename !== currentFilename || JSON.stringify(downloadedDocument) !== JSON.stringify(currentDocument)) return false;
     if (!currentDocument) {
         throw new Error("There is no open document to download.");
     }
@@ -150,4 +172,37 @@ export function closeDocument() {
     currentDocument = null;
     currentFilename = null;
     dirty = false;
+    storeError = '';
+    announceDirty();
 }
+
+export function navigateWithinApp(href) {
+    internalNavigation = true;
+    window.setTimeout(() => { internalNavigation = false; }, 1000);
+    window.location.href = href;
+}
+
+window.document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+    const url = new URL(link.href, window.location.href);
+    const current = new URL(window.location.href);
+    if (url.origin === current.origin && /\/(index|files|people|person|interactions)\.html$/.test(url.pathname) && (url.pathname !== current.pathname || url.search !== current.search)) {
+        internalNavigation = true;
+        window.setTimeout(() => { internalNavigation = false; }, 1000);
+    }
+});
+
+window.addEventListener('beforeunload', event => {
+    const navigating = internalNavigation;
+    internalNavigation = false;
+    if (dirty && !navigating) {
+        event.preventDefault();
+        event.returnValue = '';
+    }
+});
+
+window.addEventListener('pageshow', () => {
+    internalNavigation = false;
+    restoreState();
+});

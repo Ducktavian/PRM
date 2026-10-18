@@ -13,7 +13,10 @@
         <link rel="stylesheet" href="./css/avatar.css">
         <link rel="stylesheet" href="./css/dashboard/dashboard.css">
         <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/buttons.css">
+        <link rel="stylesheet" href="css/dashboard/empty-state.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
+    <link rel="stylesheet" href="css/toast.css">
 </head>
 
 <body>
@@ -69,7 +72,16 @@
                 <p>Track, remember, and nurture the people who matter.</p>
             </header>
 
-            <section class="dashboard-grid">
+            <section id="dashboard-empty-state" class="card dashboard-no-file" aria-labelledby="dashboard-empty-title" hidden>
+                <h2 id="dashboard-empty-title">No file open</h2>
+                <p>Your network is saved in a .json file on your computer. Open one you downloaded before, or start a new one.</p>
+                <div class="dashboard-no-file-actions">
+                    <button type="button" class="btn-primary" data-open-file>Open file</button>
+                    <button type="button" class="dashboard-link" data-new-file>Create new file</button>
+                </div>
+                <input type="file" accept=".json,application/json" aria-label="Choose a PRM .json file" hidden>
+            </section>
+            <section class="dashboard-grid" hidden>
                 <div class="card">
                     <p>PEOPLE</p>
                     <p class="main-stat" id="total-people">0</p>
@@ -102,14 +114,14 @@
                     </div>
 
                     <div class="card reconnect-soon">
-                        <p>RECONECT SOON</p>
+                        <p>RECONNECT SOON</p>
                         <div>
 
                         </div>
                     </div>
 
                     <div class="card upcoming-important-dates">
-                        <p>UPCOMING IMPORTANT DATES</p>
+                        <p>REMINDERS &amp; IMPORTANT DATES</p>
                         <div>
 
                         </div>

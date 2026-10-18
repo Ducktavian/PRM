@@ -1,3 +1,4 @@
+import { showToast, notifyStoreError } from '../toast.js';
 import {
     createDocument,
     openDocument,
@@ -8,6 +9,7 @@ import {
     getDocument,
     setDocument,
     getFilename,
+    getStoreError,
     isDirty,
     markDownloaded,
     closeDocument
@@ -33,6 +35,30 @@ const closeModalConfirmButton = document.getElementById("close-modal-confirm-but
 const createNewFileModal = document.getElementById("create-new-file-modal");
 const createModalCancelButton = document.getElementById("create-modal-cancel-button");
 const createModalConfirmButton = document.getElementById("create-modal-confirm-button");
+const actionControls = [fileInput, chooseFileButton, downloadBackupButton, createNewFileButton,
+    closeFileButton, closeModalCancelButton, closeModalConfirmButton,
+    createModalCancelButton, createModalConfirmButton];
+let busy = false;
+let operationVersion = 0;
+
+function setBusy(value) {
+    busy = value;
+    actionControls.forEach(control => { control.disabled = value; });
+    document.querySelector('main').setAttribute('aria-busy', String(value));
+}
+
+async function runOperation(action) {
+    if (busy) return;
+    const version = ++operationVersion;
+    const isCurrent = () => version === operationVersion;
+    setBusy(true);
+    try { await action(isCurrent); }
+    catch (error) {
+        if (isCurrent()) {
+            showToast(error.message, { type: 'error', title: 'File action failed' });
+        }
+    } finally { if (isCurrent()) setBusy(false); }
+}
 
 function countNestedRecords(people, key) {
     return people.reduce(function (total, person) {
@@ -44,6 +70,8 @@ function countNestedRecords(people, key) {
 
 function updateFileInformation(message = "") {
     const currentDocument = getDocument();
+    notifyStoreError(getStoreError());
+    if (message) showToast(message, { duration: 5000 });
 
     if (!currentDocument) {
         currentFileNameElement.textContent = "No file open";
@@ -78,7 +106,7 @@ function updateFileInformation(message = "") {
 
     fileUpdatedElement.textContent = isDirty()
         ? "Unsaved changes"
-        : (message || "No unsaved changes");
+        : "No unsaved changes";
 }
 
 chooseFileButton.addEventListener("click", function () {
@@ -88,7 +116,7 @@ chooseFileButton.addEventListener("click", function () {
 fileInput.addEventListener("change", async function () {
     const file = fileInput.files[0];
 
-    if (!file) {
+    if (!file || busy) {
         return;
     }
 
@@ -103,16 +131,13 @@ fileInput.addEventListener("change", async function () {
         }
     }
 
-    try {
+    await runOperation(async isCurrent => {
         const document = await openDocument(file);
-
+        if (!isCurrent()) return;
         setDocument(document, file.name);
         updateFileInformation("File opened");
-    } catch (error) {
-        window.alert(error.message);
-    } finally {
-        fileInput.value = "";
-    }
+    });
+    fileInput.value = "";
 });
 
 createNewFileButton.addEventListener("click", function () {
@@ -124,33 +149,32 @@ createModalCancelButton.addEventListener("click", function () {
 });
 
 createModalConfirmButton.addEventListener("click", async function () {
-    try {
+    await runOperation(async isCurrent => {
         const document = await createDocument();
-
+        if (!isCurrent()) return;
         setDocument(document, "relm-personal-network.json");
         updateFileInformation("New file created");
 
         createNewFileModal.style.display = "none";
-    } catch (error) {
-        window.alert(error.message);
-    }
+    });
 });
 
 downloadBackupButton.addEventListener("click", async function () {
+    if (busy) return;
     const document = getDocument();
 
     if (!document) {
-        window.alert("There is no open file to download.");
+        showToast(getStoreError() || 'Open a file before downloading a copy.', { type: getStoreError() ? 'error' : 'info' });
         return;
     }
 
-    try {
-        await downloadDocument(document, getFilename());
-        markDownloaded();
+    const filename = getFilename();
+    await runOperation(async isCurrent => {
+        await downloadDocument(document, filename, isCurrent);
+        if (!isCurrent()) return;
+        markDownloaded(document, filename);
         updateFileInformation("Backup downloaded");
-    } catch (error) {
-        window.alert(error.message);
-    }
+    });
 });
 
 closeFileButton.addEventListener("click", function () {
@@ -161,14 +185,20 @@ closeModalCancelButton.addEventListener("click", function () {
     closeFileModal.style.display = "none";
 });
 
-closeModalConfirmButton.addEventListener("click", function () {
-    try {
+closeModalConfirmButton.addEventListener("click", async function () {
+    await runOperation(async () => {
         closeDocument();
-        updateFileInformation();
+        updateFileInformation('File closed');
         closeFileModal.style.display = "none";
-    } catch (error) {
-        window.alert(error.message);
-    }
+    });
 });
 
 updateFileInformation();
+window.addEventListener('pagehide', () => { operationVersion++; });
+window.addEventListener('pageshow', () => {
+    operationVersion++;
+    setBusy(false);
+    createNewFileModal.style.display = 'none';
+    closeFileModal.style.display = 'none';
+    updateFileInformation();
+});

@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/focus.css">
+    <link rel="stylesheet" href="css/people/empty-state.css">
+    <link rel="stylesheet" href="css/list-page.css">
+    <link rel="stylesheet" href="css/toast.css">
 </head>
 
 <body class="people-page">
@@ -99,7 +102,14 @@
             </div>
         </section>
 
-        <p id="people-state" role="status"></p><section class="people-grid" id="people-grid" aria-label="People"></section>
+        <section id="people-state" class="people-empty-state" aria-labelledby="people-empty-title" hidden>
+            <span class="people-empty-icon" aria-hidden="true"><img src="assets/people-selected-icon.svg" alt="" width="28" height="28"></span>
+            <h2 id="people-empty-title"></h2>
+            <p></p>
+            <a class="btn-primary" href="files.html" hidden>Go to Files</a>
+            <button type="button" class="btn-primary" hidden>Add Person</button>
+        </section>
+        <section class="people-grid" id="people-grid" aria-label="People"></section>
 
         <nav class="pagination" aria-label="People pages">
             <output class="results-count pagination-status">Showing 0-0 of 0 people</output>

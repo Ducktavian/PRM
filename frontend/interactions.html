@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/focus.css">
+    <link rel="stylesheet" href="css/interaction-empty-state.css">
+    <link rel="stylesheet" href="css/list-page.css">
+    <link rel="stylesheet" href="css/toast.css">
 </head>
 
 <body class="interactions-page">
@@ -72,14 +75,14 @@
             </p>
             </div>
             <!-- add interaction button -->
-            <button type="button" class="add-interaction btn-primary">
+            <button type="button" class="add-interaction btn-primary" hidden>
                 <img src="assets/plus-icon.svg" alt="" width="16" height="16">
                 Add Interaction
             </button>
         </section>
 
         <!-- search bar and filters -->
-        <section class="page-filters" aria-label="Interaction filters">
+        <section class="page-filters" aria-label="Interaction filters" hidden>
 
             <div class="search-field">
                 <img class="search-icon" src="assets/search-icon.svg" alt="" width="16" height="16">
@@ -112,6 +115,16 @@
             </div>
         </section>
 
+        <section id="interaction-empty-state" class="interaction-empty-state" aria-labelledby="empty-state-title" hidden>
+            <span class="empty-state-icon" aria-hidden="true">
+                <img src="assets/interactions-selected-icon.svg" alt="" width="28" height="28">
+            </span>
+            <h2 id="empty-state-title"></h2>
+            <p></p>
+            <a class="btn-primary" href="files.html" hidden>Go to Files</a>
+            <button type="button" class="btn-primary" hidden>Add Interaction</button>
+        </section>
+
         <!-- interaction table -->
         <section class="interaction-history" aria-labelledby="interaction-heading">
             <h2 id="interaction-heading" class="visually-hidden">
@@ -121,7 +134,7 @@
             <ul class="interaction-list"></ul>
         </section>
         <!-- pagination -->
-        <nav class="pagination" aria-label="Interaction pages">
+        <nav class="pagination" aria-label="Interaction pages" hidden>
             <output id="interaction-status" class="interaction-status pagination-status"></output>
             <button type="button" class="pagination-direction" disabled>
                 <img src="assets/chevron-left-icon.svg" alt="" width="16" height="16"> Previous
@@ -149,6 +162,7 @@
             </div>
 
             <div class="modal-body">
+                <p id="interaction-error" role="alert"></p>
                 <div class="modal-field">
                     <label for="interaction-person">Person <span aria-hidden="true">*</span></label>
                     <select id="interaction-person" name="personId" required>
@@ -177,6 +191,10 @@
                 </div>
 
                 <div class="modal-field">
+                    <label for="interaction-time">Time (optional)</label>
+                    <input type="time" id="interaction-time" name="time">
+                </div>
+                <div class="modal-field">
                     <label for="interaction-title">Title or Subject <span aria-hidden="true">*</span></label>
                     <input type="text" id="interaction-title" name="title" placeholder="Brief summary" required>
                 </div>
@@ -203,6 +221,7 @@
     <dialog id="delete-interaction-dialog" class="delete-modal" aria-labelledby="delete-interaction-title" aria-describedby="delete-interaction-description">
         <form method="dialog">
             <div class="delete-icon" aria-hidden="true"><span></span></div>
+            <p id="delete-error" role="alert"></p>
             <h2 id="delete-interaction-title">Delete interaction?</h2>
             <p id="delete-interaction-description">This will permanently remove this interaction record. This cannot be undone.</p>
             <div class="modal-footer">

@@ -13,7 +13,9 @@ export function initDialogs() {
             previousFocus = document.activeElement;
             active.querySelector('input, button, a')?.focus();
         } else {
-            const target = previousFocus?.isConnected ? previousFocus : document.querySelector('[data-add-reminder], #open-add-person-btn');
+            const target = previousFocus?.isConnected && previousFocus.getClientRects().length
+                ? previousFocus
+                : [...document.querySelectorAll('[data-add-reminder], #open-add-person-btn, #people-state button')].find(element => element.getClientRects().length && !element.disabled);
             target?.focus();
         }
     }

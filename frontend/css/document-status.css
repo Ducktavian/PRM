@@ -1,0 +1,11 @@
+#file-error, .file-operation-error {
+    padding: 12px 16px;
+    border: 1px solid #E8D6B4;
+    border-radius: 8px;
+    background: #FFFAF0;
+    color: #76551D;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+#file-error[hidden] { display: none !important; }
