@@ -1,4 +1,4 @@
-import { getDocument, getStoreError, personURL } from './document-access.js';
+import { readDocument, personURL, navigateWithinApp } from './document-access.js';
 import { getFullName, getCategory, renderSafeAvatar, renderCategoryBadge, escapeHTML, formatDate, getLatestInteraction, pageOf } from './helpers.js';
 import { initPersonModal } from './person-modal.js';
 const grid = document.querySelector('#people-grid');
@@ -18,24 +18,40 @@ export function renderPeople(people, hasDocument = true) {
     const page = pageOf(filtered, currentPage);
     currentPage = page.page;
     add.disabled = !hasDocument;
-    search.disabled = category.disabled = !hasDocument;
+    search.disabled = category.disabled = !hasDocument || people.length === 0;
     clear.hidden = !search.value;
-    status.textContent = !hasDocument ? getStoreError() || 'No file open. Open or create a file from Files to manage your people.' : !people.length ? 'No people yet. Select Add Person to start your network.' : !filtered.length ? 'No people match your search or category.' : '';
-    status.hidden = !status.textContent;
+    const hasPeople = hasDocument && people.length > 0;
+    status.hidden = filtered.length > 0;
+    add.hidden = false;
+    document.querySelector('.page-filters').hidden = false;
+    pagination.hidden = false;
+    grid.hidden = filtered.length === 0;
+    if (!status.hidden) {
+        status.querySelector('h2').textContent = !hasDocument ? 'No file selected' : !hasPeople ? 'No people yet' : 'No matching people';
+        status.querySelector('p').textContent = !hasDocument ? 'Open a file from the Files page to view your network.' : !hasPeople ? 'Add your first person to start building your network.' : 'Try another search or clear your filters to see everyone.';
+        status.querySelector('a').hidden = hasDocument;
+        const action = status.querySelector('button');
+        action.hidden = !hasDocument || !hasPeople;
+        action.textContent = hasPeople ? 'Clear filters' : '+ Add Person';
+        action.onclick = hasPeople ? () => {
+            search.value = ''; category.value = 'all'; filter(); search.focus();
+        } : () => add.click();
+    }
     grid.innerHTML = page.items.map(p => {
         const latest = getLatestInteraction(p);
         const last = latest ? `Last: ${latest.type} - ${formatDate(latest.date)}` : 'No interactions yet';
         return `<article class="person-card" style="cursor: pointer;"><div class="card-header"><div class="avatar">${renderSafeAvatar(p)}</div><div class="card-title"><h2><a href="${escapeHTML(personURL(p.id))}">${escapeHTML(getFullName(p))}</a></h2>${renderCategoryBadge(p)}</div></div><div class="tags-list">${p.interests.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join('')}</div><div class="card-footer">${escapeHTML(last)}</div></article>`;
     }).join('');
-    count.textContent = `Showing ${page.first}-${page.last} of ${filtered.length} ${filtered.length === 1 ? 'person' : 'people'}`;
+    count.textContent = filtered.length ? `Showing ${page.first}-${page.last} of ${filtered.length} ${filtered.length === 1 ? 'person' : 'people'}` : '0 people';
     previous.disabled = page.page === 1;
     next.disabled = !page.pages || page.page === page.pages;
     pagination.querySelectorAll('[data-page]').forEach(b => b.remove());
-    for (let number = 1; number <= page.pages; number++) {
+    for (let number = 1; number <= Math.max(1, page.pages); number++) {
         const button = document.createElement('button');
         button.type = 'button'; button.className = 'pagination-page'; button.dataset.page = number;
         button.textContent = number; button.setAttribute('aria-label', `Page ${number}`);
         if (number === page.page) button.setAttribute('aria-current', 'page');
+        button.disabled = filtered.length === 0;
         next.before(button);
     }
     const url = new URL(location.href);
@@ -43,7 +59,7 @@ export function renderPeople(people, hasDocument = true) {
     history.replaceState(null, '', url);
 }
 function refresh() {
-    const document = getDocument();
+    const document = readDocument();
     for (const p of document?.people ?? []) {
         const value = getCategory(p).toLowerCase();
         if (![...category.options].some(o => o.value === value)) category.add(new Option(getCategory(p), value));
@@ -69,5 +85,5 @@ refresh();
 grid.addEventListener('click', event => {
     if (event.target.closest('a, button, input')) return;
     const card = event.target.closest('.person-card');
-    if (card) location.href = card.querySelector('h2 a').href;
+    if (card) navigateWithinApp(card.querySelector('h2 a').href);
 });

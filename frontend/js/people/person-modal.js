@@ -2,6 +2,7 @@ import { updateDocument, getDocument } from './document-access.js';
 import { getFullName } from './helpers.js';
 import { savePerson } from './models.js';
 import { initDialogs } from './dialogs.js';
+import { showToast } from '../toast.js';
 export function initPersonModal(onSaved = () => {}) {
     initDialogs();
     const modal = document.getElementById('person-modal');
@@ -20,7 +21,8 @@ export function initPersonModal(onSaved = () => {}) {
             await updateDocument(document => { savePerson(document, values, editingId); });
             location.hash = '';
             onSaved();
-        } catch (failure) { error.textContent = failure.message; }
+            showToast(editingId === null ? 'Person added to your network.' : 'Person updated.');
+        } catch (failure) { showToast(failure.message, { type: 'error', title: 'Could not save person' }); }
         finally { button.disabled = false; }
     });
     function prepare(person = null) {
