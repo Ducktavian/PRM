@@ -1,13 +1,4 @@
-/**
- * Checks the page count each time because adding entries can create another page.
- * @param {Object} options - Functions for reading and displaying the table data.
- * @param {() => number} options.getPageCount - Current number of pages, at least 1.
- * @param {(page: number) => void} options.renderPage - Shows a page; 0 is the first page.
- * @returns {{showPage: (index: number) => void, refresh: () => void}} Lets the save handler jump to the
- * new entry's page. Page indexes start at 0. Indexes outside the page range are ignored.
- * Refresh keeps the current page, or moves back if deleting removed the last page.
- */
-export function initPagination({ getPageCount, renderPage }) {
+export function initPagination({ getPageCount, renderPage, hasResults }) {
     const pagination = document.querySelector('.pagination');
     const [previousButton, nextButton] = pagination.querySelectorAll('.pagination-direction');
     let currentPage = 0;
@@ -18,22 +9,24 @@ export function initPagination({ getPageCount, renderPage }) {
         currentPage = index;
         renderPage(currentPage);
 
-        let pageButtons = [...pagination.querySelectorAll('button[aria-label^="Page "]')];
-        if (pageButtons.length !== pageCount) {
-            pageButtons.forEach((button) => button.remove());
-            pageButtons = Array.from({ length: pageCount }, (_, page) => {
-                const button = document.createElement('button');
-                button.type = 'button';
-                button.textContent = page + 1;
-                button.setAttribute('aria-label', 'Page ' + (page + 1));
-                nextButton.before(button);
-                return button;
-            });
-        }
-        pageButtons.forEach((button, page) => {
+        pagination.querySelectorAll('button[data-page], button[aria-label^="Page "], .pagination-gap').forEach(button => button.remove());
+        const pages = [...new Set([0, currentPage - 1, currentPage, currentPage + 1, pageCount - 1])]
+            .filter(page => page >= 0 && page < pageCount).sort((a, b) => a - b);
+        pages.forEach((page, index) => {
+            if (index && page - pages[index - 1] > 1) {
+                const gap = document.createElement('span');
+                gap.className = 'pagination-gap';
+                gap.textContent = '…';
+                nextButton.before(gap);
+            }
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = page + 1;
             button.dataset.page = page;
+            button.setAttribute('aria-label', `Page ${page + 1}`);
             if (page === currentPage) button.setAttribute('aria-current', 'page');
-            else button.removeAttribute('aria-current');
+            button.disabled = !hasResults();
+            nextButton.before(button);
         });
         previousButton.disabled = currentPage === 0;
         nextButton.disabled = currentPage === pageCount - 1;
@@ -44,7 +37,10 @@ export function initPagination({ getPageCount, renderPage }) {
         if (!button || button.disabled) return;
         if (button === previousButton) showPage(currentPage - 1);
         else if (button === nextButton) showPage(currentPage + 1);
-        else if (button.dataset.page !== undefined) showPage(Number(button.dataset.page));
+        else if (button.dataset.page !== undefined) {
+            showPage(Number(button.dataset.page));
+            pagination.querySelector('[aria-current="page"]')?.focus();
+        }
     });
 
     showPage(0);

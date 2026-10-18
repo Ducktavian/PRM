@@ -1,0 +1,70 @@
+/* Keep the toolbar and pagination in place; only the results area scrolls. */
+body.people-page, body.interactions-page {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    grid-template-rows: var(--top-bar-height) minmax(0, 1fr);
+}
+.people-page .main-content, .interactions-page main {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-bottom: 0;
+    gap: 20px;
+    overflow: hidden;
+}
+.people-page .page-header, .people-page .page-filters {
+    margin: 0;
+}
+.people-page .page-header, .interactions-page .page-header,
+.people-page .page-filters, .interactions-page .page-filters {
+    flex-shrink: 0;
+}
+.people-page .people-grid, .interactions-page .interaction-history {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    align-content: start;
+    padding: 2px 4px 16px 2px;
+}
+.people-page .people-empty-state, .interactions-page .interaction-empty-state {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 0;
+    padding: 32px 16px;
+}
+.people-page .people-empty-icon, .interactions-page .empty-state-icon {
+    flex-shrink: 0;
+    color: #817A99;
+    background: #F5F3F9;
+    border-radius: 50%;
+}
+.people-page .people-empty-icon img, .interactions-page .empty-state-icon img { display: none; }
+.people-page .people-empty-icon::before, .interactions-page .empty-state-icon::before {
+    content: '';
+    width: 26px;
+    height: 26px;
+    background: currentColor;
+    mask: url('../assets/status/info-circle-fill.svg') center / contain no-repeat;
+}
+.people-page .pagination, .interactions-page .pagination {
+    flex-shrink: 0;
+    margin: auto 0 0;
+    padding: 16px 0 max(16px, env(safe-area-inset-bottom));
+    border-top: 1px solid #ECE9F1;
+    background: white;
+}
+.people-page .page-filters :disabled, .interactions-page .page-filters :disabled { cursor: not-allowed; opacity: .55; }
+.pagination button[aria-current="page"]:disabled { background: #F2EFF8; color: #8B8598; opacity: 1; }
+@media (max-height: 600px) {
+    .people-page .people-empty-state, .interactions-page .interaction-empty-state { justify-content: flex-start; }
+}
+@media (max-width: 600px) {
+    .people-page .main-content, .interactions-page main { gap: 16px; }
+    .people-page .page-filters, .interactions-page .page-filters { flex-wrap: wrap; }
+    .people-page .search-field, .interactions-page .search-field { flex: 1 0 100%; }
+    .people-page .filter-select, .interactions-page .filter-select { flex: 1; }
+    .people-page .search-field input, .interactions-page .search-field input { padding-right: 40px; }
+}

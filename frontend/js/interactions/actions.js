@@ -1,10 +1,3 @@
-/**
- * Leaves opening the edit form to onEdit so the dropdown doesn't depend on the modal.
- * @param {(id: string) => void} onEdit - Receives the selected entry's ID after
- * the dropdown closes. Uses an ID because sorting can change the card's position.
- * @param {(trigger: HTMLButtonElement) => void} onDelete - Opens the confirmation.
- * Receives the card button so the modal can identify the entry and restore focus.
- */
 export function initActions(onEdit, onDelete) {
     const list = document.querySelector('.interaction-list');
     const menu = document.getElementById('interaction-actions');
