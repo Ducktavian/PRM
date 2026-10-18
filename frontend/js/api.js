@@ -82,7 +82,7 @@ export async function openDocument(file) {
     return result.document;
 }
 
-export async function downloadDocument(document, filename) {
+export async function downloadDocument(document, filename, isCurrent = () => true) {
     let response;
 
     try {
@@ -107,6 +107,7 @@ export async function downloadDocument(document, filename) {
     }
 
     const blob = await response.blob();
+    if (!isCurrent()) return;
     const downloadUrl = URL.createObjectURL(blob);
     const link = documentElement("a");
 

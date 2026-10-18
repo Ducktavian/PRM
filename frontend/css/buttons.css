@@ -132,12 +132,22 @@
     height: 34px;
     padding: 0 16px;
     font-size: 13px;
+    color: #B42332;
+    border-color: #EDB5BB;
+    background-color: #FFF1F2;
 }
 
 .files-page .file-action-button:hover,
 .files-page .close-file-button:hover {
     background-color: #F8F6F3;
 }
+
+.files-page .close-file-button:hover:not(:disabled) {
+    color: #921C28;
+    border-color: #DC8993;
+    background-color: #FFE1E5;
+}
+.files-page .close-file-button:focus-visible { outline: 2px solid #B42332; outline-offset: 3px; }
 
 .interactions-page .action-menu {
     position: fixed;
