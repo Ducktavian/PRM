@@ -1,336 +1,237 @@
-import { people } from "../data.js";
-import { renderPersonAvatar } from "../avatar.js";
-const totalPeopleEl = document.getElementById("total-people");
-const totalInteractionsThisMonthEl = document.getElementById("total-interactions-this-month");
-const totalCategoriesEl = document.getElementById("total-categories");
+﻿import { readDocument } from '../interactions/document-access.js';
+import { summarizeDocument } from '../interactions/model.js';
+import { createDocument, openDocument } from '../api.js';
+import { setDocument } from '../document-store.js';
+import { showToast } from '../toast.js';
 
-// Main
-document.addEventListener("DOMContentLoaded", () => {
-    const totalPeople = getTotalPeople(people);
-    const totalInteractionsThisMonth = getTotalInteractionsThisMonth(people);
-    const categories = getCategories(people); // object
-    const totalCategories = getTotalCategories(categories);
+const emptyPanel = document.getElementById('dashboard-empty-state');
+const dashboardGrid = document.querySelector('.dashboard-grid');
+const fileInput = emptyPanel.querySelector('input[type="file"]');
+const fileButtons = emptyPanel.querySelectorAll('button');
+const NEW_FILE_NAME = 'relm-personal-network.json';
 
-    // Display Info First 3 Cards
-    totalPeopleEl.innerText = totalPeople;
-    totalInteractionsThisMonthEl.innerText = totalInteractionsThisMonth;
-    totalCategoriesEl.innerText = totalCategories;
-
-    displayNetworkByCategory(categories);
-    setNetworkCategoryBars(categories);
-
-    // Display Recent activity
-    const interactions = getInteractions(people);
-    const sortedInteractions = getSortedInteractions(interactions);
-    displayRecentActivity(people, getRecentActivity(sortedInteractions))
-
-    // Reconnect Soon
-    const oldestInteractions = getOldestInteractions(sortedInteractions);
-    displayReconnectSoon(people, oldestInteractions);
-
-    // Upcoming Important Dates
-    const reminders = getActiveReminders(people);
-    displayUpcomingImportantDates(people, reminders);
-})
-
-
-
-function getTotalPeople(people) {
-    return people.length;
+function createElement(tag, className = '', text = '') {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.textContent = text;
+    return element;
 }
 
-function getTotalInteractionsThisMonth(people){
-    let totalInteractions = 0;
-    for (const person of people) {
-        for (const interaction of person.interactions) {
-            if (isInCurrentMonth(interaction.date)) {
-                totalInteractions++;
-            }
-        }
-    }
-    return totalInteractions;
+function toClassName(value) {
+    return String(value || 'other').toLowerCase().replace(/[^a-z0-9_-]/g, '');
 }
 
-// Helper for getTotalInteractionsThisMonth
-function isInCurrentMonth(dateString) {
-    const targetDate = new Date(dateString);
-    const now = new Date();
+function getFullName(person) {
+    return `${person.firstName || ''} ${person.lastName || ''}`.trim() || 'Unnamed person';
+}
 
-    if (isNaN(targetDate.getTime)) {
-        return false; // Invalid date
+function getCategory(person) {
+    return person.relationship?.category?.trim() || 'Other';
+}
+
+function getPersonURL(person) {
+    return `person.html?id=${encodeURIComponent(person.id)}`;
+}
+
+function createAvatar(person) {
+    const avatar = createElement('div', 'profile avatar');
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.append(createElement('span', `person-icon avatar-${toClassName(getCategory(person))}`));
+    return avatar;
+}
+
+function createPersonLink(person) {
+    const link = createElement('a', 'person-name', getFullName(person));
+    link.href = getPersonURL(person);
+    return link;
+}
+
+function renderSection(selector, items, emptyState) {
+    const container = document.querySelector(`${selector} > div`);
+    if (items.length) {
+        container.replaceChildren(...items);
+        return;
     }
+    const message = createElement('div', 'dashboard-card-empty', emptyState.text);
+    if (!emptyState.action) {
+        container.replaceChildren(message);
+        return;
+    }
+    const link = createElement('a', 'dashboard-link', emptyState.action);
+    link.href = emptyState.href;
+    container.replaceChildren(message, link);
+}
 
-    return (
-        targetDate.getFullYear() === now.getFullYear() &&
-        targetDate.getMonth() === now.getMonth()
+function displayStats(summary) {
+    document.getElementById('total-people').textContent = summary.totalPeople;
+    document.getElementById('total-interactions-this-month').textContent = summary.monthCount;
+    document.getElementById('total-categories').textContent = summary.categories.size;
+}
+
+function createCategoryItem(category, count, totalPeople) {
+    const percent = Math.round(count / totalPeople * 100);
+
+    const info = createElement('div', 'category-info');
+    info.append(createElement('span', 'category-name', category), createElement('span', 'category-count', count));
+
+    const bar = createElement('div', `bar avatar-${toClassName(category)}`);
+    bar.style.width = `${percent}%`;
+
+    const background = createElement('div', 'background-bar');
+    background.setAttribute('role', 'meter');
+    background.setAttribute('aria-label', category);
+    background.setAttribute('aria-valuemin', '0');
+    background.setAttribute('aria-valuemax', String(totalPeople));
+    background.setAttribute('aria-valuenow', String(count));
+    background.setAttribute('aria-valuetext', `${count} people, ${percent}% of your network`);
+    background.append(bar);
+
+    const item = createElement('div', 'network-by-category-item');
+    item.append(info, background);
+    return item;
+}
+
+function displayNetworkByCategory(summary) {
+    const categories = [...summary.categories].sort((a, b) => b[1] - a[1]);
+    const items = categories.map(([category, count]) => createCategoryItem(category, count, summary.totalPeople));
+    renderSection('.network-by-category', items, { text: 'No people yet.', action: 'Add a person', href: 'people.html' });
+}
+
+function getActivityDate(activity) {
+    if (!activity.time) return activity.date;
+    return `${activity.date} ${activity.time}`;
+}
+
+function createActivityItem(activity) {
+    const type = createElement('span', `activity-type type-${toClassName(activity.type)}`, activity.type);
+    const name = createElement('span');
+    name.append(createPersonLink(activity.person), ' ', type);
+
+    const nameAndDate = createElement('div', 'name--activity--date');
+    nameAndDate.append(name, createElement('span', '', getActivityDate(activity)));
+
+    const details = createElement('div', 'vertical-container');
+    details.append(nameAndDate, createElement('div', 'activity-title', activity.title));
+
+    const item = createElement('div', 'activity');
+    item.append(createAvatar(activity.person), details);
+    return item;
+}
+
+function displayRecentActivity(summary) {
+    const items = summary.recent.map(createActivityItem);
+    const emptyState = { text: 'No interactions yet.' };
+    if (summary.totalPeople) {
+        emptyState.action = 'Add an interaction';
+        emptyState.href = 'interactions.html';
+    }
+    renderSection('.recent-activity', items, emptyState);
+}
+
+function getLastContactText(days) {
+    if (days === null) return 'No interactions yet';
+    if (days === 0) return 'Last contact today';
+    if (days === 1) return 'Last contact 1 day ago';
+    return `Last contact ${days} days ago`;
+}
+
+function createReconnectItem({ person, days }) {
+    const details = createElement('div', 'vertical-container');
+    details.append(createElement('span', 'full-name', getFullName(person)), createElement('span', 'days-passed', getLastContactText(days)));
+
+    const viewLink = createElement('a', 'reconnect-view', 'View');
+    viewLink.href = getPersonURL(person);
+    viewLink.setAttribute('aria-label', `View ${getFullName(person)}`);
+
+    const item = createElement('div', 'reconnect-item');
+    item.append(createAvatar(person), details, viewLink);
+    return item;
+}
+
+function displayReconnectSoon(summary) {
+    const items = summary.reconnect.map(createReconnectItem);
+    renderSection('.reconnect-soon', items, { text: 'No people yet.' });
+}
+
+function getReminderDate(reminder) {
+    if (reminder.overdue) return `Overdue · ${reminder.date}`;
+    return reminder.date;
+}
+
+function createReminderItem(reminder) {
+    const icon = createElement('img', 'notification-icon');
+    icon.src = 'assets/notification-icon.svg';
+    icon.alt = '';
+    const iconContainer = createElement('div', 'notification-icon-container');
+    iconContainer.append(icon);
+
+    const category = getCategory(reminder.person);
+    const dateAndPerson = createElement('div');
+    dateAndPerson.append(
+        createElement('span', '', getReminderDate(reminder)),
+        createElement('span', '', getFullName(reminder.person)),
+        createElement('span', `relationship-category avatar-${toClassName(category)}`, category)
     );
+
+    const details = createElement('div', 'vertical-container');
+    details.append(createElement('span', '', reminder.title), dateAndPerson);
+
+    const item = createElement('div', 'upcoming-important-dates-item');
+    item.append(iconContainer, details);
+    return item;
 }
 
-function getCategories(people) {
-    let categories = {};
-
-    for (const person of people) {
-        if (Object.hasOwn(categories, person.relationship.category)) {
-            categories[person.relationship.category]++;
-        } else {
-            categories[person.relationship.category] = 1;
-        }        
-    }
-
-    return categories;
+function displayUpcomingImportantDates(summary) {
+    const items = summary.reminders.map(createReminderItem);
+    renderSection('.upcoming-important-dates', items, { text: 'No upcoming reminders.' });
 }
 
-function getTotalCategories(categories) {
-    return Object.keys(categories).length;
+function render() {
+    const doc = readDocument();
+    emptyPanel.hidden = Boolean(doc);
+    dashboardGrid.hidden = !doc;
+    if (!doc) return;
+
+    const summary = summarizeDocument(doc);
+    displayStats(summary);
+    displayNetworkByCategory(summary);
+    displayRecentActivity(summary);
+    displayReconnectSoon(summary);
+    displayUpcomingImportantDates(summary);
 }
 
-// Network By Category
-function displayNetworkByCategory(categories) {
-    const networkByCategory = document.querySelector(".network-by-category div");
-
-    let innerHTML = "";
-    for (const category in categories) {
-        innerHTML += `
-        <div class="network-by-category-item">
-            <div class="category-info">
-                <div>
-                    <span class="circle avatar-${category.toLowerCase()}"></span>
-                    <span class="category-name">${category}</span> 
-                </div>
-                
-                <span class="category-count">${categories[category]}</span>
-            </div>
-            <div class="background-bar">
-                <div class="bar avatar-${category.toLowerCase()}"></div>
-            </div>
-        </div>
-        `
-    }
-
-    networkByCategory.innerHTML = innerHTML;
-}
-
-// Applies responsive bar widths base on category count
-function setNetworkCategoryBars(categories) {
-    // Gets the most amount of category type and set is as the basis for max bar
-    let mostCategoryType = 0;
-    for (const category in categories) {
-        if (categories[category] > mostCategoryType) {
-            mostCategoryType = categories[category];
-        }
-    }
-    
-    // apply bar styling
-    const netWorkByCategoryElements = document.querySelectorAll(".network-by-category-item");
-    
-    for (const category of netWorkByCategoryElements) {
-        const bar = category.querySelector(".bar");
-        const categoryCount = +category.querySelector(".category-count").innerText;
-        const width = categoryCount / mostCategoryType * 100;
-        applyBarStyle(bar, width);
+async function startDocument(loadDocument, errorTitle) {
+    fileButtons.forEach(button => { button.disabled = true; });
+    try {
+        const { document: doc, filename } = await loadDocument();
+        setDocument(doc, filename);
+        render();
+    } catch (error) {
+        showToast(error.message, { type: 'error', title: errorTitle });
+    } finally {
+        fileButtons.forEach(button => { button.disabled = false; });
     }
 }
 
-
-function applyBarStyle(element, width) {
-    element.style.width = `${width}%`;
+async function openFromComputer(file) {
+    return { document: await openDocument(file), filename: file.name };
 }
 
-
-
-
-// Recent Activity //
-function getInteractions(people) {
-    const interactions = [];
-    for (const person of people) {
-        for (const interaction of person.interactions) {
-            const copy = {...interaction, personId: person.id}
-            interactions.push(copy);
-        }
-    }
-
-    return interactions;
+async function createNewFile() {
+    return { document: await createDocument(), filename: NEW_FILE_NAME };
 }
 
-// Sort date and time
-function getSortedInteractions(interactions) {
-    return interactions.toSorted((a, b) => {
-        const dateTimeA = new Date(`${a.date} ${a.time}`);
-        const dateTimeB = new Date(`${b.date} ${b.time}`);
+emptyPanel.querySelector('[data-open-file]').addEventListener('click', () => fileInput.click());
 
-        return dateTimeA - dateTimeB;
-    });
-}
+fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    fileInput.value = '';
+    if (file) startDocument(() => openFromComputer(file), 'Could not open file');
+});
 
-// returns the 5 Latest Interactions
-function getRecentActivity(sortedInteractions) {
-    return sortedInteractions.slice(-5);
-}
+emptyPanel.querySelector('[data-new-file]').addEventListener('click', () => {
+    startDocument(createNewFile, 'Could not create file');
+});
 
-function displayRecentActivity(people, recentActivity) {
-    const recentActivityEl = document.querySelector(".recent-activity div");
-    let innerHTML = "";
-
-    for (const activity of recentActivity) {
-        const person = getPerson(people, activity.personId);
-
-        innerHTML += `
-        <div class="activity" data-personId="${activity.personId}">
-            <div class="profile avatar" aria-label="${person.firstName} ${person.lastName}">
-                ${renderPersonAvatar(person)}
-            </div>
-
-            <div class="vertical-container">
-                <div class="name--activity--date">
-                    <span>
-                        <span class="person-name">${getPersonFullName(people, activity.personId)}</span>
-                        <span class="activity-type type-${activity.type.toLowerCase()}">${activity.type}</span>
-                    </span>
-                    <span>${activity.date}</span>
-                </div>
-                <div class="acitivity-title">${activity.title}</div>
-            </div>
-        </div>
-        `
-    }
-
-    recentActivityEl.innerHTML = innerHTML;
-}
-
-
-
-// Display Profiles in Recent Activity
-
-
-
-
-
-
-
-
-
-
-// Helper: Finds Person name
-function getPersonFullName(people, id) {
-    const foundPerson = people.find(person => person.id === id);
-    return `${foundPerson.firstName} ${foundPerson.lastName}`;
-}
-
-function getPerson(people, id) {
-    return people.find(person => person.id === id);
-}
-
-
-
-
-
-
-
-
-
-// Reconnect Soon
-// Returns the last 4 people interacted with
-function getOldestInteractions(sortedInteractions) {
-    // Interactions are sorted from oldest to latest
-    return sortedInteractions.slice(0, 4); 
-}
-
-function daysPassedLastInteraction(pastDate) {
-    const now = new Date();
-    const formattedPastDate = new Date(pastDate);
-
-    // date in milliseconds
-    const differenceInMs = now - formattedPastDate;
-
-    const msPerDay = 1000 * 60 * 60 * 24;
-    const differenceInDays = differenceInMs / msPerDay;
-
-    return Math.floor(differenceInDays);
-}
-
-
-function displayReconnectSoon(people, oldestInteractions) {
-
-    const reconnectSoonEl = document.querySelector(".reconnect-soon div");
-    let innerHTML = "";
-
-    for (const interaction of oldestInteractions) {
-        const fullName = getPersonFullName(people, interaction.personId);
-        const daysPassed = +daysPassedLastInteraction(interaction.date);
-        const person = getPerson(people, interaction.personId);
-
-        innerHTML += `
-        <div class="reconnect-item">
-            <div class="profile avatar" aria-label="${person.firstName} ${person.lastName}">
-                ${renderPersonAvatar(person)}
-            </div>
-            <div class="vertical-container">
-                <span class="full-name">${fullName}</span>
-                <span class="days-passed">${daysPassed} ${daysPassed === 1 ? "day" : "days"} ago</span>
-            </div>
-            <button type="button" data-person-id="${person.id}">View</button>
-        </div>
-         `
-    }
-
-    reconnectSoonEl.innerHTML = innerHTML;
-
-    reconnectSoonEl.addEventListener("click", (event) => {
-        const viewButton = event.target.closest("button[data-person-id]");
-        if (!viewButton) return;
-
-        window.location.href = `person.html?id=${encodeURIComponent(viewButton.dataset.personId)}`;
-    });
-}
-
-
-// Upcoming Important Dates (Reminders)
-
-function getActiveReminders(people) {
-    const reminders = [];
-
-    for (const person of people) {
-        for (const reminder of person.reminders) {
-            if (!reminder.completed) {
-                reminders.push({...reminder, personId: person.id})
-            }
-        }
-    }
-    return reminders;
-}
-
-function displayUpcomingImportantDates(people, reminders) {
-    const upcomingDatesEl = document.querySelector(".upcoming-important-dates div");
-    let innerHTML = "";
-
-    for (const reminder of reminders) {
-        const person = getPerson(people, reminder.personId)
-        innerHTML += `
-        <div class="upcoming-important-dates-item">
-            <div class="notification-icon-container">
-                <img
-                    class="notification-icon"
-                    src="assets/notification-icon.svg"
-                    alt="Upcoming reminder"
-                >
-            </div>
-            
-            <div class="vertical-container">
-                <span>${reminder.title}</span>
-                <div>
-                    <span>${reminder.date}</span>
-                    <span class="relationship-category avatar-${person.relationship.category.toLowerCase()}">${person.relationship.category}</span>
-                </div>
-            </div>
-        </div>
-        
-        `
-    }
-
-    upcomingDatesEl.innerHTML = innerHTML;
-}
-
-
-
-
-
+render();
+window.addEventListener('pageshow', event => { if (event.persisted) render(); });

@@ -12,8 +12,8 @@
     gap: 10px;
 }
 
-.reconnect-item button:hover,
-.reconnect-item button:active {
+.reconnect-item .reconnect-view:hover,
+.reconnect-item .reconnect-view:active {
     background-color: var(--primary-purple-hover);
     color: white;
 }
@@ -118,8 +118,10 @@ header {
 }
 
 .person-name {
+    color: inherit;
     font-weight: bold;
     font-size: 14px;
+    text-decoration: none;
 }
 
 .profile {
@@ -189,9 +191,10 @@ header {
     font-weight: 600;
 }
 
-.reconnect-item button {
+.reconnect-item .reconnect-view {
     border: 1px solid var(--primary-purple);
     color: var(--primary-purple);
+    text-decoration: none;
     padding: 5px 10px;
     border-radius: 10px;
     background-color: var(--card-color);
