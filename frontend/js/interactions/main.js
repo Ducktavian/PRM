@@ -17,7 +17,7 @@ function refreshPage() {
     document.querySelector('.pagination').hidden = false;
     if (!doc?.people.length) {
         document.querySelector('.interaction-history').hidden = true;
-        document.querySelectorAll('.page-filters input, .page-filters select, .pagination button').forEach(control => { control.disabled = true; });
+        document.querySelectorAll('.page-filters input, .page-filters select, .page-filters button, .pagination button').forEach(control => { control.disabled = true; });
         document.getElementById('interaction-status').textContent = '0 interactions';
         showEmptyState(doc ? {
             title: 'No interactions yet',
@@ -43,6 +43,28 @@ function initialize() {
     const searchInput = document.querySelector('.search-field input');
     const clearSearch = document.querySelector('.search-clear');
     const [typeFilter, dateFilter] = document.querySelectorAll('.filter-select select');
+    const mobileFilters = [...document.querySelectorAll('.interactions-page .filter-select')].map(container => ({
+        container,
+        select: container.querySelector('select'),
+        toggle: container.querySelector('.mobile-filter-toggle'),
+        options: container.querySelector('.mobile-filter-options')
+    }));
+    function closeMobileFilters() {
+        for (const filter of mobileFilters) {
+            filter.options.hidden = true;
+            filter.toggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+    function renderMobileOptions(filter) {
+        filter.options.replaceChildren(...[...filter.select.options].map(option => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.value = option.value;
+            button.textContent = option.textContent;
+            button.setAttribute('aria-pressed', String(option.value === filter.select.value));
+            return button;
+        }));
+    }
     function updateFilters() {
         interactions.setFilters({ search: searchInput.value, type: typeFilter.value, date: dateFilter.value });
         clearSearch.hidden = searchInput.value === '';
@@ -61,6 +83,35 @@ function initialize() {
     searchInput.addEventListener('input', updateFilters);
     typeFilter.addEventListener('change', updateFilters);
     dateFilter.addEventListener('change', updateFilters);
+    for (const filter of mobileFilters) {
+        filter.toggle.addEventListener('click', () => {
+            const opening = filter.options.hidden;
+            closeMobileFilters();
+            if (opening) {
+                renderMobileOptions(filter);
+                filter.options.hidden = false;
+                filter.toggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+        filter.options.addEventListener('click', event => {
+            const option = event.target.closest('button');
+            if (!option) return;
+            filter.select.value = option.value;
+            closeMobileFilters();
+            updateFilters();
+            filter.toggle.focus();
+        });
+    }
+    document.addEventListener('click', event => {
+        if (!event.target.closest('.interactions-page .filter-select')) closeMobileFilters();
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && mobileFilters.some(filter => !filter.options.hidden)) {
+            const openFilter = mobileFilters.find(filter => !filter.options.hidden);
+            closeMobileFilters();
+            openFilter.toggle.focus();
+        }
+    });
     clearSearch.addEventListener('click', () => {
         searchInput.value = '';
         updateFilters();

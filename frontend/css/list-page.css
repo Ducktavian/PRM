@@ -65,6 +65,6 @@ body.people-page, body.interactions-page {
     .people-page .main-content, .interactions-page main { gap: 16px; }
     .interactions-page .page-filters { flex-wrap: wrap; }
     .interactions-page .search-field { flex: 1 0 100%; }
-    .interactions-page .filter-select { flex: 1; }
+    .interactions-page .filter-select { flex: 0 0 40px; }
     .people-page .search-field input, .interactions-page .search-field input { padding-right: 40px; }
 }

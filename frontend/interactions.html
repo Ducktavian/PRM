@@ -92,7 +92,7 @@
                 </button>
             </div>
 
-            <div class="filter-select">
+            <div class="filter-select interaction-type-filter">
                 <select aria-label="Filter by interaction type">
                     <option>All types</option>
                     <option>Conversation</option>
@@ -102,8 +102,12 @@
                     <option>Event</option>
                 </select>
                 <img src="assets/dropdown-icon.svg" alt="" width="12" height="12">
+                <button class="mobile-filter-toggle" type="button" aria-label="Filter by interaction type" aria-controls="mobile-type-options" aria-expanded="false">
+                    <img src="assets/filter-icon.svg" alt="" width="20" height="20">
+                </button>
+                <div class="mobile-filter-options" id="mobile-type-options" aria-label="Interaction types" hidden></div>
             </div>
-            <div class="filter-select">
+            <div class="filter-select interaction-date-filter">
                 <select aria-label="Filter by date">
                     <option>All dates</option>
                     <option>Last 7 days</option>
@@ -112,6 +116,10 @@
                     <option>This year</option>
                 </select>
                 <img src="assets/dropdown-icon.svg" alt="" width="12" height="12">
+                <button class="mobile-filter-toggle" type="button" aria-label="Filter by date" aria-controls="mobile-date-options" aria-expanded="false">
+                    <img src="assets/date-filter-icon.svg" alt="" width="20" height="20">
+                </button>
+                <div class="mobile-filter-options" id="mobile-date-options" aria-label="Date ranges" hidden></div>
             </div>
         </section>
 
