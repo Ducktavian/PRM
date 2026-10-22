@@ -72,7 +72,7 @@ function createCategoryItem(category, count, totalPeople) {
     const percent = Math.round(count / totalPeople * 100);
 
     const info = createElement('div', 'category-info');
-    info.append(createElement('span', 'category-name', category), createElement('span', 'category-count', count));
+    info.append(createElement('span', `category-name avatar-${toClassName(category)}`, category), createElement('span', 'category-count', count));
 
     const bar = createElement('div', `bar avatar-${toClassName(category)}`);
     bar.style.width = `${percent}%`;
@@ -174,7 +174,9 @@ function createReminderItem(reminder) {
     );
 
     const details = createElement('div', 'vertical-container');
-    details.append(createElement('span', '', reminder.title), dateAndPerson);
+    const title = createElement('a', 'reminder-title', reminder.title);
+    title.href = getPersonURL(reminder.person);
+    details.append(title, dateAndPerson);
 
     const item = createElement('div', 'upcoming-important-dates-item');
     item.append(iconContainer, details);

@@ -5,21 +5,42 @@
     font-size: 12px;
 }
 
+.dashboard .category-count {
+    font-size: 14px;
+}
+
 .reconnect-item,
 .upcoming-important-dates-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+}
+
+.dashboard .network-by-category > div,
+.dashboard .recent-activity > div,
+.dashboard .reconnect-soon > div,
+.dashboard .upcoming-important-dates > div {
+    display: grid;
+    gap: 16px;
+}
+
+.dashboard .reconnect-soon > div,
+.dashboard .upcoming-important-dates > div {
+    gap: 12px;
 }
 
 .reconnect-item .reconnect-view:hover,
 .reconnect-item .reconnect-view:active {
-    background-color: var(--primary-purple-hover);
-    color: white;
+    background-color: #EFEAFB;
+    color: #5847B8;
 }
 
-header {
-    margin: 0 auto 1rem;
+.dashboard {
+    background: #FFFFFF;
+}
+
+.dashboard header {
+    margin: 0 0 28px;
 }
 
 .dashboard header h1 {
@@ -27,10 +48,11 @@ header {
     font-size: 32px;
     line-height: 1.2;
     font-weight: 700;
+    color: #211F26;
 }
 
 .dashboard header p {
-    margin: 0.5rem 0 0;
+    margin: 4px 0 0;
     color: #000;
     font-size: 16px;
     line-height: 1.5;
@@ -44,10 +66,10 @@ header {
     flex-direction: column;
 }
 
-.card {
+.dashboard .card {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
-    padding: 1rem;
+    padding: 20px;
     border-radius: 12px;
     height: fit-content;
 }
@@ -61,7 +83,15 @@ header {
 }
 
 .dashboard-inner-grid .card p:first-child {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
+}
+
+.dashboard-grid > .card {
+    padding: 20px;
+}
+
+.dashboard-inner-grid > .card {
+    padding: 24px;
 }
 
 .dashboard-grid .card > p:last-child {
@@ -74,22 +104,23 @@ header {
 .main-stat {
     margin: 0 0 0.25rem;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 38px;
+    color: #211F26;
     line-height: 1.1;
 }
 
 .circle {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 20px;
     background-color: var(--avatar-color, #909088);
 }
 
 .background-bar {
     width: 100%;
-    height: 10px;
-    background-color: rgb(236, 234, 234);
+    height: 6px;
+    background-color: #F9F6F2;
     border-radius: 50px;
 }
 
@@ -106,8 +137,29 @@ header {
 }
 
 .category-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 14px;
+    color: #211F26;
 }
+
+.category-name::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: var(--avatar-color, #96938F);
+}
+
+.dashboard .avatar-friend { --avatar-color: #F2A51A; }
+.dashboard .avatar-family { --avatar-color: #E96B73; }
+.dashboard .avatar-classmate { --avatar-color: #8C72D9; }
+.dashboard .avatar-coworker,
+.dashboard .avatar-professional { --avatar-color: #439AD6; }
+.dashboard .avatar-mentor { --avatar-color: #3DBB86; }
+.dashboard .avatar-other { --avatar-color: #96938F; }
 
 /* Recent Interactions */
 
@@ -117,11 +169,16 @@ header {
     align-items: center;
 }
 
-.person-name {
-    color: inherit;
-    font-weight: bold;
+.dashboard .person-name {
+    color: #211F26;
+    font-weight: 600;
     font-size: 14px;
     text-decoration: none;
+}
+
+.dashboard .person-name:hover,
+.dashboard .reminder-title:hover {
+    color: #6E5BCF;
 }
 
 .profile {
@@ -179,26 +236,29 @@ header {
 /* RECONNECT SOON*/
 
 .reconnect-item .full-name {
-    font-weight: bold;
+    color: #211F26;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .reconnect-item .days-passed {
-    font-size: 12px;
+    color: #000;
+    font-size: 14px;
 }
 
 .reconnect-item .vertical-container > span:first-child {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 
 .reconnect-item .reconnect-view {
-    border: 1px solid var(--primary-purple);
+    border: 2px solid rgb(110 91 207 / 40%);
     color: var(--primary-purple);
     text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: 6px 12px;
+    border-radius: 8px;
     background-color: var(--card-color);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -211,14 +271,15 @@ header {
 }
 
 .notification-icon-container {
-    width: 30px;
-    height: 30px;
-    background-color: color-mix(in srgb, var(--primary-purple) 10%, transparent);
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    background-color: #EFEAFB;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .upcoming-important-dates-item .relationship-category {
@@ -227,13 +288,16 @@ header {
     font-size: 13px;
     line-height: 1.2;
     padding: 2px 10px;
-    border-radius: 10px;
+    border-radius: 999px;
     background-color: var(--avatar-color, #909088);
 }
 
-.upcoming-important-dates-item .vertical-container > span:first-child {
-    font-size: 14px;
+.dashboard .reminder-title {
+    color: #211F26;
+    font-size: 16px;
+    font-weight: 600;
     line-height: 1.4;
+    text-decoration: none;
 }
 
 .upcoming-important-dates-item .vertical-container > div {
@@ -241,6 +305,28 @@ header {
     align-items: center;
     gap: 8px;
     color: #000;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
+}
+
+@media (max-width: 639px) {
+    .dashboard-grid > .card {
+        padding: 12px;
+    }
+
+    .dashboard-grid > .card > p:first-child {
+        font-size: 10px;
+    }
+
+    .dashboard-grid > .card > p:last-child {
+        font-size: 12px;
+    }
+
+    .dashboard .main-stat {
+        font-size: 32px;
+    }
+
+    .dashboard-inner-grid > .card {
+        padding: 20px;
+    }
 }
