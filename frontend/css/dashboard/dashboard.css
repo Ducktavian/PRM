@@ -1,7 +1,7 @@
 .category-count,
 .name--activity--date > span:last-child,
 .reconnect-item .vertical-container > span:last-child {
-    color: #716D78;
+    color: #000;
     font-size: 12px;
 }
 
@@ -31,8 +31,8 @@ header {
 
 .dashboard header p {
     margin: 0.5rem 0 0;
-    color: #716D78;
-    font-size: 14px;
+    color: #000;
+    font-size: 16px;
     line-height: 1.5;
 }
 
@@ -48,13 +48,13 @@ header {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 12px;
     height: fit-content;
 }
 
 .dashboard-grid .card > p:first-child {
-    color: #716D78;
-    font-size: 10px;
+    color: #000;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: 1px;
@@ -66,7 +66,7 @@ header {
 
 .dashboard-grid .card > p:last-child {
     margin-bottom: 0;
-    color: #716D78;
+    color: #000;
     font-size: 14px;
     line-height: 1.5;
 }
@@ -143,36 +143,36 @@ header {
 }
 
 .activity-type.type-message {
-    color: #8C72D9;
-    background: #8C72D914;
+    color: #fff;
+    background: #8C72D9;
 }
 
 .activity-type.type-meeting,
 .activity-type.type-meetup {
-    color: #439AD6;
-    background: #439AD614;
+    color: #fff;
+    background: #439AD6;
 }
 
 .activity-type.type-conversation {
-    color: #6E5BCF;
-    background: #6E5BCF14;
+    color: #fff;
+    background: #6E5BCF;
 }
 
 .activity-type.type-event {
-    color: #F2A51A;
-    background: #F2A51A14;
+    color: #fff;
+    background: #F2A51A;
 }
 
 .activity-type.type-call {
-    color: #3DBB86;
-    background: #3DBB8614;
+    color: #fff;
+    background: #3DBB86;
 }
 
 .activity-title,
 .acitivity-title {
     margin-top: 0.25rem;
-    color: #716D78;
-    font-size: 12px;
+    color: #000;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -224,9 +224,9 @@ header {
 .upcoming-important-dates-item .relationship-category {
     display: inline-block;
     color: white;
-    font-size: 10px;
+    font-size: 13px;
     line-height: 1.2;
-    padding: 2px 6px;
+    padding: 2px 10px;
     border-radius: 10px;
     background-color: var(--avatar-color, #909088);
 }
@@ -240,7 +240,7 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #716D78;
+    color: #000;
     font-size: 12px;
     line-height: 1.5;
 }

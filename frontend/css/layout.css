@@ -29,8 +29,8 @@ body.files-page {
 .interactions-page .page-header p,
 .files-page .page-header p {
     margin: 0;
-    font-size: 14px;
-    color: #716D78;
+    font-size: 16px;
+    color: #000;
 }
 
 body.people-page,
@@ -57,7 +57,7 @@ body.person-view-page {
 .people-page .header-text h1 {
     font-weight: 700;
     font-size: 32px;
-    color: black;
+    color: #211F26;
 }
 
 .person-view-page .main-content {
@@ -174,8 +174,8 @@ body.interactions-page {
 
 .interactions-page .interaction-card {
     background: white;
-    border: 1px solid #a1a4ab;
-    border-radius: 10px;
+    border: 1px solid #B8B2C4;
+    border-radius: 12px;
 }
 
 .interactions-page .interaction-summary {
@@ -208,13 +208,14 @@ body.interactions-page {
 }
 
 .interactions-page .interaction-meta time {
-    color: #716D78;
+    color: #000;
     font-size: 14px;
 }
 
 .interactions-page .interaction-title {
-    margin: 4px 0 0;
-    font-size: 14px;
+    margin: 2px 0 0;
+    font-size: 15px;
+    color: #211F26;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -227,7 +228,7 @@ body.interactions-page {
     background: transparent;
     color: #6E5BCF;
     font: inherit;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
 }
 
@@ -275,7 +276,8 @@ body.files-page {
 .files-page .page-header h1 {
     margin: 0;
 
-    font-size: 30px;
+    font-size: 32px;
+    color: #211F26;
 }
 
 .files-page .page-header p {
@@ -332,6 +334,7 @@ body.files-page {
 :is(
     .main-container .dashboard .card,
     .person-card,
+    .person-profile-header,
     .detail-group,
     .card-box,
     .person-tags-notes-section,
@@ -341,6 +344,10 @@ body.files-page {
     .how-it-works
 ) {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.people-page .person-card:hover {
+    box-shadow: 0 4px 12px rgba(110, 91, 207, 0.2);
 }
 
 :where(.main-container) .dashboard-grid .card {

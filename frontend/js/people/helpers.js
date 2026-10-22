@@ -1,4 +1,4 @@
-const colors = { Mentor: 'green', Friend: 'orange', Coworker: 'purple', Professional: 'purple', Family: 'red', Classmate: 'blue' };
+const colors = { Mentor: 'green', Friend: 'orange', Coworker: 'blue', Professional: 'blue', Family: 'red', Classmate: 'purple' };
 export const escapeHTML = (value = '') => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const getFullName = p => [p.firstName, p.lastName].filter(Boolean).join(' ');
 export const getCategory = p => p.relationship?.category || 'Other';

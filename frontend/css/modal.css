@@ -53,12 +53,12 @@
 
 :where(.people-page, .person-view-page, .interactions-page) .form-group label,
 :where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field label {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: 1px;
-    color: #716D78;
+    color: #000;
     text-transform: uppercase;
 }
 
@@ -71,10 +71,12 @@
     width: 100%;
     min-height: 42px;
     padding: 10px 12px;
-    border: 1px solid #E3DFE7;
+    border: 2px solid #B8B2C4;
     border-radius: 8px;
     line-height: 1.4;
-    color: #202622;
+    color: #211F26;
+    font-size: 16px;
+    box-shadow: none;
 }
 
 :where(.people-page, .person-view-page, .interactions-page) .form-group select,
@@ -105,15 +107,15 @@
 :where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field select:focus,
 :where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field textarea:focus {
     border-color: #6E5BCF;
-    box-shadow: 0 0 0 3px #EFEAFB;
+    box-shadow: 0 0 0 2px rgb(206 200 239 / 50%);
 }
 
 :where(.people-page, .person-view-page, .interactions-page) .form-group input::placeholder,
 :where(.people-page, .person-view-page, .interactions-page) .form-group textarea::placeholder,
 :where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field input::placeholder,
 :where(.people-page, .person-view-page, .interactions-page) .interaction-modal .modal-field textarea::placeholder {
-    color: #929292;
-    opacity: 1;
+    color: #000;
+    opacity: 0.4;
 }
 
 :where(.people-page, .person-view-page, .interactions-page) .form-group textarea,
@@ -233,8 +235,8 @@
 :where(.people-page, .person-view-page) .section-title {
     display: block;
     width: 100%;
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: 1px;
@@ -260,17 +262,17 @@
 :where(.people-page, .person-view-page) .form-group input,
 :where(.people-page, .person-view-page) .form-group select,
 :where(.people-page, .person-view-page) .form-group textarea {
-    font-size: 14px;
+    font-size: 16px;
     background-color: #ffffff;
     outline: none;
 }
 
 :where(.people-page, .person-view-page) .sub-label {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.5;
-    color: #96938F;
+    color: #000;
     margin-top: 6px;
 }
 
@@ -549,8 +551,8 @@
 
 .delete-modal p {
     margin: 0;
-    color: #716D78;
-    font-size: 12px;
+    color: #000;
+    font-size: 14px;
     line-height: 1.5;
 }
 

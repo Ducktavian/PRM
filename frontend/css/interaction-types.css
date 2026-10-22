@@ -3,33 +3,34 @@
     display: inline-block;
     padding: 2px 8px;
     border-radius: 999px;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 1.5;
     white-space: nowrap;
 }
 
 .type-message {
     color: white;
-    background: #8870d8;
+    background: #8C72D9;
 }
 
 .type-meeting,
 .type-meetup {
     color: white;
-    background: #4098d0;
+    background: #439AD6;
 }
 
 .type-conversation {
     color: white;
-    background: #e86870;
+    background: #6E5BCF;
 }
 
 .type-event {
     color: white;
-    background: #f0a018;
+    background: #F2A51A;
 }
 
 .type-call {
     color: white;
-    background: #38b880;
+    background: #3DBB86;
 }

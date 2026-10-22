@@ -6,7 +6,7 @@
 
 .page-filters input,
 .page-filters select {
-    border: 1px solid #E3DFE7;
+    border: 2px solid #B8B2C4;
     border-radius: 8px;
     box-shadow: none;
     box-sizing: border-box;
@@ -16,13 +16,14 @@
     padding: 0 12px;
     background-color: white;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 16px;
+    color: #211F26;
 }
 
 .page-filters input:focus,
 .page-filters select:focus {
     border-color: #6E5BCF;
-    box-shadow: 0 0 0 2px #EFEAFB;
+    box-shadow: 0 0 0 2px rgb(206 200 239 / 50%);
     outline: none;
 }
 
