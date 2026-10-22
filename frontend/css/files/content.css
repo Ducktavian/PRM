@@ -53,67 +53,22 @@
     min-width: 0;
 }
 
-.files-page .section-label {
-    display: block;
-
-    margin-bottom: 2px;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    letter-spacing: 1px;
-
-    color: #000;
-}
-
-.files-page .file-name-status {
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-}
-
-.files-page .file-name-status h2 {
+.files-page .current-file-title {
     margin: 0;
-
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
+    color: #211F26;
 }
 
-.files-page .file-status {
-    display: inline-flex;
+.files-page #current-file-name {
+    margin: 2px 0 0;
+    font-size: 16px;
+    color: #211F26;
+    overflow-wrap: anywhere;
+}
 
-    align-items: center;
-
-    gap: 5px;
-
-    padding: 2px 8px;
-
-    border-radius: 10px;
-
-    background-color: #EAF8F2;
-
+.files-page #current-file-name.is-open {
     color: #2F7A5C;
-
-    font-size: 10px;
-}
-
-.files-page .file-status.is-closed {
-    background-color: #F2F0F7;
-
-    color: #716D78;
-}
-
-.files-page .file-status::before {
-    content: "";
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background-color: currentColor;
 }
 
 .files-page .file-meta {
@@ -142,6 +97,13 @@
 
 .files-page .file-action-card {
     min-width: 0;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+}
+
+.files-page .file-action-card .file-action-button {
+    margin-top: auto;
 }
 
 .files-page .file-action-card h2 {
@@ -154,8 +116,6 @@
 
 .files-page .file-action-card p {
     margin: 0 0 16px;
-
-    min-height: 42px;
 
     font-size: 16px;
     line-height: 1.5;
@@ -290,15 +250,6 @@
     .files-page .file-meta {
         flex-wrap: wrap;
         gap: 6px 12px;
-    }
-
-    /* Long filename */
-    .files-page .file-name-status {
-        flex-wrap: wrap;
-    }
-
-    .files-page .file-name-status h2 {
-        overflow-wrap: anywhere;
     }
 
 }

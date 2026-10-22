@@ -22,11 +22,15 @@ const createNewFileButton = document.getElementById("create-new-file-button");
 const closeFileButton = document.getElementById("close-file-button");
 
 const currentFileNameElement = document.getElementById("current-file-name");
-const currentFileStatusElement = document.getElementById("current-file-status");
 const peopleCountElement = document.getElementById("people-count");
 const interactionCountElement = document.getElementById("interaction-count");
 const reminderCountElement = document.getElementById("reminder-count");
 const fileUpdatedElement = document.getElementById("file-updated");
+
+const replaceFileModal = document.getElementById("replace-file-modal");
+const replaceFileMessage = document.getElementById("replace-file-message");
+const replaceModalCancelButton = document.getElementById("replace-modal-cancel-button");
+const replaceModalConfirmButton = document.getElementById("replace-modal-confirm-button");
 
 const closeFileModal = document.getElementById("close-file-modal");
 const closeModalCancelButton = document.getElementById("close-modal-cancel-button");
@@ -37,9 +41,11 @@ const createModalCancelButton = document.getElementById("create-modal-cancel-but
 const createModalConfirmButton = document.getElementById("create-modal-confirm-button");
 const actionControls = [fileInput, chooseFileButton, downloadBackupButton, createNewFileButton,
     closeFileButton, closeModalCancelButton, closeModalConfirmButton,
-    createModalCancelButton, createModalConfirmButton];
+    createModalCancelButton, createModalConfirmButton,
+    replaceModalCancelButton, replaceModalConfirmButton];
 let busy = false;
 let operationVersion = 0;
+let pendingFile = null;
 
 function setBusy(value) {
     busy = value;
@@ -75,8 +81,7 @@ function updateFileInformation(message = "") {
 
     if (!currentDocument) {
         currentFileNameElement.textContent = "No file open";
-        currentFileStatusElement.textContent = "Closed";
-        currentFileStatusElement.classList.add("is-closed");
+        currentFileNameElement.classList.remove("is-open");
 
         peopleCountElement.textContent = "0 people";
         interactionCountElement.textContent = "0 interactions";
@@ -92,9 +97,7 @@ function updateFileInformation(message = "") {
 
     currentFileNameElement.textContent =
         getFilename() || "relm-personal-network.json";
-
-    currentFileStatusElement.textContent = "Open";
-    currentFileStatusElement.classList.remove("is-closed");
+    currentFileNameElement.classList.add("is-open");
 
     peopleCountElement.textContent = `${people.length} people`;
 
@@ -113,31 +116,43 @@ chooseFileButton.addEventListener("click", function () {
     fileInput.click();
 });
 
-fileInput.addEventListener("change", async function () {
-    const file = fileInput.files[0];
-
-    if (!file || busy) {
-        return;
-    }
-
-    if (isDirty()) {
-        const confirmed = window.confirm(
-            "You have unsaved changes. Open another file and discard them?"
-        );
-
-        if (!confirmed) {
-            fileInput.value = "";
-            return;
-        }
-    }
-
+async function openChosenFile(file) {
     await runOperation(async isCurrent => {
         const document = await openDocument(file);
         if (!isCurrent()) return;
         setDocument(document, file.name);
         updateFileInformation("File opened");
+        replaceFileModal.style.display = "none";
+        pendingFile = null;
     });
+}
+
+fileInput.addEventListener("change", async function () {
+    const file = fileInput.files[0];
     fileInput.value = "";
+    if (!file || busy) return;
+
+    if (getDocument()) {
+        pendingFile = file;
+        replaceFileMessage.textContent = isDirty()
+            ? "Opening another file will replace the current file and discard unsaved changes. Download a backup first if you want to keep them."
+            : "Opening another file will replace the current file in this session. Download a backup first if you want to keep a copy.";
+        replaceFileModal.style.display = "flex";
+        replaceModalCancelButton.focus();
+        return;
+    }
+    await openChosenFile(file);
+});
+
+replaceModalCancelButton.addEventListener("click", function () {
+    pendingFile = null;
+    replaceFileModal.style.display = "none";
+    chooseFileButton.focus();
+});
+
+replaceModalConfirmButton.addEventListener("click", async function () {
+    if (!pendingFile || busy) return;
+    await openChosenFile(pendingFile);
 });
 
 createNewFileButton.addEventListener("click", function () {
@@ -194,11 +209,13 @@ closeModalConfirmButton.addEventListener("click", async function () {
 });
 
 updateFileInformation();
-window.addEventListener('pagehide', () => { operationVersion++; });
+window.addEventListener('pagehide', () => { operationVersion++; pendingFile = null; });
 window.addEventListener('pageshow', () => {
     operationVersion++;
     setBusy(false);
     createNewFileModal.style.display = 'none';
     closeFileModal.style.display = 'none';
+    replaceFileModal.style.display = 'none';
+    pendingFile = null;
     updateFileInformation();
 });

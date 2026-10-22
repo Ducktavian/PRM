@@ -92,17 +92,8 @@
 
                 <div class="current-file-details">
 
-                    <span class="section-label">CURRENT FILE</span>
-
-                    <div class="file-name-status">
-
-                        <h2 id="current-file-name">No file open</h2>
-
-                        <span class="file-status is-closed" id="current-file-status">
-                            Closed
-                        </span>
-
-                    </div>
+                    <h2 class="current-file-title">Current File</h2>
+                    <p id="current-file-name">No file open</p>
 
                     <div class="file-meta">
                          <span id="people-count">0 people</span>
@@ -318,6 +309,18 @@
     id="file-input"
     accept=".json,application/json"
     hidden>
+
+    <!-- REPLACE FILE MODAL -->
+    <div class="modal-overlay" id="replace-file-modal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="replace-file-title" aria-describedby="replace-file-message">
+            <h2 id="replace-file-title">Open another file?</h2>
+            <p id="replace-file-message"></p>
+            <div class="modal-actions">
+                <button type="button" class="modal-cancel-button" id="replace-modal-cancel-button">Cancel</button>
+                <button type="button" class="modal-confirm-button" id="replace-modal-confirm-button">Open File</button>
+            </div>
+        </div>
+    </div>
 
 
 

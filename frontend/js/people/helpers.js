@@ -2,7 +2,7 @@ const colors = { Mentor: 'green', Friend: 'orange', Coworker: 'blue', Profession
 export const escapeHTML = (value = '') => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const getFullName = p => [p.firstName, p.lastName].filter(Boolean).join(' ');
 export const getCategory = p => p.relationship?.category || 'Other';
-export const renderCategoryBadge = p => `<span class="badge badge-${Object.hasOwn(colors, getCategory(p)) ? colors[getCategory(p)] : 'gray'}">&bull; ${escapeHTML(getCategory(p))}</span>`;
+export const renderCategoryBadge = p => `<span class="badge badge-${Object.hasOwn(colors, getCategory(p)) ? colors[getCategory(p)] : 'gray'}">${escapeHTML(getCategory(p))}</span>`;
 export const renderSafeAvatar = p => `<span class="person-icon avatar-${Object.hasOwn(colors, getCategory(p)) ? getCategory(p).toLowerCase() : 'other'}" aria-hidden="true"></span>`;
 export function parseDate(value) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
