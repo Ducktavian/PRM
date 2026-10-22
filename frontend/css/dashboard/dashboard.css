@@ -195,6 +195,8 @@
 
 .name--activity--date {
     display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
     width: 100%;
     justify-content: space-between;
 }
@@ -306,6 +308,32 @@
     gap: 8px;
     color: #000;
     font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Keep the four dashboard panels on the same text scale. */
+.dashboard :is(.category-name, .person-name, .full-name, .reminder-title) {
+    color: #211F26;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.dashboard .category-name {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.dashboard :is(
+    .category-count,
+    .activity-title,
+    .days-passed,
+    .name--activity--date > span:last-child,
+    .upcoming-important-dates-item .vertical-container > div
+) {
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.5;
 }
 
