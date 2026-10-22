@@ -137,15 +137,32 @@
     background-color: #FFF1F2;
 }
 
-.files-page .file-action-button:hover,
-.files-page .close-file-button:hover {
+.files-page #download-backup-button:not(:disabled) {
+    color: #2F7A5C;
+    border-color: #A7DCC4;
+    background-color: #EAF8F2;
+}
+
+.files-page .file-action-button:hover:not(:disabled),
+.files-page .close-file-button:hover:not(:disabled) {
     background-color: #F8F6F3;
+}
+
+.files-page #download-backup-button:hover:not(:disabled) {
+    color: #24684B;
+    border-color: #78C5A2;
+    background-color: #D8F0E3;
 }
 
 .files-page .close-file-button:hover:not(:disabled) {
     color: #921C28;
     border-color: #DC8993;
     background-color: #FFE1E5;
+}
+.files-page .file-action-button:disabled,
+.files-page .close-file-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 .files-page .close-file-button:focus-visible { outline: 2px solid #B42332; outline-offset: 3px; }
 

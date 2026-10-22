@@ -50,6 +50,7 @@ let pendingFile = null;
 function setBusy(value) {
     busy = value;
     actionControls.forEach(control => { control.disabled = value; });
+    downloadBackupButton.disabled = closeFileButton.disabled = value || !getDocument();
     document.querySelector('main').setAttribute('aria-busy', String(value));
 }
 
@@ -76,6 +77,7 @@ function countNestedRecords(people, key) {
 
 function updateFileInformation(message = "") {
     const currentDocument = getDocument();
+    downloadBackupButton.disabled = closeFileButton.disabled = busy || !currentDocument;
     notifyStoreError(getStoreError());
     if (message) showToast(message, { duration: 5000 });
 
