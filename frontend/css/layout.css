@@ -329,7 +329,17 @@ body.files-page {
     grid-row: 2;
 }
 
-:where(.main-container) .dashboard .card {
+:is(
+    .main-container .dashboard .card,
+    .person-card,
+    .detail-group,
+    .card-box,
+    .person-tags-notes-section,
+    .interaction-card,
+    .current-file,
+    .file-action-card,
+    .how-it-works
+) {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
