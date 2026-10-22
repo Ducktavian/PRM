@@ -82,20 +82,23 @@
 
         <nav class="pagination" aria-label="People pages">
             <output class="results-count pagination-status">Showing 0-0 of 0 people</output>
+            <div class="pagination-controls">
+                <button type="button" class="pagination-direction" data-pagination="prev" aria-label="Previous page">
+                    <img src="assets/chevron-left-icon.svg" alt="" width="16" height="16">
+                    <span class="pagination-direction-label">Previous</span>
+                </button>
 
-            <button type="button" class="pagination-direction" data-pagination="prev">
-                <img src="assets/chevron-left-icon.svg" alt="" width="16" height="16">
-                Previous
-            </button>
+                <div class="pagination-pages">
+                    <button type="button" class="pagination-page" data-page="1" aria-current="page">1</button>
+                    <button type="button" class="pagination-page" data-page="2">2</button>
+                    <button type="button" class="pagination-page" data-page="3">3</button>
+                </div>
 
-            <button type="button" class="pagination-page" data-page="1" aria-current="page">1</button>
-            <button type="button" class="pagination-page" data-page="2">2</button>
-            <button type="button" class="pagination-page" data-page="3">3</button>
-
-            <button type="button" class="pagination-direction" data-pagination="next">
-                Next
-                <img src="assets/chevron-right-icon.svg" alt="" width="16" height="16">
-            </button>
+                <button type="button" class="pagination-direction" data-pagination="next" aria-label="Next page">
+                    <span class="pagination-direction-label">Next</span>
+                    <img src="assets/chevron-right-icon.svg" alt="" width="16" height="16">
+                </button>
+            </div>
         </nav>
     </main>
 

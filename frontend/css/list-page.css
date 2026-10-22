@@ -63,6 +63,11 @@ body.people-page, body.interactions-page {
 }
 @media (max-width: 600px) {
     .people-page .main-content, .interactions-page main { gap: 16px; }
+    .people-page .pagination, .interactions-page .pagination {
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    }
     .interactions-page .page-filters { flex-wrap: wrap; }
     .interactions-page .search-field { flex: 1 0 100%; }
     .interactions-page .filter-select { flex: 0 0 40px; }

@@ -71,7 +71,7 @@ export function renderPeople(people, hasDocument = true) {
         button.textContent = number; button.setAttribute('aria-label', `Page ${number}`);
         if (number === page.page) button.setAttribute('aria-current', 'page');
         button.disabled = filtered.length === 0;
-        next.before(button);
+        pagination.querySelector('.pagination-pages').append(button);
     }
     const url = new URL(location.href);
     if (currentPage > 1) url.searchParams.set('page', currentPage); else url.searchParams.delete('page');

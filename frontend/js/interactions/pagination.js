@@ -1,6 +1,7 @@
 export function initPagination({ getPageCount, renderPage, hasResults }) {
     const pagination = document.querySelector('.pagination');
     const [previousButton, nextButton] = pagination.querySelectorAll('.pagination-direction');
+    const pageButtons = pagination.querySelector('.pagination-pages');
     let currentPage = 0;
 
     function showPage(index) {
@@ -17,7 +18,7 @@ export function initPagination({ getPageCount, renderPage, hasResults }) {
                 const gap = document.createElement('span');
                 gap.className = 'pagination-gap';
                 gap.textContent = '…';
-                nextButton.before(gap);
+                pageButtons.append(gap);
             }
             const button = document.createElement('button');
             button.type = 'button';
@@ -26,7 +27,7 @@ export function initPagination({ getPageCount, renderPage, hasResults }) {
             button.setAttribute('aria-label', `Page ${page + 1}`);
             if (page === currentPage) button.setAttribute('aria-current', 'page');
             button.disabled = !hasResults();
-            nextButton.before(button);
+            pageButtons.append(button);
         });
         previousButton.disabled = currentPage === 0;
         nextButton.disabled = currentPage === pageCount - 1;
