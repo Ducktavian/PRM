@@ -86,11 +86,96 @@
     cursor: pointer;
 }
 
-.filter-select img {
+.filter-select > img {
     position: absolute;
     right: 12px;
     top: 15px;
     pointer-events: none;
+}
+
+.mobile-filter-toggle,
+.mobile-filter-options {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .people-page .page-filters {
+        flex-wrap: nowrap;
+        gap: 12px;
+    }
+
+    .people-page .search-field {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .people-page .filter-select {
+        flex: 0 0 44px;
+    }
+
+    .people-page .filter-select select,
+    .people-page .filter-select > img {
+        display: none;
+    }
+
+    .people-page .mobile-filter-toggle {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 42px;
+        border: 2px solid #B8B2C4;
+        border-radius: 8px;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .people-page .mobile-filter-toggle:focus-visible {
+        outline: 2px solid #6E5BCF;
+        outline-offset: 2px;
+    }
+
+    .people-page .mobile-filter-toggle:disabled {
+        cursor: not-allowed;
+    }
+
+    .people-page .mobile-filter-options:not([hidden]) {
+        display: grid;
+        position: absolute;
+        z-index: 20;
+        top: calc(100% + 4px);
+        right: 0;
+        width: 176px;
+        max-height: min(330px, 55dvh);
+        overflow-y: auto;
+        padding: 4px 0;
+        border: 2px solid #B8B2C4;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+    }
+
+    .people-page .mobile-filter-options button {
+        min-height: 40px;
+        padding: 8px 12px;
+        border: 0;
+        background: #fff;
+        color: #211F26;
+        font: inherit;
+        font-size: 16px;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .people-page .mobile-filter-options button:hover,
+    .people-page .mobile-filter-options button[aria-pressed="true"] {
+        background: #EFEAFB;
+        color: #6E5BCF;
+    }
+
+    .people-page .mobile-filter-options button:focus-visible {
+        outline: 2px solid #6E5BCF;
+        outline-offset: -2px;
+    }
 }
 
 @media (max-width: 600px) {

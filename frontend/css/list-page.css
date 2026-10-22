@@ -63,8 +63,8 @@ body.people-page, body.interactions-page {
 }
 @media (max-width: 600px) {
     .people-page .main-content, .interactions-page main { gap: 16px; }
-    .people-page .page-filters, .interactions-page .page-filters { flex-wrap: wrap; }
-    .people-page .search-field, .interactions-page .search-field { flex: 1 0 100%; }
-    .people-page .filter-select, .interactions-page .filter-select { flex: 1; }
+    .interactions-page .page-filters { flex-wrap: wrap; }
+    .interactions-page .search-field { flex: 1 0 100%; }
+    .interactions-page .filter-select { flex: 1; }
     .people-page .search-field input, .interactions-page .search-field input { padding-right: 40px; }
 }

@@ -10,8 +10,24 @@ const add = document.querySelector('#open-add-person-btn');
 const search = document.querySelector('[type="search"]');
 const clear = document.querySelector('.search-clear');
 const category = document.querySelector('.filter-select select');
+const mobileFilterToggle = document.querySelector('.mobile-filter-toggle');
+const mobileFilterOptions = document.querySelector('.mobile-filter-options');
 const status = document.querySelector('#people-state');
 let currentPage = Number(new URLSearchParams(location.search).get('page')) || 1;
+function closeMobileFilter() {
+    mobileFilterOptions.hidden = true;
+    mobileFilterToggle.setAttribute('aria-expanded', 'false');
+}
+function updateMobileFilterOptions() {
+    mobileFilterOptions.replaceChildren(...[...category.options].map(option => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.value = option.value;
+        button.textContent = option.textContent;
+        button.setAttribute('aria-pressed', String(option.value === category.value));
+        return button;
+    }));
+}
 export function renderPeople(people, hasDocument = true) {
     const query = search.value.trim().toLowerCase();
     const filtered = people.filter(p => (!query || [getFullName(p), p.contact.location, ...p.skills, ...p.interests].some(v => v.toLowerCase().includes(query))) && (category.value === 'all' || getCategory(p).toLowerCase() === category.value));
@@ -19,6 +35,9 @@ export function renderPeople(people, hasDocument = true) {
     currentPage = page.page;
     add.disabled = !hasDocument;
     search.disabled = category.disabled = !hasDocument || people.length === 0;
+    mobileFilterToggle.disabled = category.disabled;
+    if (mobileFilterToggle.disabled) closeMobileFilter();
+    updateMobileFilterOptions();
     clear.hidden = !search.value;
     const hasPeople = hasDocument && people.length > 0;
     status.hidden = filtered.length > 0;
@@ -75,6 +94,30 @@ pagination.addEventListener('click', event => {
 function filter() { currentPage = 1; refresh(); }
 search.addEventListener('input', filter);
 category.addEventListener('change', filter);
+mobileFilterToggle.addEventListener('click', () => {
+    if (mobileFilterOptions.hidden) {
+        updateMobileFilterOptions();
+        mobileFilterOptions.hidden = false;
+        mobileFilterToggle.setAttribute('aria-expanded', 'true');
+    } else closeMobileFilter();
+});
+mobileFilterOptions.addEventListener('click', event => {
+    const option = event.target.closest('button');
+    if (!option) return;
+    category.value = option.value;
+    closeMobileFilter();
+    filter();
+    mobileFilterToggle.focus();
+});
+document.addEventListener('click', event => {
+    if (!event.target.closest('.filter-select')) closeMobileFilter();
+});
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !mobileFilterOptions.hidden) {
+        closeMobileFilter();
+        mobileFilterToggle.focus();
+    }
+});
 clear.addEventListener('click', () => { search.value = ''; filter(); search.focus(); });
 const modal = initPersonModal(refresh);
 add.addEventListener('click', modal.openAdd);
