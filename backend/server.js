@@ -14,6 +14,14 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/documents', documentRoutes);
 
+app.set('views', path.join(__dirname, '../templates/pages'));
+app.set('view engine', 'ejs');
+
+app.get(['/', '/index.html'], (req, res) => res.render('index'));
+for (const page of ['people', 'person', 'interactions', 'files']) {
+    app.get(`/${page}.html`, (req, res) => res.render(page));
+}
+
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.use((error, req, res, next) => {
