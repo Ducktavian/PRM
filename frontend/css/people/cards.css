@@ -400,3 +400,29 @@
 .dropdown-dropdown a.text-danger:hover {
     background: #FDF0F0;
 }
+
+@media (max-width: 600px) {
+    .people-page .person-card { padding: 14px; gap: 10px; }
+    .people-page .card-title h2 { font-size: 14px; }
+    .people-page .badge,
+    .person-view-page .badge { font-size: 11px; }
+    .people-page .tag,
+    .person-view-page .tag { font-size: 12px; }
+    .people-page .card-footer { font-size: 12px; }
+
+    .person-view-page .top-nav-actions { margin-bottom: 16px; }
+    .person-view-page .back-link { font-size: 13px; }
+    .person-view-page .person-profile-header { padding: 16px; gap: 12px; margin-bottom: 16px; }
+    .person-view-page .profile-header-details { min-width: 0; }
+    .person-view-page .profile-header-details h1 { font-size: 22px; line-height: 1.2; overflow-wrap: anywhere; }
+    .person-view-page .profile-header-details .pronouns,
+    .person-view-page .role-company { font-size: 13px; }
+    .person-view-page .person-details-grid,
+    .person-view-page .bottom-sections-grid { gap: 12px; margin-bottom: 16px; }
+    .person-view-page :is(.detail-group, .card-box, .person-tags-notes-section) { padding: 16px; }
+    .person-view-page .detail-item :is(p, a) { font-size: 14px; }
+    .person-view-page .notes-block p,
+    .person-view-page .interaction-item p { font-size: 13px; }
+    .person-view-page .interaction-item h3 { font-size: 14px; }
+    .person-view-page :is(.reminder-item, .interaction-item) { padding: 12px; }
+}

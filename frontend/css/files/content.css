@@ -253,3 +253,20 @@
     }
 
 }
+
+@media (max-width: 600px) {
+    .files-page :is(.current-file, .file-action-card, .how-it-works) { padding: 16px; }
+    .files-page .current-file-info { gap: 12px; }
+    .files-page .current-file-title,
+    .files-page .file-action-card h2 { font-size: 16px; }
+    .files-page #current-file-name,
+    .files-page .file-action-card p { font-size: 14px; }
+    .files-page .file-meta,
+    .files-page .step p,
+    .files-page .file-footer { font-size: 12px; }
+    .files-page .how-it-works > h2,
+    .files-page .step h3 { font-size: 14px; }
+    .files-page .file-action-card { min-height: 0; gap: 8px; }
+    .files-page .file-action-card h2 { margin: 4px 0 0; }
+    .files-page .file-action-card p { margin-bottom: 8px; }
+}

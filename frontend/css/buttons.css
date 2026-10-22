@@ -227,3 +227,10 @@
         height: 44px;
     }
 }
+
+@media (max-width: 600px) {
+    .interactions-page .action-button {
+        width: 28px;
+        height: 28px;
+    }
+}
