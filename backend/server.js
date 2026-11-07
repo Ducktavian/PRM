@@ -4,7 +4,7 @@ const documentRoutes = require('./routes/documents');
 const { MAX_DOCUMENT_BYTES } = require('./lib/document');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json({ limit: MAX_DOCUMENT_BYTES }));
 
