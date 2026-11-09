@@ -29,6 +29,10 @@
     gap: 12px;
 }
 
+.dashboard .reminders-toggle {
+    justify-self: start;
+}
+
 .reconnect-item .reconnect-view:hover,
 .reconnect-item .reconnect-view:active {
     background-color: #EFEAFB;
