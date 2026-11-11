@@ -183,9 +183,25 @@ function createReminderItem(reminder) {
     return item;
 }
 
+const REMINDER_LIMIT = 10;
+let showAllReminders = false;
+
 function displayUpcomingImportantDates(summary) {
-    const items = summary.reminders.map(createReminderItem);
-    renderSection('.upcoming-important-dates', items, { text: 'No upcoming reminders.' });
+    const reminders = showAllReminders ? summary.reminders : summary.reminders.slice(0, REMINDER_LIMIT);
+    renderSection('.upcoming-important-dates', reminders.map(createReminderItem), { text: 'No upcoming reminders.' });
+    if (summary.reminders.length <= REMINDER_LIMIT) return;
+
+    // Long reminder lists show the first 10 with a toggle for the rest.
+    const toggle = createElement('button', 'dashboard-link reminders-toggle',
+        showAllReminders ? 'Show fewer reminders' : `View all reminders (${summary.reminders.length})`);
+    toggle.type = 'button';
+    toggle.setAttribute('aria-expanded', String(showAllReminders));
+    toggle.addEventListener('click', () => {
+        showAllReminders = !showAllReminders;
+        displayUpcomingImportantDates(summary);
+        document.querySelector('.reminders-toggle').focus();
+    });
+    document.querySelector('.upcoming-important-dates > div').append(toggle);
 }
 
 function render() {

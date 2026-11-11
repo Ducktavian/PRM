@@ -64,8 +64,16 @@ export function renderPeople(people, hasDocument = true) {
     count.textContent = filtered.length ? `Showing ${page.first}-${page.last} of ${filtered.length} ${filtered.length === 1 ? 'person' : 'people'}` : '0 people';
     previous.disabled = page.page === 1;
     next.disabled = !page.pages || page.page === page.pages;
-    pagination.querySelectorAll('[data-page]').forEach(b => b.remove());
-    for (let number = 1; number <= Math.max(1, page.pages); number++) {
+    pagination.querySelectorAll('[data-page], .pagination-gap').forEach(b => b.remove());
+    // Show the first, last and neighboring pages, with gaps between, as on the Interactions page.
+    const lastPage = Math.max(1, page.pages);
+    const numbers = [...new Set([1, page.page - 1, page.page, page.page + 1, lastPage])].filter(n => n >= 1 && n <= lastPage).sort((a, b) => a - b);
+    for (const [index, number] of numbers.entries()) {
+        if (index && number - numbers[index - 1] > 1) {
+            const gap = document.createElement('span');
+            gap.className = 'pagination-gap'; gap.textContent = '…';
+            pagination.querySelector('.pagination-pages').append(gap);
+        }
         const button = document.createElement('button');
         button.type = 'button'; button.className = 'pagination-page'; button.dataset.page = number;
         button.textContent = number; button.setAttribute('aria-label', `Page ${number}`);
