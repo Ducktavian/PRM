@@ -154,7 +154,11 @@ replaceModalCancelButton.addEventListener("click", function () {
 
 replaceModalConfirmButton.addEventListener("click", async function () {
     if (!pendingFile || busy) return;
-    await openChosenFile(pendingFile);
+    const file = pendingFile;
+    pendingFile = null;
+    replaceFileModal.style.display = "none";
+    await openChosenFile(file);
+    if (!busy) chooseFileButton.focus();
 });
 
 createNewFileButton.addEventListener("click", function () {
