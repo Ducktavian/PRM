@@ -1,23 +1,23 @@
-import { parseDate } from './helpers.js';
+import { parseDate, LOCATION_FIELDS, locationInputName } from './helpers.js';
 const lists = ['interests', 'skills', 'likes', 'dislikes', 'sharedTopics'];
+// Categories offered in the form. Anything else is a custom relationship typed
+// in after choosing "Other", and is stored as the category itself.
+export const STANDARD_CATEGORIES = ['Friend', 'Mentor', 'Coworker', 'Professional', 'Family', 'Classmate', 'Other'];
+const many = value => (Array.isArray(value) ? value : [value]).map(item => String(item ?? '').trim()).filter(Boolean);
 export function buildPerson(values, existing = null) {
-    // Keep unchanged imported first/last names exactly as stored.
-    if (values.fullName !== undefined) {
-        const fullName = String(values.fullName).trim();
-        const unchanged = existing && fullName === [existing.firstName, existing.lastName].filter(Boolean).join(' ');
-        const [firstName = '', ...rest] = fullName.split(/\s+/);
-        values = { ...values, firstName: unchanged ? existing.firstName : firstName, lastName: unchanged ? existing.lastName : rest.join(' ') };
-    }
     const read = key => String(values[key] ?? '').trim();
     if (!read('firstName')) throw new Error('Enter a first name.');
-    if (!read('category')) throw new Error('Select a category.');
+    const category = read('category') === 'Other' ? read('customCategory') || 'Other' : read('category');
+    if (!category) throw new Error('Select a category.');
     for (const key of ['birthday', 'dateMet']) if (read(key) && !parseDate(read(key))) throw new Error('Enter a valid date.');
-    const primary = (value, previous = []) => value ? [value, ...previous.slice(1)] : previous.slice(1);
+    const oldLocation = existing?.contact.location;
     return {
-        ...existing, id: existing?.id ?? crypto.randomUUID(), firstName: read('firstName'), lastName: read('lastName'),
-        contact: { ...existing?.contact, emails: primary(read('email'), existing?.contact.emails), phones: primary(read('phone'), existing?.contact.phones), location: read('location'), preferredContact: read('preferredContact') },
+        ...existing, id: existing?.id ?? crypto.randomUUID(), firstName: read('firstName'), middleName: read('middleName'), lastName: read('lastName'),
+        contact: { ...existing?.contact, emails: many(values.emails), phones: many(values.phones),
+            location: { ...(oldLocation && typeof oldLocation === 'object' ? oldLocation : {}), ...Object.fromEntries(LOCATION_FIELDS.map(key => [key, read(locationInputName(key))])) },
+            preferredContact: read('preferredContact') },
         personalInfo: { ...existing?.personalInfo, birthday: read('birthday'), pronouns: read('pronouns'), gender: existing?.personalInfo.gender ?? '', occupation: read('occupation') },
-        relationship: { ...existing?.relationship, category: read('category'), workplaceOrSchool: read('workplace'), howYouMet: read('howMet'), dateYouMet: read('dateMet') },
+        relationship: { ...existing?.relationship, category, workplaceOrSchool: read('workplace'), howYouMet: read('howMet'), dateYouMet: read('dateMet') },
         ...Object.fromEntries(lists.map(key => [key, existing && read(key) === existing[key].join(', ') ? [...existing[key]] : read(key).split(',').map(i => i.trim()).filter(Boolean)])),
         notes: read('notes'), reminders: existing?.reminders ?? [], interactions: existing?.interactions ?? []
     };

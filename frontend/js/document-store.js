@@ -17,14 +17,33 @@ function copyDocument(document) {
     return JSON.parse(JSON.stringify(document));
 }
 
+export const DOCUMENT_VERSION = "2.0";
+
 function isValidDocument(document) {
     return (
         document !== null &&
         typeof document === "object" &&
         !Array.isArray(document) &&
-        document.version === "1.0" &&
+        document.version === DOCUMENT_VERSION &&
         Array.isArray(document.people)
     );
+}
+
+// Drafts saved in this tab before the 2.0 format: split the free-text
+// location the same way backend/lib/document.js upgrades opened files.
+function upgradeDraft(document) {
+    if (document?.version !== "1.0" || !Array.isArray(document.people)) return document;
+    const people = document.people.map(person => {
+        const contact = person?.contact;
+        if (!contact || typeof contact.location !== "string") return { ...person, middleName: person?.middleName ?? "" };
+        const parts = contact.location.split(",").map(part => part.trim()).filter(Boolean);
+        const country = parts.length >= 2 ? parts.pop() : "";
+        const provinceOrState = parts.length >= 2 ? parts.pop() : "";
+        const city = parts.length ? parts.pop() : "";
+        return { ...person, middleName: person.middleName ?? "", lastName: person.lastName ?? "",
+            contact: { ...contact, location: { street: parts.join(", "), city, provinceOrState, country, notes: "" } } };
+    });
+    return { ...document, version: DOCUMENT_VERSION, people };
 }
 
 function applyState(state) {
@@ -58,6 +77,7 @@ function restoreState() {
         }
 
         const state = JSON.parse(savedState);
+        if (state) state.document = upgradeDraft(state.document);
 
         if (
             !state ||

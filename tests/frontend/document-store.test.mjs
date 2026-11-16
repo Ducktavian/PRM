@@ -23,7 +23,7 @@ async function fixture(initial = null) {
 
 test('shared draft survives reload and refreshes after history restoration', async () => {
     const f = await fixture();
-    f.module.setDocument({ version: '1.0', people: [] }, 'network.json');
+    f.module.setDocument({ version: '2.0', people: [] }, 'network.json');
     f.module.updateDocument(doc => doc.people.push({ id: 'a' }));
     const next = await fixture(f.saved());
     assert.equal(next.module.getDocument().people.length, 1);
@@ -36,20 +36,20 @@ test('shared draft survives reload and refreshes after history restoration', asy
 
 test('failed updates, replacement, and close preserve the saved document', async () => {
     const f = await fixture();
-    f.module.setDocument({ version: '1.0', people: [] }, 'original.json');
+    f.module.setDocument({ version: '2.0', people: [] }, 'original.json');
     const original = f.saved();
     f.fail(true);
     assert.throws(() => f.module.updateDocument(doc => doc.people.push({ id: 'a' })), /Unable to save/);
-    assert.throws(() => f.module.setDocument({ version: '1.0', people: [{ id: 'b' }] }, 'new.json'));
+    assert.throws(() => f.module.setDocument({ version: '2.0', people: [{ id: 'b' }] }, 'new.json'));
     assert.throws(() => f.module.closeDocument(), /Unable to clear/);
     assert.equal(f.saved(), original);
-    assert.deepEqual(f.module.getDocument(), { version: '1.0', people: [] });
+    assert.deepEqual(f.module.getDocument(), { version: '2.0', people: [] });
     assert.equal(f.module.getFilename(), 'original.json');
 });
 
 test('a delayed download cannot mark a newer document as saved', async () => {
     const f = await fixture();
-    f.module.setDocument({ version: '1.0', people: [] }, 'network.json');
+    f.module.setDocument({ version: '2.0', people: [] }, 'network.json');
     const downloaded = f.module.getDocument();
     f.module.updateDocument(doc => doc.people.push({ id: 'a' }));
     assert.equal(f.module.markDownloaded(downloaded, 'network.json'), false);
@@ -63,13 +63,13 @@ test('invalid stored drafts remain recoverable and expose a readable error', asy
     assert.equal(f.module.getDocument(), null);
     assert.match(f.module.getStoreError(), /Could not restore/);
     assert.equal(f.saved(), '{broken');
-    f.module.setDocument({ version: '1.0', people: [] }, 'recovered.json');
+    f.module.setDocument({ version: '2.0', people: [] }, 'recovered.json');
     assert.equal(f.module.getStoreError(), '');
 });
 
 test('unsaved work warns on unload but permits internal navigation', async () => {
     const f = await fixture();
-    f.module.setDocument({ version: '1.0', people: [] }, 'network.json');
+    f.module.setDocument({ version: '2.0', people: [] }, 'network.json');
     f.module.updateDocument(doc => doc.people.push({ id: 'a' }));
     let event = new Event('beforeunload', { cancelable: true });
     f.window.dispatchEvent(event);
@@ -82,4 +82,14 @@ test('unsaved work warns on unload but permits internal navigation', async () =>
     event = new Event('beforeunload', { cancelable: true });
     f.window.dispatchEvent(event);
     assert.equal(event.defaultPrevented, false);
+});
+
+test('a version 1.0 draft is upgraded to 2.0 on restore', async () => {
+    const legacy = { version: '1.0', people: [{ id: 'a', firstName: 'Alex', lastName: 'Santos', contact: { emails: [], phones: [], location: '12 Rizal St, Makati, Metro Manila, Philippines', preferredContact: '' } }] };
+    const f = await fixture(JSON.stringify({ document: legacy, filename: 'old.json', dirty: true }));
+    const doc = f.module.getDocument();
+    assert.equal(doc.version, '2.0');
+    assert.equal(doc.people[0].middleName, '');
+    assert.deepEqual(doc.people[0].contact.location, { street: '12 Rizal St', city: 'Makati', provinceOrState: 'Metro Manila', country: 'Philippines', notes: '' });
+    assert.equal(f.module.isDirty(), true);
 });

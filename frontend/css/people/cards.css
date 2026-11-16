@@ -426,3 +426,19 @@
     .person-view-page .interaction-item h3 { font-size: 14px; }
     .person-view-page :is(.reminder-item, .interaction-item) { padding: 12px; }
 }
+
+/* Text typed into multi-line boxes keeps the user's line breaks. */
+[data-person-notes],
+[data-person-how-met],
+.location-notes,
+.interaction-item p,
+.reminder-item small {
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.location-notes {
+    display: block;
+    margin-top: 4px;
+    color: #6b7280;
+}

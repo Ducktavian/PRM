@@ -276,6 +276,62 @@
     margin-top: 6px;
 }
 
+/* Repeatable email / phone fields in the person form */
+:where(.people-page, .person-view-page) .multi-input-list {
+    display: grid;
+    gap: 8px;
+}
+
+:where(.people-page, .person-view-page) .multi-input-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+:where(.people-page, .person-view-page) .multi-input-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+:where(.people-page, .person-view-page) .btn-remove-entry {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border: 2px solid #B8B2C4;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #211F26;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+:where(.people-page, .person-view-page) .btn-remove-entry:hover {
+    background-color: #F8F6F3;
+}
+
+:where(.people-page, .person-view-page) .btn-remove-entry[hidden],
+:where(.people-page, .person-view-page) [data-custom-category][hidden] {
+    display: none;
+}
+
+:where(.people-page, .person-view-page) .btn-add-entry {
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: #6E5BCF;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+:where(.people-page, .person-view-page) .btn-add-entry:hover {
+    text-decoration: underline;
+}
+
 :where(.people-page, .person-view-page) .modal-actions {
     grid-template-columns: 1fr 1fr;
     padding: 24px;

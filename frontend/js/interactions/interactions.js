@@ -38,7 +38,7 @@ export function initInteractions() {
     function getPerson(id) {
         const person = peopleById.get(String(id));
         return {
-            name: `${person.firstName} ${person.lastName}`
+            name: [person.firstName, person.middleName, person.lastName].filter(Boolean).join(' ')
         };
     }
 

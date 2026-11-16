@@ -4,7 +4,7 @@ import { calendarDay, flattenInteractions, saveInteraction, removeInteraction, s
 
 const values = { personId: 'a', title: ' Talk ', type: 'Call', date: '2026-10-12', time: '', notes: ' Notes ', followUp: ' Reply ' };
 function fixture() {
-    return { version: '1.0', people: [{ id: 'a', firstName: 'Alex', interactions: [], reminders: [] }, { id: 'b', firstName: 'Bea', interactions: [], reminders: [] }] };
+    return { version: '2.0', people: [{ id: 'a', firstName: 'Alex', interactions: [], reminders: [] }, { id: 'b', firstName: 'Bea', interactions: [], reminders: [] }] };
 }
 const now = new Date(2026, 9, 12, 12);
 

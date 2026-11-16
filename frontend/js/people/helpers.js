@@ -1,6 +1,13 @@
 const colors = { Mentor: 'green', Friend: 'orange', Coworker: 'blue', Professional: 'blue', Family: 'red', Classmate: 'purple' };
 export const escapeHTML = (value = '') => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-export const getFullName = p => [p.firstName, p.lastName].filter(Boolean).join(' ');
+export const getFullName = p => [p.firstName, p.middleName, p.lastName].filter(Boolean).join(' ');
+// Address parts, most specific first, plus free-text notes describing the place.
+export const ADDRESS_FIELDS = ['street', 'city', 'provinceOrState', 'country'];
+export const LOCATION_FIELDS = [...ADDRESS_FIELDS, 'notes'];
+// Form input names get a "location" prefix so they never clash with the person's own `notes`.
+export const locationInputName = key => 'location' + key[0].toUpperCase() + key.slice(1);
+// e.g. "12 Rizal St, Makati, Metro Manila, Philippines" (notes are shown separately).
+export const formatLocation = (location = {}) => typeof location === 'string' ? location : ADDRESS_FIELDS.map(k => location?.[k]).filter(Boolean).join(', ');
 export const getCategory = p => p.relationship?.category || 'Other';
 export const renderCategoryBadge = p => `<span class="badge badge-${Object.hasOwn(colors, getCategory(p)) ? colors[getCategory(p)] : 'gray'}">${escapeHTML(getCategory(p))}</span>`;
 export const renderSafeAvatar = p => `<span class="person-icon avatar-${Object.hasOwn(colors, getCategory(p)) ? getCategory(p).toLowerCase() : 'other'}" aria-hidden="true"></span>`;

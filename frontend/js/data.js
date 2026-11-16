@@ -4,6 +4,7 @@ export const people = [
   {
     id: 1,
     firstName: "Alex",
+    middleName: "",
     lastName: "Santos",
 
     contact: {
@@ -13,7 +14,13 @@ export const people = [
       phones: [
         "+63 917 123 4567"
       ],
-      location: "Quezon City, Philippines",
+      location: {
+        street: "",
+        city: "Quezon City",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Email"
     },
 
@@ -97,6 +104,7 @@ export const people = [
   {
     id: 2,
     firstName: "Mia",
+    middleName: "",
     lastName: "Reyes",
 
     contact: {
@@ -106,7 +114,13 @@ export const people = [
       phones: [
         "+63 918 234 5678"
       ],
-      location: "Makati, Philippines",
+      location: {
+        street: "",
+        city: "Makati",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Phone"
     },
 
@@ -174,6 +188,7 @@ export const people = [
   {
     id: 3,
     firstName: "Daniel",
+    middleName: "",
     lastName: "Cruz",
 
     contact: {
@@ -183,7 +198,13 @@ export const people = [
       phones: [
         "+63 919 345 6789"
       ],
-      location: "Pasig, Philippines",
+      location: {
+        street: "",
+        city: "Pasig",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Phone"
     },
 
@@ -258,6 +279,7 @@ export const people = [
   {
     id: 4,
     firstName: "Sofia",
+    middleName: "",
     lastName: "Garcia",
 
     contact: {
@@ -267,7 +289,13 @@ export const people = [
       phones: [
         "+63 920 456 7890"
       ],
-      location: "Manila, Philippines",
+      location: {
+        street: "",
+        city: "Manila",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Email"
     },
 
@@ -344,6 +372,7 @@ export const people = [
   {
     id: 5,
     firstName: "Ethan",
+    middleName: "",
     lastName: "Tan",
 
     contact: {
@@ -353,7 +382,13 @@ export const people = [
       phones: [
         "+63 921 567 8901"
       ],
-      location: "Cebu City, Philippines",
+      location: {
+        street: "",
+        city: "Cebu City",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Email"
     },
 
@@ -421,6 +456,7 @@ export const people = [
   {
     id: 6,
     firstName: "Lara",
+    middleName: "",
     lastName: "Villanueva",
 
     contact: {
@@ -430,7 +466,13 @@ export const people = [
       phones: [
         "+63 922 678 9012"
       ],
-      location: "Laguna, Philippines",
+      location: {
+        street: "",
+        city: "Laguna",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Phone"
     },
 
@@ -498,6 +540,7 @@ export const people = [
   {
     id: 7,
     firstName: "Noah",
+    middleName: "",
     lastName: "Lim",
 
     contact: {
@@ -507,7 +550,13 @@ export const people = [
       phones: [
         "+63 923 789 0123"
       ],
-      location: "Taguig, Philippines",
+      location: {
+        street: "",
+        city: "Taguig",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Email"
     },
 
@@ -575,6 +624,7 @@ export const people = [
   {
     id: 8,
     firstName: "Grace",
+    middleName: "",
     lastName: "Mendoza",
 
     contact: {
@@ -584,7 +634,13 @@ export const people = [
       phones: [
         "+63 924 890 1234"
       ],
-      location: "Batangas, Philippines",
+      location: {
+        street: "",
+        city: "Batangas",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Phone"
     },
 
@@ -652,6 +708,7 @@ export const people = [
   {
     id: 9,
     firstName: "Marco",
+    middleName: "",
     lastName: "Dela Cruz",
 
     contact: {
@@ -661,7 +718,13 @@ export const people = [
       phones: [
         "+63 925 901 2345"
       ],
-      location: "Cavite, Philippines",
+      location: {
+        street: "",
+        city: "Cavite",
+        provinceOrState: "",
+        country: "Philippines",
+        notes: ""
+      },
       preferredContact: "Email"
     },
 
