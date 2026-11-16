@@ -12,8 +12,7 @@
 }
 
 .detail-group,
-.card-box,
-.person-tags-notes-section {
+.card-box {
     background: #ffffff;
     border: 1px solid #B8B2C4;
     border-radius: 12px;
@@ -244,13 +243,6 @@
     text-decoration: underline;
 }
 
-.person-tags-notes-section {
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-}
-
 .detail-item label,
 .tag-category label,
 .notes-block label {
@@ -261,10 +253,41 @@
     margin-bottom: 6px;
 }
 
-.two-column-tags {
+/* Interests, skills, shared topics, likes & dislikes, and notes each get
+   their own card, laid out like the contact/personal/relationship cards. */
+.person-tags-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.person-tags-grid .group-title {
+    margin-bottom: 0.75rem;
+}
+
+.person-tags-grid .tag-category + .tag-category {
+    margin-top: 1rem;
+}
+
+.person-tags-grid .notes-card {
+    grid-column: span 2;
+}
+
+@media (max-width: 1024px) {
+    .person-tags-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .person-tags-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .person-tags-grid .notes-card {
+        grid-column: auto;
+    }
 }
 
 .notes-block p {
@@ -418,8 +441,9 @@
     .person-view-page .profile-header-details .pronouns,
     .person-view-page .role-company { font-size: 13px; }
     .person-view-page .person-details-grid,
+    .person-view-page .person-tags-grid,
     .person-view-page .bottom-sections-grid { gap: 12px; margin-bottom: 16px; }
-    .person-view-page :is(.detail-group, .card-box, .person-tags-notes-section) { padding: 16px; }
+    .person-view-page :is(.detail-group, .card-box) { padding: 16px; }
     .person-view-page .detail-item :is(p, a) { font-size: 14px; }
     .person-view-page .notes-block p,
     .person-view-page .interaction-item p { font-size: 13px; }
