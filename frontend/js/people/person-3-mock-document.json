@@ -1,14 +1,25 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "people": [
     {
       "id": "6f87de45-7ef4-4e75-80b3-20c374801c01",
       "firstName": "Alex",
+      "middleName": "",
       "lastName": "Santos",
       "contact": {
-        "emails": ["alex@example.com"],
-        "phones": ["+63 900 111 2222"],
-        "location": "Quezon City",
+        "emails": [
+          "alex@example.com"
+        ],
+        "phones": [
+          "+63 900 111 2222"
+        ],
+        "location": {
+          "street": "",
+          "city": "Quezon City",
+          "provinceOrState": "",
+          "country": "",
+          "notes": ""
+        },
         "preferredContact": "Email"
       },
       "personalInfo": {
@@ -23,11 +34,22 @@
         "howYouMet": "College",
         "dateYouMet": "2021-08-20"
       },
-      "interests": ["Technology", "Photography"],
-      "skills": ["JavaScript"],
-      "likes": ["Coffee"],
-      "dislikes": ["Early mornings"],
-      "sharedTopics": ["Web development"],
+      "interests": [
+        "Technology",
+        "Photography"
+      ],
+      "skills": [
+        "JavaScript"
+      ],
+      "likes": [
+        "Coffee"
+      ],
+      "dislikes": [
+        "Early mornings"
+      ],
+      "sharedTopics": [
+        "Web development"
+      ],
       "notes": "Sample person for People page testing.",
       "reminders": [
         {
@@ -60,11 +82,18 @@
     {
       "id": "6f87de45-7ef4-4e75-80b3-20c374801c05",
       "firstName": "Mia",
+      "middleName": "",
       "lastName": "Reyes",
       "contact": {
         "emails": [],
         "phones": [],
-        "location": "",
+        "location": {
+          "street": "",
+          "city": "",
+          "provinceOrState": "",
+          "country": "",
+          "notes": ""
+        },
         "preferredContact": ""
       },
       "personalInfo": {

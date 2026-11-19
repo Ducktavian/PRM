@@ -22,7 +22,7 @@ function toClassName(value) {
 }
 
 function getFullName(person) {
-    return `${person.firstName || ''} ${person.lastName || ''}`.trim() || 'Unnamed person';
+    return [person.firstName, person.middleName, person.lastName].filter(Boolean).join(' ') || 'Unnamed person';
 }
 
 function getCategory(person) {

@@ -15,7 +15,7 @@ This guide follows the intended **draw.io-style workflow**. The user's JSON file
 ## What exists now
 
 - `backend/server.js` serves `frontend/`, parses JSON with a 2 MB request limit, handles JSON errors, and has `/api/health`. Run it from `backend/` with `npm.cmd run dev` on PowerShell.
-- `backend/lib/document.js` already defines the version 1.0 document format in code. `createDocument()` returns an empty document; `validateDocument()` checks all required person, reminder, and interaction fields, rejects duplicate IDs and unsupported versions, converts numeric IDs to strings, fills optional reminder/interaction fields, and preserves extra imported fields. **Use this existing shape; do not design a second person schema for the frontend.**
+- `backend/lib/document.js` already defines the version 2.0 document format in code (version 1.0 files are still accepted and upgraded to 2.0 when opened). `createDocument()` returns an empty document; `validateDocument()` checks all required person, reminder, and interaction fields, rejects duplicate IDs and unsupported versions, converts numeric IDs to strings, fills optional reminder/interaction fields, and preserves extra imported fields. **Use this existing shape; do not design a second person schema for the frontend.**
 - `backend/routes/documents.js` already implements `POST /api/documents/new`, `/open`, and `/download`. Open validates and normalizes without writing a file; Download validates again and returns a JSON attachment with a safe filename.
 - `backend/package.json` still has a placeholder `test` script, and `backend/test/documents.test.js` does not exist yet. Route and validation tests remain to be written.
 - `frontend/js/data.js` supplies nine hardcoded sample people. The dashboard, people pages, and interactions page currently import that data.
@@ -28,23 +28,36 @@ This guide follows the intended **draw.io-style workflow**. The user's JSON file
 - **One open document per browser tab.** `frontend/js/document-store.js` owns the current document, filename, and dirty state. Use `sessionStorage` to carry the draft across the existing pages and refreshes. Handle storage errors clearly; do not claim a save succeeded when it did not.
 - **One source of truth while editing:** every page reads and updates that document store. No page maintains an independent copy of people or interactions. `frontend/js/data.js` remains an optional sample fixture and is never user storage.
 - **No server persistence:** Express receives a document for validation or download and returns a response. It does not save it on disk or associate it with a user. There are no `/api/people`, `/api/interactions`, or `/api/reminders` CRUD routes in this version; browser code updates the open document directly.
-- **Canonical file format:** top-level `{ "version": "1.0", "people": [] }`, with optional `exportedAt`. Match the person fields in `frontend/js/data.js`. Each person has `reminders` and `interactions` arrays. New IDs are UUID strings; existing numeric IDs are converted to strings when opened. Every reference uses the resulting string ID.
+- **Canonical file format:** top-level `{ "version": "2.0", "people": [] }`, with optional `exportedAt`. Match the person fields in `frontend/js/data.js`. Each person has `reminders` and `interactions` arrays. New IDs are UUID strings; existing numeric IDs are converted to strings when opened. Every reference uses the resulting string ID.
 - **Interactions:** keep them nested under a person. Store `{ id, type, date, time, title, details, followUp }`. The interaction form's “notes” field maps to `details`; `time` and `followUp` may be empty. Moving an interaction to another person moves the nested record.
 - **Reminders:** keep them nested under a person. Store `{ id, title, date, completed, details }`; `details` may be empty.
 - **Validation:** reject malformed JSON, unsupported versions, missing required fields, duplicate IDs, and files over the chosen size limit (start with 2 MB). Report errors without replacing the currently open document. Do not silently discard information in an imported file.
 - **Safe rendering:** treat imported names, notes, tags, and labels as text. Use `textContent` or escape HTML before inserting them into existing `innerHTML` templates.
 
+### Version 2.0 changes
+
+- Names are split into `firstName` (required), `middleName` and `lastName` (both optional; an absent value becomes `""`).
+- `contact.emails` and `contact.phones` hold any number of entries; the person form has **+ Add email** / **+ Add phone** buttons.
+- `contact.location` is an object with `street`, `city`, `provinceOrState`, `country`, and `notes` (free text describing the place, such as landmarks or directions). When a 1.0 file is opened, its free-text location is split on commas from the right (country, then province/state, then city, with anything left as the street), so the parts joined with `, ` reproduce the original text.
+- `relationship.category` may be any text. Choosing **Other** in the form shows a field for a custom relationship, which is stored as the category itself.
+
 ### Example file
 
 ```json
 {
-  "version": "1.0",
+  "version": "2.0",
   "people": [
     {
       "id": "7d53c15b-079c-45bd-a5e6-33edc5fe8955",
       "firstName": "Alex",
+      "middleName": "",
       "lastName": "Santos",
-      "contact": { "emails": [], "phones": [], "location": "", "preferredContact": "" },
+      "contact": {
+        "emails": ["alex@example.com", "alex.work@example.com"],
+        "phones": ["+63 917 123 4567"],
+        "location": { "street": "", "city": "Makati", "provinceOrState": "Metro Manila", "country": "Philippines", "notes": "" },
+        "preferredContact": ""
+      },
       "personalInfo": { "birthday": "", "pronouns": "", "gender": "", "occupation": "" },
       "relationship": { "category": "Friend", "workplaceOrSchool": "", "howYouMet": "", "dateYouMet": "" },
       "interests": [],
@@ -67,7 +80,7 @@ The user clicks buttons; frontend JavaScript calls these routes with `fetch()`. 
 | Method and route | What the browser sends | What Express returns |
 | --- | --- | --- |
 | `GET /api/health` | Nothing | `{ "status": "ok" }` for a quick server check |
-| `POST /api/documents/new` | Nothing | `{ "document": { "version": "1.0", "people": [] } }` |
+| `POST /api/documents/new` | Nothing | `{ "document": { "version": "2.0", "people": [] } }` |
 | `POST /api/documents/open` | `{ "document": <parsed JSON> }` | `{ "document": <validated, normalized JSON> }`; no disk write |
 | `POST /api/documents/download` | `{ "document": <current JSON>, "filename": "name.json" }` | Validated JSON attachment with a safe filename; no disk write |
 

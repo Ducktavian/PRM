@@ -1,5 +1,5 @@
 import { readDocument, personURL, navigateWithinApp } from './document-access.js';
-import { getFullName, getCategory, renderSafeAvatar, renderCategoryBadge, escapeHTML, formatDate, getLatestInteraction, pageOf } from './helpers.js';
+import { getFullName, formatLocation, getCategory, renderSafeAvatar, renderCategoryBadge, escapeHTML, formatDate, getLatestInteraction, pageOf } from './helpers.js';
 import { initPersonModal } from './person-modal.js';
 const grid = document.querySelector('#people-grid');
 const count = document.querySelector('.results-count');
@@ -30,7 +30,7 @@ function updateMobileFilterOptions() {
 }
 export function renderPeople(people, hasDocument = true) {
     const query = search.value.trim().toLowerCase();
-    const filtered = people.filter(p => (!query || [getFullName(p), p.contact.location, ...p.skills, ...p.interests].some(v => v.toLowerCase().includes(query))) && (category.value === 'all' || getCategory(p).toLowerCase() === category.value));
+    const filtered = people.filter(p => (!query || [getFullName(p), formatLocation(p.contact.location), p.contact.location?.notes || '', ...p.contact.emails, ...p.contact.phones, ...p.skills, ...p.interests].some(v => v.toLowerCase().includes(query))) && (category.value === 'all' || getCategory(p).toLowerCase() === category.value));
     const page = pageOf(filtered, currentPage);
     currentPage = page.page;
     add.disabled = !hasDocument;

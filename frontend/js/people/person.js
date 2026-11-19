@@ -1,5 +1,5 @@
 import { getDocument, readDocument, updateDocument, peopleURL, navigateWithinApp } from './document-access.js';
-import { getFullName, renderSafeAvatar, renderCategoryBadge, formatDate, parseDate, renderTags, escapeHTML, renderReminder } from './helpers.js';
+import { getFullName, formatLocation, renderSafeAvatar, renderCategoryBadge, formatDate, parseDate, renderTags, escapeHTML, renderReminder } from './helpers.js';
 import { requirePerson, deletePerson, requireReminder, saveReminder } from './models.js';
 import { initPersonModal } from './person-modal.js';
 import { showToast, toastAfterNavigation } from '../toast.js';
@@ -32,7 +32,8 @@ function render() {
     email.removeAttribute('href');
     if (contact.emails[0]) email.setAttribute('href', `mailto:${encodeURIComponent(contact.emails[0])}`);
     html('[data-person-phone]', `<i class="fa-solid fa-phone"></i> ${escapeHTML(contact.phones.join(', ') || 'Not provided')}`);
-    html('[data-person-location]', `<i class="fa-solid fa-location-dot"></i> ${escapeHTML(contact.location || 'Not provided')}`);
+    const locationNotes = contact.location?.notes;
+    html('[data-person-location]', `<i class="fa-solid fa-location-dot"></i> ${escapeHTML(formatLocation(contact.location) || 'Not provided')}${locationNotes ? `<small class="location-notes">${escapeHTML(locationNotes)}</small>` : ''}`);
     text('[data-person-preferred-contact]', contact.preferredContact || 'Not provided');
     let birthday = formatDate(personalInfo.birthday);
     const birth = parseDate(personalInfo.birthday), today = new Date();
